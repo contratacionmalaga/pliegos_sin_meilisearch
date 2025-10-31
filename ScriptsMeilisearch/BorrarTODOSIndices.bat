@@ -1,0 +1,11 @@
+
+curl -X DELETE "http://localhost:7700/indexes/Adjudicaciones" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+curl -X DELETE "http://localhost:7700/indexes/Anuncios" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+curl -X DELETE "http://localhost:7700/indexes/CondicionesEspecialesEjecucion" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+curl -X DELETE "http://localhost:7700/indexes/ContratosMayores" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+curl -X DELETE "http://localhost:7700/indexes/Cpvs" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+curl -X DELETE "http://localhost:7700/indexes/CriteriosAdjudicacion" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+curl -X DELETE "http://localhost:7700/indexes/Documentos" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+curl -X DELETE "http://localhost:7700/indexes/Lotes" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+curl -X DELETE "http://localhost:7700/indexes/Modificaciones" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+curl -X DELETE "http://localhost:7700/indexes/RequisitosPreviosParticipacion" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"

@@ -1,0 +1,64 @@
+
+#Crear indice
+curl -X POST "http://localhost:7700/indexes" ^
+ -H "Content-Type: application/json" ^
+ -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0" ^
+ --data "{\"uid\": \"Indice1\"}"
+ 
+curl -X POST "http://localhost:7700/indexes" -H "Content-Type: application/json" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0" --data "{\"uid\": \"Indice1\"}"
+curl -X POST "http://172.26.3.122:7700/indexes" -H "Content-Type: application/json" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2" --data "{\"uid\": \"Indice1\"}"
+
+
+
+
+# Subir docomentos al indice
+curl -X POST "http://localhost:7700/indexes/Indice1/documents" ^
+ -H "Content-Type: application/json" ^
+ -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0" ^
+ --data-binary @datos.jsonl
+ 
+curl -X POST "http://localhost:7700/indexes/Indice1/documents" -H "Content-Type: application/json" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0" --data-binary @placsp_documentos_utf8.jsonl
+curl -X POST "http://172.26.3.122:7700/indexes/Indice1/documents" -H "Content-Type: application/json" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2" --data-binary @placsp_documentos_utf8.jsonl
+
+
+
+
+# Borrar docomentos de un indice
+curl -X DELETE "http://localhost:7700/indexes/Indice1/documents" ^
+  -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+  
+curl -X DELETE "http://localhost:7700/indexes/Indice1/documents" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+curl -X DELETE "http://172.26.3.122:7700/indexes/Indice1/documents" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2"
+  
+  
+  
+  
+# Borrar indice
+curl -X DELETE "http://localhost:7700/indexes/Indice1" ^
+  -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+  
+curl -X DELETE "http://localhost:7700/indexes/Indice1" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0"
+curl -X DELETE "http://172.26.3.122:7700/indexes/Indice1" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2"
+
+
+
+
+# Consultar estado tareas
+curl -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0" http://localhost:7700/tasks
+curl -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2" http://172.26.3.122:7700/tasks
+
+# Especificar primary key del indice
+curl -X PATCH "http://localhost:7700/indexes/CondicionesEspeciales" -H "Content-Type: application/json" -H "Authorization: Bearer QZ3Hfi3HFn85yazxkA1ASFMlOlEZ9y7MBhzqZVxz3Y0" --data-binary "{ \"primaryKey\": \"id\" }"
+curl -X PATCH "http://172.26.3.122:7700/indexes/CondicionesEspeciales" -H "Content-Type: application/json" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2" --data-binary "{ \"primaryKey\": \"id\" }"
+
+
+
+# Redefinir Campos Buscables
+curl \
+  -X PUT 'http://127.0.0.1:7700/indexes/tu_indice/settings/searchable-attributes' \
+  -H 'Content-Type: application/json' \
+  --data '["campo1", "campo2"]'
+
+curl -X PUT "http://172.26.3.122:7700/indexes/Anuncios/settings/searchable-attributes" -H "Content-Type: application/json" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2" --data "[\"contract_folder_id\", \"publication_media_name\"]"
+  
+  

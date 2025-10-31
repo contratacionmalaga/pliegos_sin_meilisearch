@@ -1,0 +1,20 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app/Filament/Resources/PLACSP
+        - routes
+        - config
+        - database
+
+    level: 6
+
+    # Opcional pero recomendado
+    checkMissingIterableValueType: false
+    checkMissingCallableSignature: false
+    ignoreErrors:
+        - '#Call to an undefined method Illuminate\\Support\\Collection::#'
+
+    excludes_analyse:
+        - tests/

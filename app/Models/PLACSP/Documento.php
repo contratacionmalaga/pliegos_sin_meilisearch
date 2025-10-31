@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Models\PLACSP;
+
+use App\Enums\Placsp\PLACSP_ContractCode;
+use App\Enums\Placsp\PLACSP_ContractingAuthorityCode;
+use App\Enums\Placsp\PLACSP_SyndicationContractFolderStatusCode;
+use App\Enums\Placsp\PLACSP_SyndicationTenderingProcessCode;
+use App\Enums\Placsp\TipoDocumento;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Documento extends Model
+{
+
+    use HasUuids;
+
+    protected $table = "placsp_documentos";
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'contract_folder_status_code' => PLACSP_SyndicationContractFolderStatusCode::class,
+            'procedure_code' => PLACSP_SyndicationTenderingProcessCode::class,
+            'type_code' => PLACSP_ContractCode::class,
+            'created_at' => 'datetime',
+            'contracting_party_type_code' => PLACSP_ContractingAuthorityCode::class,
+            'document_reference_type' => TipoDocumento::class,
+        ];
+    }
+
+    public function contrato_mayor(): BelongsTo
+    {
+        return $this
+            ->belongsTo(ContratoMayor::class, 'id_entry', 'id_entry');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function adjudicacion(): BelongsTo
+    {
+        return $this
+            ->belongsTo(Adjudicacion::class, 'id_entry', 'id_entry');
+    }
+
+}

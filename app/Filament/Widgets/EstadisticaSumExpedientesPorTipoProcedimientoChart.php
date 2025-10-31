@@ -1,0 +1,88 @@
+<?php
+
+namespace App\Filament\Widgets;
+
+use App\Enums\Placsp\PLACSP_ContractCode;
+use App\Enums\Placsp\PLACSP_ContractFolderStatusCode;
+use App\Enums\Placsp\PLACSP_SyndicationTenderingProcessCode;
+use App\Models\PLACSP\ContratoMayor;
+use App\Services\EstadisticasService;
+use Filament\Widgets\ChartWidget;
+use Filament\Support\Colors\Color;
+
+class EstadisticaSumExpedientesPorTipoProcedimientoChart extends \App\Filament\Widgets\BaseChartWidget
+{
+    protected static ?string $chartId = 'EstadisticaSumExpedientesPorTipoProcedimientoChar';
+
+//    protected ?string $heading = 'Importe total de expedientes por tipo de procedimiento';
+    protected ?string $heading = 'Importe total por tipo de procedimiento';
+
+    protected static ?int $sort = 8;
+
+//    protected int|array|null $columns = 1;
+    protected string|int|array $columnSpan = 3;
+
+
+//    protected ?string $maxHeight = '200px';
+
+
+    protected function getType(): string
+    {
+        return 'pie';
+    }
+
+    protected function getData(): array
+    {
+        return $this->buildSumDataset(
+            \App\Models\PLACSP\ContratoMayor::class,
+            'procedure_code',
+            fn(string $c) => \App\Enums\Placsp\PLACSP_SyndicationTenderingProcessCode::tryFrom($c)?->getTinyLabel() ?? $c,
+            'Total Expedientes'
+        );
+    }
+
+    protected function getDataOld(): array
+    {
+
+
+        // Base query
+        $queryTotales = ContratoMayor::query();
+
+        $service = new EstadisticasService();
+
+        $estadisticas = $service->getEstadisticasSumPorCampo($queryTotales,'procedure_code');
+
+        // Construir arrays paralelos: labels legibles y totales
+        $labels = [];
+        $totales = [];
+        $backgroundColors = [];
+        $borderColors = [];
+
+        foreach ($estadisticas as $codigo => $total) {
+            $enum = PLACSP_SyndicationTenderingProcessCode::tryFrom((string) $codigo);
+            $labels[] = $enum ? $enum->getTinyLabel() : (string) $codigo;
+            $totales[] = (int) $total;
+            $backgroundColors[] = $enum ? $enum->getColorHex() : '#ef4444';
+            $borderColors[] = $enum ? $enum->getColorHex() : '#ef4444';
+//            $backgroundColors[] = $enum ? 'rgba(54, 162, 135, 0.7)' : 'rgba(54, 162, 235, 0.7)';
+        }
+
+        // Ordenar labels ascendentemente, manteniendo correspondencia con totales y colores
+        if (! empty($labels)) {
+            array_multisort($labels, SORT_ASC, SORT_NATURAL | SORT_FLAG_CASE, $totales);
+        }
+
+        return [
+            'labels' => $labels,
+            'datasets' => [
+                [
+                    'label' => "Total Expedientes",
+                    'data' => $totales,
+                    'backgroundColor' => $backgroundColors,
+                    'borderColor' => $borderColors,
+                    'borderWidth' => 1,
+                ],
+            ],
+        ];
+    }
+}

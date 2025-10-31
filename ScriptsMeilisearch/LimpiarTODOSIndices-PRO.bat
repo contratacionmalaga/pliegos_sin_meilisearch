@@ -1,0 +1,11 @@
+
+curl -X DELETE "http://172.26.3.122:7700/indexes/Adjudicaciones/documents" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2"
+curl -X DELETE "http://172.26.3.122:7700/indexes/Anuncios/documents" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2"
+curl -X DELETE "http://172.26.3.122:7700/indexes/CondicionesEspecialesEjecucion/documents" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2"
+curl -X DELETE "http://172.26.3.122:7700/indexes/ContratosMayores/documents" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2"
+curl -X DELETE "http://172.26.3.122:7700/indexes/Cpvs/documents" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2"
+curl -X DELETE "http://172.26.3.122:7700/indexes/CriteriosAdjudicacion/documents" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2"
+curl -X DELETE "http://172.26.3.122:7700/indexes/Documentos/documents" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2"
+curl -X DELETE "http://172.26.3.122:7700/indexes/Lotes/documents" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2"
+curl -X DELETE "http://172.26.3.122:7700/indexes/Modificaciones/documents" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2"
+curl -X DELETE "http://172.26.3.122:7700/indexes/RequisitosPreviosParticipacion/documents" -H "Authorization: Bearer 9e1b0a104ad235f5f33029b562e16833c23eca96c4a57a7f74732f83f61451b2"

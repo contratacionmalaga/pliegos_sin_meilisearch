@@ -1,0 +1,37 @@
+
+
+Quiero eliminar el resource Comarcas. 
+
+¿Existe algun comando de la forma php artisan .... que lo haga?
+
+
+### Respuesta corta
+**No.** Laravel no trae un comando oficial tipo “php artisan remove:resource” que elimine automáticamente todo lo relacionado a un recurso. La eliminación es manual.
+
+### Qué hacer (rápido y seguro)
+- **Rutas**: quita la línea `Route::resource('comarcas', ComarcaController::class)` en `routes/web.php` (y/o `routes/api.php`).
+- **Controlador**: elimina `app/Http/Controllers/ComarcaController.php` (o el nombre que uses).
+- **Modelo**: elimina `app/Models/Comarca.php`.
+- **Requests/Policies/Resources** (si existen): elimina `app/Http/Requests/*Comarca*`, `app/Policies/*Comarca*`, `app/Http/Resources/*Comarca*`.
+- **Vistas**: elimina `resources/views/comarcas/` (blade).
+- **Factory/Seeder**: elimina `database/factories/ComarcaFactory.php`, `database/seeders/*Comarca*`.
+- **Migraciones**:
+  - Si ya corriste la migración: haz rollback de la(s) de Comarcas o crea una migración de drop de la tabla.
+    - Ejemplo si fue la última: `php artisan migrate:rollback --step=1`
+    - O crea una de drop: `php artisan make:migration drop_comarcas_table` y en `up()` usa `Schema::dropIfExists('comarcas');`
+- **Caches**: `php artisan route:clear && php artisan config:clear && php artisan cache:clear`
+
+### Ayuda con PowerShell (opcional)
+Para localizar todo lo relacionado y revisar antes de borrar:
+```powershell
+Get-ChildItem -Recurse -File | Select-String -SimpleMatch "Comarca"
+```
+Para eliminar rutas típicas (ajusta nombres según tu proyecto):
+```powershell
+Remove-Item -Force app\Http\Controllers\ComarcaController.php -ErrorAction SilentlyContinue
+Remove-Item -Force app\Models\Comarca.php -ErrorAction SilentlyContinue
+Remove-Item -Recurse -Force resources\views\comarcas -ErrorAction SilentlyContinue
+Get-ChildItem -Recurse -File | Where-Object { $_.Name -match "Comarca" } | Remove-Item -Force -ErrorAction SilentlyContinue
+```
+
+Si por “resource” te refieres a un “API Resource” (p. ej. `app/Http/Resources/ComarcaResource.php`), no hay comando para borrarlo: elimínalo manualmente y actualiza donde se use.

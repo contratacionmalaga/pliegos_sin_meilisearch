@@ -1,0 +1,23 @@
+# phpstan.neon
+
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 6
+
+    paths:
+        - app/Filament
+
+        # - routes/
+        # - config/
+        # - database/
+
+    excludePaths:
+        - tests/*
+        - bootstrap/*
+        - storage/*
+        - resources/views/*
+
+    checkDynamicProperties: true
+    reportUnmatchedIgnoredErrors: true
