@@ -11,7 +11,7 @@ class EstadisticaCountAdjudicacionesPorEstadoChart  extends \App\Filament\Widget
 {
     protected static ?string $chartId = 'EstadisticaCountAdjudicacionesPorEstadoChar';
 
-    protected ?string $heading = 'Nº Adjudicaciones por estado del contrato';
+    protected ?string $heading = 'Adjudicaciones por estado del contrato';
 
     protected static ?int $sort = 11;
 

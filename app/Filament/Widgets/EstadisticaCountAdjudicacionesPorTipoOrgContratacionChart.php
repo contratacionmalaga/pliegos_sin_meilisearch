@@ -17,7 +17,7 @@ class EstadisticaCountAdjudicacionesPorTipoOrgContratacionChart extends \App\Fil
     protected static ?string $chartId = 'EstadisticaCountAdjudicacionesPorTipoOrganoContratacionChar';
 
 //    protected ?string $heading = 'Nº Adjudicaciones por tipo de órgano de contratación';
-    protected ?string $heading = 'Nº Adjudicaciones por tipo de órg. contratación';
+    protected ?string $heading = 'Adjudicaciones por tipo de órg. contratación';
 
     protected static ?int $sort = 14;
 

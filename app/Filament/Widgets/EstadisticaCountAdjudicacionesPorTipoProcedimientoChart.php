@@ -15,7 +15,7 @@ class EstadisticaCountAdjudicacionesPorTipoProcedimientoChart extends \App\Filam
 {
     protected static ?string $chartId = 'EstadisticaCountAdjudicacionesPorTipoProcedimientoChar';
 
-    protected ?string $heading = 'Nº Adjudicaciones por tipo de procedimiento';
+    protected ?string $heading = 'Adjudicaciones por tipo de procedimiento';
 
     protected static ?int $sort = 13;
 

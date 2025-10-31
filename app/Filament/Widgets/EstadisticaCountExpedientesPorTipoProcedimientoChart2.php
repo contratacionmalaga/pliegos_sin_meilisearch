@@ -11,7 +11,7 @@ namespace App\Filament\Widgets;
 class EstadisticaCountExpedientesPorTipoProcedimientoChart2 extends EstadisticaCountExpedientesPorTipoProcedimientoChart
 {
     protected static ?string $chartId = 'EstadisticaCountExpedientesPorTipoProcedimientoChart2';
-    protected ?string $heading = 'Nº Expedientes por Tipo Procedimiento (copia)';
+    protected ?string $heading = 'Expedientes por Tipo Procedimiento (copia)';
 
     protected static ?int $sort = 0;
     protected string|int|array $columnSpan = 3;

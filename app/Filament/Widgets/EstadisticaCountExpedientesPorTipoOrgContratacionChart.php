@@ -15,7 +15,7 @@ class EstadisticaCountExpedientesPorTipoOrgContratacionChart extends \App\Filame
 {
     protected static ?string $chartId = 'EstadisticaCountExpedientesPorTipoOrganoContratacionChar';
 
-    protected ?string $heading = 'Nº Expedientes por tipo de órgano de contratación';
+    protected ?string $heading = 'Expedientes por tipo de órgano de contratación';
 
     protected static ?int $sort = 5;
 

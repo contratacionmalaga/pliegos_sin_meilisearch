@@ -38,7 +38,9 @@ class TextColumnConfig
         public bool $html = false,
         public bool $copyable = false,
         public bool $limitable = false,
-        public bool $filtrable = false
+        public bool $filtrable = false,
+        public bool $numerico = false,
+        public bool $decimal = false,
     ) {}
 }
 

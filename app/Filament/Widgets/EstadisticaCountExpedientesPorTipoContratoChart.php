@@ -13,7 +13,7 @@ class EstadisticaCountExpedientesPorTipoContratoChart extends \App\Filament\Widg
 {
     protected static ?string $chartId = 'EstadisticaCountExpedientesPorTipoContratoChar';
 
-    protected ?string $heading = 'Nº Expedientes por tipo de contrato';
+    protected ?string $heading = 'Expedientes por tipo de contrato';
 
     protected static ?int $sort = 3;
 

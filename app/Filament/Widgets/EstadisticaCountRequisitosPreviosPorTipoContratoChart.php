@@ -16,7 +16,7 @@ class EstadisticaCountRequisitosPreviosPorTipoContratoChart extends \App\Filamen
 {
     protected static ?string $chartId = 'EstadisticaCountRequisitosPreviosPorTipoContratoChar';
 
-    protected ?string $heading = 'Nº Requisitos previos por tipo de Requisito';
+    protected ?string $heading = 'Requisitos previos por tipo de Requisito';
 
     protected static ?int $sort = 22;
 

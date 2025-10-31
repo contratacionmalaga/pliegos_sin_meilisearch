@@ -12,21 +12,19 @@ trait HasCommonColumns
         $isRelationManager = $table->getLivewire() instanceof RelationManager;
 
         return [
-            $this->miTextColumn->getSearchableSortableTextColumn('contract_folder_id', 'Expediente')
+            $this->miTextColumn->getSearchableTextColumn('contract_folder_id', 'Expediente')
                 ->visible(!$isRelationManager),
-            $this->miTextColumn->getLimitableSearchableSortableTextColumn('name_objeto', 'Objeto del contrato')
+            $this->miTextColumn->getLimitableSearchableTextColumn('name_objeto', 'Objeto del contrato')
                  ->visible(!$isRelationManager),
             $this->miTextColumn->getMultilineaTextColumn('party_name_organo_contratacion', 'Órgano de contratación')
                 ->visible(!$isRelationManager)
                 ->searchable(false),
-            $this->miTextColumn->getBadgeTextColumn('contract_folder_status_code', 'Estado')
+            $this->miTextColumn->getBadgeFiltrableTextColumn('contract_folder_status_code', 'Estado')
                 ->visible(!$isRelationManager && !$isAdjudication),
-            $this->miTextColumn->getBadgeTextColumn('type_code')
-                ->visible(!$isRelationManager)
-                ->searchable(false),
-            $this->miTextColumn->getBadgeTextColumn('procedure_code')
-                ->visible(!$isRelationManager)
-                ->searchable(false),
+            $this->miTextColumn->getBadgeFiltrableTextColumn('type_code')
+                ->visible(!$isRelationManager),
+            $this->miTextColumn->getBadgeFiltrableTextColumn('procedure_code')
+                ->visible(!$isRelationManager),
 
 //            $this->miTextColumn->getBadgeDateTimeTextColumn('updated', 'Fecha última actualización en PLACSP')
 //                ->visible(!$isRelationManager)
@@ -39,12 +37,10 @@ trait HasCommonColumns
         $isRelationManager = $table->getLivewire() instanceof RelationManager;
 
         return [
-            $this->miTextColumn->getBadgeTextColumn('type_code')
-                ->visible(!$isRelationManager)
-                ->searchable(false),
-            $this->miTextColumn->getBadgeTextColumn('procedure_code')
-                ->visible(!$isRelationManager)
-                ->searchable(false),
+            $this->miTextColumn->getBadgeFiltrableTextColumn('type_code')
+                ->visible(!$isRelationManager),
+            $this->miTextColumn->getBadgeFiltrableTextColumn('procedure_code')
+                ->visible(!$isRelationManager),
         ];
     }
 }

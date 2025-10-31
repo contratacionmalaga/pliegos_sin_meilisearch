@@ -16,7 +16,7 @@ class EstadisticaCountCondicionesEspecialesPorTipoContratoChart extends \App\Fil
 {
     protected static ?string $chartId = 'EstadisticaCountCondicionesEspecialesPorTipoContratoChar';
 
-    protected ?string $heading = 'Nº Condiciones especiales de ejecución por tipo de condición';
+    protected ?string $heading = 'Condiciones especiales de ejec. por tipo de condición';
 
     protected static ?int $sort = 20;
 

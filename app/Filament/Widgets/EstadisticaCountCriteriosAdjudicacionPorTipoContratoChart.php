@@ -16,7 +16,7 @@ class EstadisticaCountCriteriosAdjudicacionPorTipoContratoChart extends \App\Fil
 {
     protected static ?string $chartId = 'EstadisticaCountCriteriosAdjudicacionPorTipoContratoChar';
 
-    protected ?string $heading = 'Nº Criterios de adjudicación por tipo de criterio';
+    protected ?string $heading = 'Criterios de adjudicación por tipo de criterio';
 
     protected static ?int $sort = 21;
 

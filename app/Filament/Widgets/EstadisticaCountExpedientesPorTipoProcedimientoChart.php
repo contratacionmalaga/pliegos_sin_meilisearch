@@ -15,7 +15,7 @@ class EstadisticaCountExpedientesPorTipoProcedimientoChart extends \App\Filament
 {
     protected static ?string $chartId = 'EstadisticaCountExpedientesPorTipoProcedimientoChar';
 
-    protected ?string $heading = 'Nº Expedientes por tipo de procedimiento';
+    protected ?string $heading = 'Expedientes por tipo de procedimiento';
 
     protected static ?int $sort = 4;
 

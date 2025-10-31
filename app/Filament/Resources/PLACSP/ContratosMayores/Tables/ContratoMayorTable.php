@@ -50,7 +50,7 @@ readonly class ContratoMayorTable
                     $this->getColumnasComunes($table),
                     $this->getColumnasComunesTipoContratoAndTipoProcedimiento($table),
                     [
-                        $this->miTextColumn->getMoneyTextColumn('total_amount', 'Licitación c/iva'),
+                        $this->miTextColumn->getMoneyTextColumn('total_amount', 'Importe c/iva'),
                     ]
                 ))
             ->searchable(!$isRelationManager);

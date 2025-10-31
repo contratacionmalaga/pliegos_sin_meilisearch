@@ -14,7 +14,7 @@ class EstadisticaCountAdjudicacionesPorTipoContratoChart extends \App\Filament\W
 {
     protected static ?string $chartId = 'EstadisticaCountAdjudicacionesPorTipoContratoChar';
 
-    protected ?string $heading = 'Nº Adjudicaciones por tipo de contrato';
+    protected ?string $heading = 'Adjudicaciones por tipo de contrato';
 
     protected static ?int $sort = 12;
 

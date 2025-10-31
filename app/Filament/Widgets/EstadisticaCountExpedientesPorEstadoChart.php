@@ -12,7 +12,7 @@ class EstadisticaCountExpedientesPorEstadoChart extends \App\Filament\Widgets\Ba
 {
     protected static ?string $chartId = 'EstadisticaCountExpedientesPorEstadoChar';
 
-    protected ?string $heading = 'Nº Expedientes por estado del contrato';
+    protected ?string $heading = 'Expedientes por estado del contrato';
 
     protected static ?int $sort = 2;
 
