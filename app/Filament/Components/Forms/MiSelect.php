@@ -2,19 +2,6 @@
 
 namespace App\Filament\Components\Forms;
 
-use App\Enums\MunicipiosSegunPoblacion;
-use App\Enums\PuestosDeTrabajo;
-use App\Repositories\AreaOldRepository;
-use App\Repositories\ComarcaOldRepository;
-use App\Repositories\ComunidadAutonomaRepository;
-use App\Repositories\DelegacionRepository;
-use App\Repositories\EntidadRepository;
-use App\Repositories\MunicipioRepository;
-use App\Repositories\OrganismoRepository;
-use App\Repositories\OrganoContratacionRepository;
-use App\Repositories\PersonalActivoRepository;
-use App\Repositories\ProvinciaRepository;
-use App\Repositories\UnidadOrganicaRepository;
 use Filament\Forms\Components\Select;
 use Filament\Schemas\Components\Utilities\Get;
 use InvalidArgumentException;
@@ -53,24 +40,19 @@ class MiSelect
      *
      * @return Select
      */
-    public function getSelectPuestoTrabajo(string $make, bool $required, int $columnSpam, ?string $label = null): Select
-    {
-        return $this->constructSelect($make, $required, $columnSpam, $label)
-            ->options(PuestosDeTrabajo::ordenar());
-    }
 
-    /**
-     * @param string $make
-     * @param bool $required
-     * @param int $columnSpam
-     *
-     * @return Select
-     */
-    public function getSelectMunicipioSegunPoblacion(string $make, bool $required, int $columnSpam): Select
-    {
-        return $this->constructSelect($make, $required, $columnSpam)
-            ->options(MunicipiosSegunPoblacion::ordenar());
-    }
+//    /**
+//     * @param string $make
+//     * @param bool $required
+//     * @param int $columnSpam
+//     *
+//     * @return Select
+//     */
+//    public function getSelectMunicipioSegunPoblacion(string $make, bool $required, int $columnSpam): Select
+//    {
+//        return $this->constructSelect($make, $required, $columnSpam)
+//            ->options(MunicipiosSegunPoblacion::ordenar());
+//    }
 
     /**
      * @param string $make

@@ -5,9 +5,9 @@ namespace App\Models;
 use App\Enums\ActivityLog\ActivityLogName;
 use App\Enums\Flags\ActivoOrganoContratacionEnum;
 use App\Enums\Flags\MedioPropioEnum;
-use App\Enums\RegistroContratos\RC_TiposDeOrganosContratacion;
+//use App\Enums\RegistroContratos\RC_TiposDeOrganosContratacion;
 use App\Models\PLACSP\Adjudicacion;
-use App\Models\PLACSP\Expediente;
+//use App\Models\PLACSP\Expediente;
 use App\Traits\HasActivo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -69,7 +69,7 @@ class OrganoContratacion extends Model
         return [
             'es_medio_propio' => MedioPropioEnum::class,
             'es_activo' => ActivoOrganoContratacionEnum::class,
-            'tipo_organo_contratacion_rc_id' => RC_TiposDeOrganosContratacion::class,
+//            'tipo_organo_contratacion_rc_id' => RC_TiposDeOrganosContratacion::class,
         ];
     }
 

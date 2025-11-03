@@ -7,7 +7,7 @@ use App\Enums\Flags\ActivoEnum;
 use App\Enums\Flags\DobleFactorEnum;
 use App\Enums\Flags\LecturaEnum;
 use App\Enums\Flags\SuperAdminEnum;
-use App\Enums\PuestosDeTrabajo;
+//use App\Enums\PuestosDeTrabajo;
 use App\Traits\HasActivo;
 use App\Traits\HasDobleFactor;
 use App\Traits\HasLectura;
@@ -91,7 +91,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Has
             'es_activo' => ActivoEnum::class,
             'es_super_admin' => SuperAdminEnum::class,
             'es_lectura' => LecturaEnum::class,
-            'puesto_trabajo_id' => PuestosDeTrabajo::class,
+//            'puesto_trabajo_id' => PuestosDeTrabajo::class,
             '2fa' => DobleFactorEnum::class,
             'email_verified_at' => 'datetime',
             'password' => 'hashed',

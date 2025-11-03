@@ -3,7 +3,7 @@
 namespace App\Filament\Components\Filters\Admin;
 
 use App\Enums\Acciones\AccionesImportarEntry;
-use App\Enums\MunicipiosSegunPoblacion;
+//use App\Enums\MunicipiosSegunPoblacion;
 use App\Enums\Placsp\PLACSP_AwardingCriteriaCode;
 use App\Enums\Placsp\PLACSP_AwardingCriteriaSubtypeCode;
 use App\Enums\Placsp\PLACSP_ContractCode;
@@ -18,9 +18,9 @@ use App\Enums\Placsp\PLACSP_TenderingNoticeTypeCode;
 use App\Enums\Placsp\PLACSP_TenderResultCode;
 use App\Enums\Placsp\TipoDocumento;
 use App\Enums\Placsp\TipoSindicacion;
-use App\Enums\RegistroContratos\RC_TiposDeAdministraciones;
-use App\Enums\RegistroContratos\RC_TiposDeAdministracionesLocales;
-use App\Enums\RegistroContratos\RC_TiposDeOrganosContratacion;
+//use App\Enums\RegistroContratos\RC_TiposDeAdministraciones;
+//use App\Enums\RegistroContratos\RC_TiposDeAdministracionesLocales;
+//use App\Enums\RegistroContratos\RC_TiposDeOrganosContratacion;
 use App\Filament\Components\Filters\MiSelectFilter;
 use Exception;
 use Filament\Tables\Filters\SelectFilter;
@@ -302,59 +302,59 @@ class EnumsSelectFilters
             ->options($this->enumToArray(PLACSP_SyndicationTenderingProcessCode::ordenar()));
     }
 
+//    /**
+//     * Filtro para obtener los usuarios según el valor del flag es_activo
+//     *
+//     * @return SelectFilter
+//     * @throws Exception
+//     */
+//    public function getTipoOrganoContratacionSelectFilter(): SelectFilter
+//    {
+//
+//        $params = [
+//            'make' => 'tipo_organo_contratacion_rc_id',
+//            'label' => 'Filtrar por el tipo de órgano de contratación',
+//        ];
+//
+//        return new MiSelectFilter()->getSelectFilterBase($params)
+//            ->options($this->enumToArray(RC_TiposDeOrganosContratacion::ordenar()));
+//    }
+
+//    /**
+//     * Filtro para obtener los usuarios según el valor del flag es_activo
+//     *
+//     * @return SelectFilter
+//     * @throws Exception
+//     */
+//    public function getTipoAdminSelectFilter(): SelectFilter
+//    {
+//
+//        $params = [
+//            'make' => 'tipo_admin_id',
+//            'label' => 'Filtrar por el tipo de administración',
+//        ];
+//
+//        return new MiSelectFilter()->getSelectFilterBase($params)
+//            ->options($this->enumToArray(RC_TiposDeAdministraciones::ordenar()));
+//    }
+
     /**
      * Filtro para obtener los usuarios según el valor del flag es_activo
      *
      * @return SelectFilter
      * @throws Exception
      */
-    public function getTipoOrganoContratacionSelectFilter(): SelectFilter
-    {
-
-        $params = [
-            'make' => 'tipo_organo_contratacion_rc_id',
-            'label' => 'Filtrar por el tipo de órgano de contratación',
-        ];
-
-        return new MiSelectFilter()->getSelectFilterBase($params)
-            ->options($this->enumToArray(RC_TiposDeOrganosContratacion::ordenar()));
-    }
-
-    /**
-     * Filtro para obtener los usuarios según el valor del flag es_activo
-     *
-     * @return SelectFilter
-     * @throws Exception
-     */
-    public function getTipoAdminSelectFilter(): SelectFilter
-    {
-
-        $params = [
-            'make' => 'tipo_admin_id',
-            'label' => 'Filtrar por el tipo de administración',
-        ];
-
-        return new MiSelectFilter()->getSelectFilterBase($params)
-            ->options($this->enumToArray(RC_TiposDeAdministraciones::ordenar()));
-    }
-
-    /**
-     * Filtro para obtener los usuarios según el valor del flag es_activo
-     *
-     * @return SelectFilter
-     * @throws Exception
-     */
-    public function getTipoAdminLocalSelectFilter(): SelectFilter
-    {
-
-        $params = [
-            'make' => 'tipo_admin_local_id',
-            'label' => 'Filtrar por el tipo de administración local',
-        ];
-
-        return new MiSelectFilter()->getSelectFilterBase($params)
-            ->options($this->enumToArray(RC_TiposDeAdministracionesLocales::ordenar()));
-    }
+//    public function getTipoAdminLocalSelectFilter(): SelectFilter
+//    {
+//
+//        $params = [
+//            'make' => 'tipo_admin_local_id',
+//            'label' => 'Filtrar por el tipo de administración local',
+//        ];
+//
+//        return new MiSelectFilter()->getSelectFilterBase($params)
+//            ->options($this->enumToArray(RC_TiposDeAdministracionesLocales::ordenar()));
+//    }
 
     private function enumToArray(array $opciones): array
     {
