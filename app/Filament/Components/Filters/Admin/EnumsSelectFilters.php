@@ -2,8 +2,6 @@
 
 namespace App\Filament\Components\Filters\Admin;
 
-use App\Enums\Acciones\AccionesImportarEntry;
-//use App\Enums\MunicipiosSegunPoblacion;
 use App\Enums\Placsp\PLACSP_AwardingCriteriaCode;
 use App\Enums\Placsp\PLACSP_AwardingCriteriaSubtypeCode;
 use App\Enums\Placsp\PLACSP_ContractCode;
@@ -12,15 +10,11 @@ use App\Enums\Placsp\PLACSP_ContractingAuthorityCode;
 use App\Enums\Placsp\PLACSP_DeclarationTypeCode;
 use App\Enums\Placsp\PLACSP_PreliminaryMarketConsultationStatusCode;
 use App\Enums\Placsp\PLACSP_PreliminaryMarketConsultationTypeCode;
-use App\Enums\Placsp\PLACSP_ResultCode;
 use App\Enums\Placsp\PLACSP_SyndicationTenderingProcessCode;
 use App\Enums\Placsp\PLACSP_TenderingNoticeTypeCode;
 use App\Enums\Placsp\PLACSP_TenderResultCode;
 use App\Enums\Placsp\TipoDocumento;
 use App\Enums\Placsp\TipoSindicacion;
-//use App\Enums\RegistroContratos\RC_TiposDeAdministraciones;
-//use App\Enums\RegistroContratos\RC_TiposDeAdministracionesLocales;
-//use App\Enums\RegistroContratos\RC_TiposDeOrganosContratacion;
 use App\Filament\Components\Filters\MiSelectFilter;
 use Exception;
 use Filament\Tables\Filters\SelectFilter;
@@ -194,23 +188,23 @@ class EnumsSelectFilters
             ->options($this->enumToArray(MunicipiosSegunPoblacion::ordenar()));
     }
 
-    /**
-     * Filtro para obtener los usuarios según el valor del flag es_activo
-     *
-     * @return SelectFilter
-     * @throws Exception
-     */
-    public function getAccionesImportarSelectFilter(): SelectFilter
-    {
-
-        $params = [
-            'make' => 'accion',
-            'label' => 'Filtrar por acción',
-        ];
-
-        return new MiSelectFilter()->getSelectFilterBase($params)
-            ->options($this->enumToArray(AccionesImportarEntry::ordenar()));
-    }
+//    /**
+//     * Filtro para obtener los usuarios según el valor del flag es_activo
+//     *
+//     * @return SelectFilter
+//     * @throws Exception
+//     */
+//    public function getAccionesImportarSelectFilter(): SelectFilter
+//    {
+//
+//        $params = [
+//            'make' => 'accion',
+//            'label' => 'Filtrar por acción',
+//        ];
+//
+//        return new MiSelectFilter()->getSelectFilterBase($params)
+//            ->options($this->enumToArray(AccionesImportarEntry::ordenar()));
+//    }
 
     /**
      * Filtro para obtener los usuarios según el valor del flag es_activo
