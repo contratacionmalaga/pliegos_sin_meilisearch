@@ -3,7 +3,7 @@
 namespace App\Filament\Components\Filters\Admin;
 
 use App\Filament\Components\Filters\MiSelectFilter;
-use App\Repositories\EntidadRepository;
+//use App\Repositories\EntidadRepository;
 use App\Repositories\OrganoContratacionRepository;
 use Exception;
 use Filament\Tables\Filters\SelectFilter;
