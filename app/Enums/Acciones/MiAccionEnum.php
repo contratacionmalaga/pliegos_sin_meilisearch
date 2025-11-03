@@ -42,40 +42,40 @@ enum MiAccionEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
     case ExportarExcel = 'exportar-excel';
     case VerExpediente = 'ver-expediente';
 
-    public function getRolByAccion(): Roles
-    {
-        return match ($this) {
-            self::VolverAlListado,
-            self::View,
-            self::VerExpediente,
-            self::AbrirEnlacePlacsp,
-            self::AbrirEnlaceInvente,
-            self::AbrirEnlaceDocumento,
-            self::VerActivityLog => Roles::LEER,
-
-            self::Associate,
-            self::Dissociate,
-            self::Edit,
-            self::Deleted,
-            self::Create,
-            self::BulkActionDelete,
-            self::Enable,
-            self::Disable => Roles::ESCRIBIR,
-
-            self::DissociateBulkAction,
-            self::AsignarSuperAdmin,
-            self::RetirarSuperAdmin,
-            self::SendEmailResetPassword,
-            self::BulkActionRestore,
-            self::BulkActionForceDelete,
-            self::Restore,
-            self::ForceDelete,
-            self::AsignarLectura,
-            self::RetirarLectura,
-            self::Enable2fa,
-            self::Disable2fa => Roles::ADMINISTRAR,
-        };
-    }
+//    public function getRolByAccion(): Roles
+//    {
+//        return match ($this) {
+//            self::VolverAlListado,
+//            self::View,
+//            self::VerExpediente,
+//            self::AbrirEnlacePlacsp,
+//            self::AbrirEnlaceInvente,
+//            self::AbrirEnlaceDocumento,
+//            self::VerActivityLog => Roles::LEER,
+//
+//            self::Associate,
+//            self::Dissociate,
+//            self::Edit,
+//            self::Deleted,
+//            self::Create,
+//            self::BulkActionDelete,
+//            self::Enable,
+//            self::Disable => Roles::ESCRIBIR,
+//
+//            self::DissociateBulkAction,
+//            self::AsignarSuperAdmin,
+//            self::RetirarSuperAdmin,
+//            self::SendEmailResetPassword,
+//            self::BulkActionRestore,
+//            self::BulkActionForceDelete,
+//            self::Restore,
+//            self::ForceDelete,
+//            self::AsignarLectura,
+//            self::RetirarLectura,
+//            self::Enable2fa,
+//            self::Disable2fa => Roles::ADMINISTRAR,
+//        };
+//    }
 
     public function getLabel(): string
     {

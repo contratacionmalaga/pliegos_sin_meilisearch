@@ -2,7 +2,7 @@
 
 namespace App\Enums\NavigationMenus;
 
-use App\Enums\Acciones\Roles;
+//use App\Enums\Acciones\Roles;
 use App\Enums\Constantes\ConstantesString;
 use App\Filament\Components\Actions\ActionsConstructor;
 use App\Filament\Components\Filters\Admin\ActivityLogFilter;
@@ -97,20 +97,20 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
         );
     }
 
-    public function getRolByNavigationItem(): array
-    {
-        if (! $this->isNavigationItemPermisible()) {
-            return []; // o lanza una excepción, según tu necesidad
-        }
-
-        return match ($this) {
-            self::PLACSP_CONTRATO_MAYOR => [Roles::LEER, Roles::ESCRIBIR],
-            self::PLACSP_ADJUDICACION => [Roles::LEER],
-
-            // solo cases permisibles
-            default => [],
-        };
-    }
+//    public function getRolByNavigationItem(): array
+//    {
+//        if (! $this->isNavigationItemPermisible()) {
+//            return []; // o lanza una excepción, según tu necesidad
+//        }
+//
+//        return match ($this) {
+//            self::PLACSP_CONTRATO_MAYOR => [Roles::LEER, Roles::ESCRIBIR],
+//            self::PLACSP_ADJUDICACION => [Roles::LEER],
+//
+//            // solo cases permisibles
+//            default => [],
+//        };
+//    }
 
     /**
      * @return array<SelectFilter|DateRangeFilter|Filter>
