@@ -25,10 +25,6 @@ trait HasCommonColumns
                 ->visible(!$isRelationManager),
             $this->miTextColumn->getBadgeFiltrableTextColumn('procedure_code')
                 ->visible(!$isRelationManager),
-
-//            $this->miTextColumn->getBadgeDateTimeTextColumn('updated', 'Fecha última actualización en PLACSP')
-//                ->visible(!$isRelationManager)
-//                ->wrapHeader(true)
         ];
     }
 

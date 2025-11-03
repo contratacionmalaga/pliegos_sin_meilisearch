@@ -10,26 +10,26 @@ use Filament\Tables\Filters\SelectFilter;
 
 class OrganoContratacionFilter
 {
-    /**
-     *
-     * @param bool $activo
-     *
-     * @return SelectFilter
-     * @throws Exception
-     */
-    public function getOrganoContratacionSelectFilterByEntidad(bool $activo): SelectFilter
-    {
-
-        $params = [
-            'make' => 'nif',
-            'label' => 'Filtrar por entidad',
-        ];
-
-        return new MiSelectFilter()->getSelectFilterBase($params)
-            ->options(new EntidadRepository()->getArrayEntidades($activo))
-            ->searchable(true)
-            ->preload(true);
-    }
+//    /**
+//     *
+//     * @param bool $activo
+//     *
+//     * @return SelectFilter
+//     * @throws Exception
+//     */
+//    public function getOrganoContratacionSelectFilterByEntidad(bool $activo): SelectFilter
+//    {
+//
+//        $params = [
+//            'make' => 'nif',
+//            'label' => 'Filtrar por entidad',
+//        ];
+//
+//        return new MiSelectFilter()->getSelectFilterBase($params)
+//            ->options(new EntidadRepository()->getArrayEntidades($activo))
+//            ->searchable(true)
+//            ->preload(true);
+//    }
 
     /**
      *

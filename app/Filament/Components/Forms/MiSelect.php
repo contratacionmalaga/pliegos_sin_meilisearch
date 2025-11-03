@@ -4,8 +4,8 @@ namespace App\Filament\Components\Forms;
 
 use App\Enums\MunicipiosSegunPoblacion;
 use App\Enums\PuestosDeTrabajo;
-use App\Repositories\AreaRepository;
-use App\Repositories\ComarcaRepository;
+use App\Repositories\AreaOldRepository;
+use App\Repositories\ComarcaOldRepository;
 use App\Repositories\ComunidadAutonomaRepository;
 use App\Repositories\DelegacionRepository;
 use App\Repositories\EntidadRepository;
@@ -126,7 +126,7 @@ class MiSelect
     public function getSelectAreas(string $make, bool $required, bool $activo, int $columnSpam): Select
     {
         return $this->constructSelect($make, $required, $columnSpam)
-            ->options(new AreaRepository()->getArrayAreas($activo));
+            ->options(new AreaOldRepository()->getArrayAreas($activo));
     }
 
     /**
@@ -256,9 +256,9 @@ class MiSelect
                         if(!$provincia) {
                             return [];
                         }
-                        return new ComarcaRepository()->getArrayComarcas($provincia);
+                        return new ComarcaOldRepository()->getArrayComarcas($provincia);
                     }
-                    return new ComarcaRepository()->getArrayComarcas();
+                    return new ComarcaOldRepository()->getArrayComarcas();
                 });
     }
 

@@ -43,12 +43,7 @@ readonly class ContratoMayorTable
         return $this->miTable->getTable($table, $configurableItem)
             ->columns(
                 array_merge(
-//                    [
-//                        $this->miTextColumn->getLimitableSearchableSortableTextColumn('name_objeto', 'Objeto del contrato')
-//                            ->visible(!$isRelationManager),
-//                    ],
                     $this->getColumnasComunes($table),
-                    $this->getColumnasComunesTipoContratoAndTipoProcedimiento($table),
                     [
                         $this->miTextColumn->getMoneyTextColumn('total_amount', 'Importe c/iva'),
                     ]

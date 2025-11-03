@@ -5,7 +5,6 @@ namespace App\Filament\Components\Actions;
 use App\Enums\Acciones\MiAccionEnum;
 use App\Enums\Constantes\ConstantesString;
 use App\Enums\NavigationMenus\MiNavigationItem;
-use App\Filament\Exports\OrganoContratacionExporter;
 use App\Models\User;
 use Exception;
 use Filament\Actions\Action;
@@ -14,7 +13,6 @@ use Filament\Actions\CreateAction as CreateActionPage;
 use Filament\Actions\DeleteAction as DeleteActionPage;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction as EditActionPage;
-use Filament\Actions\ExportAction;
 use Filament\Actions\ForceDeleteAction as ForceDeleteActionPage;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreAction as RestoreActionPage;
@@ -314,15 +312,15 @@ class ActionsConstructor
                         ->send();
                 });
     }
-
-    public function getExportarExcel(): ExportAction
-    {
-        return ExportAction::make(MiAccionEnum::ExportarExcel->value)
-            ->authorize(true)
-            ->label(MiAccionEnum::ExportarExcel->getLabel())
-            ->icon(MiAccionEnum::ExportarExcel->getIcon())
-            ->tooltip(MiAccionEnum::ExportarExcel->getTooltip())
-            ->color(MiAccionEnum::ExportarExcel->getColor())
-            ->exporter(OrganoContratacionExporter::class);
-    }
+//
+//    public function getExportarExcel(): ExportAction
+//    {
+//        return ExportAction::make(MiAccionEnum::ExportarExcel->value)
+//            ->authorize(true)
+//            ->label(MiAccionEnum::ExportarExcel->getLabel())
+//            ->icon(MiAccionEnum::ExportarExcel->getIcon())
+//            ->tooltip(MiAccionEnum::ExportarExcel->getTooltip())
+//            ->color(MiAccionEnum::ExportarExcel->getColor())
+//            ->exporter(OrganoContratacionExporter::class);
+//    }
 }
