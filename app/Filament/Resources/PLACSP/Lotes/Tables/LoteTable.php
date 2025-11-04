@@ -46,7 +46,7 @@ class LoteTable
                     $this->getColumnasComunes($table),
                     [
                         $this->miTextColumn->getTextColumn('id_lote', 'ID Lote'),
-//                        $this->miTextColumn->getLimitableSearchableSortableTextColumn('name_objeto', 'Objeto del lote'),
+//                        $this->miTextColumn->getLimitableSearchableTextColumn('name_objeto', 'Objeto del lote'),
                         $this->miTextColumn->getMoneyTextColumn('total_amount', 'Importe del lote'),
                     ],
                 ))

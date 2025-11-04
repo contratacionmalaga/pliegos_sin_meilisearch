@@ -44,10 +44,10 @@ readonly class ModificacionTable
                 array_merge(
                     $this->getColumnasComunes($table),
                     [
-//                        $this->miTextColumn->getLimitableSearchableSortableTextColumn('name_objeto', 'Objeto del contrato'),
-                        $this->miTextColumn->getLimitableSearchableSortableTextColumn('note', 'Motivación')
+//                        $this->miTextColumn->getLimitableSearchableTextColumn('name_objeto', 'Objeto del contrato'),
+                        $this->miTextColumn->getLimitableSearchableTextColumn('note', 'Motivación')
                              ->searchable(false),
-                        $this->miTextColumn->getLimitableSearchableSortableTextColumn('id_contract_modification', 'Modificación')
+                        $this->miTextColumn->getLimitableSearchableTextColumn('id_contract_modification', 'Modificación')
                              ->searchable(false),
 
                     ],

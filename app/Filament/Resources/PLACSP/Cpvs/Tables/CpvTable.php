@@ -46,7 +46,7 @@ readonly class CpvTable
                     $this->getColumnasComunes($table),
                     [
                         $this->miTextColumn->getSortableTextColumn('code', 'Código CPV'),
-                        $this->miTextColumn->getLimitableSearchableSortableTextColumn('nombre', 'Descripción')
+                        $this->miTextColumn->getLimitableSearchableTextColumn('nombre', 'Descripción')
                              ->searchable(false),
                     ],
                 ))

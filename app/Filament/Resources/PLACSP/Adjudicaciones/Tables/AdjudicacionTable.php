@@ -46,7 +46,7 @@ readonly class AdjudicacionTable
                 array_merge(
                     $this->getColumnasComunes($table,true),
                     [
-//                        $this->miTextColumn->getLimitableSearchableSortableTextColumn('name_objeto', 'Objeto del contrato')
+//                        $this->miTextColumn->getLimitableSearchableTextColumn('name_objeto', 'Objeto del contrato')
 //                            ->visible(!$isRelationManager),
                         $this->miTextColumn->getSortableTextColumn('received_appeal_quantity', 'Recursos'),
                         $this->miTextColumn->getBadgeTextColumn('result_code')

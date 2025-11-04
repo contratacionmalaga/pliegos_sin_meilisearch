@@ -45,7 +45,7 @@ readonly class CondicionEspecialEjecucionTable
                     $this->getColumnasComunes($table),
                     [
                         $this->miTextColumn->getBadgeTextColumn('execution_requirement_code','Condición especial ejecución'),
-                        $this->miTextColumn->getLimitableSearchableSortableTextColumn('contract_execution_requirement_description','Descripción')
+                        $this->miTextColumn->getLimitableSearchableTextColumn('contract_execution_requirement_description','Descripción')
                              ->searchable(false),
                     ],
                 ))
