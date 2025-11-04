@@ -35,7 +35,6 @@ enum MiAccionEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
     case AsignarSuperAdmin = 'asignar-super-admin';
     case RetirarSuperAdmin = 'retirar-super-admin';
     case SendEmailResetPassword = 'send-email-reset-password';
-    case VerActivityLog = 'ver-activity-log';
     case AbrirEnlacePlacsp = 'abrir-enlace-placsp';
     case AbrirEnlaceInvente = 'abrir-enlace-invente';
     case AbrirEnlaceDocumento = 'abrir-enlace-documento';
@@ -51,7 +50,6 @@ enum MiAccionEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
 //            self::AbrirEnlacePlacsp,
 //            self::AbrirEnlaceInvente,
 //            self::AbrirEnlaceDocumento,
-//            self::VerActivityLog => Roles::LEER,
 //
 //            self::Associate,
 //            self::Dissociate,
@@ -103,7 +101,6 @@ enum MiAccionEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
             self::AsignarSuperAdmin => 'Asignar super admin',
             self::RetirarSuperAdmin => 'Retirar super admin',
             self::SendEmailResetPassword => 'Enviar email password',
-            self::VerActivityLog => 'Histórico',
             self::AbrirEnlacePlacsp => 'Abrir enlace Placsp',
             self::AbrirEnlaceInvente => 'Abrir enalce INVENTE',
             self::AbrirEnlaceDocumento => 'Abrir enlace documento',
@@ -134,7 +131,6 @@ enum MiAccionEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
             self::RetirarSuperAdmin => 'heroicon-o-user-minus',
             self::SendEmailResetPassword => 'heroicon-o-envelope',
 //            self::DissociateBulkAction => 'heroicon-o-no-symbol',
-            self::VerActivityLog => 'heroicon-o-shield-check',
             self::AbrirEnlacePlacsp => 'heroicon-o-link',
             self::AbrirEnlaceInvente => 'heroicon-o-arrow-top-right-on-square',
             self::AbrirEnlaceDocumento => 'heroicon-o-document-arrow-up',
@@ -160,7 +156,6 @@ enum MiAccionEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
             self::AsignarSuperAdmin => Color::Pink,
             self::Restore, self::BulkActionRestore => Color::Green,
             self::SendEmailResetPassword => Color::Teal,
-            self::VerActivityLog => Color::Zinc,
             self::AbrirEnlacePlacsp, self::AbrirEnlaceInvente, self::AbrirEnlaceDocumento => Color::Blue,
             self::AsignarLectura => Color::Violet,
             self::Enable2fa => Color::Orange,
@@ -203,7 +198,6 @@ enum MiAccionEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
             self::AsignarSuperAdmin => 'Asignar el rol Super admin al registro actual',
             self::RetirarSuperAdmin => 'Retirar el rol Super admin al registro actual',
             self::SendEmailResetPassword => 'Enviar email para cambio de contraseña',
-            self::VerActivityLog => 'Ver actividad del registro',
             self::AbrirEnlacePlacsp => 'Abrir enlace al perfil de contratante en PLACSP',
             self::AbrirEnlaceInvente => 'Abrir enlace al perfil en INVENTE',
             self::AbrirEnlaceDocumento => 'Abrir enlace al Documento',

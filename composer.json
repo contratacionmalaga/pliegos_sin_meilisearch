@@ -20,7 +20,6 @@
         "pxlrbt/filament-excel": "^3.1",
         "schmeits/filament-character-counter": "^4.0",
         "spatie/color": "^1.8",
-        "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-data": "*"
     },
     "require-dev": {
@@ -40,7 +39,6 @@
     "autoload": {
         "files": [
             "app/Helpers/enumHelpers.php",
-            "app/Helpers/activityLogHelpers.php",
             "app/Helpers/comunHelpers.php"
 
         ],

@@ -5,12 +5,10 @@ namespace App\Enums\NavigationMenus;
 //use App\Enums\Acciones\Roles;
 use App\Enums\Constantes\ConstantesString;
 use App\Filament\Components\Actions\ActionsConstructor;
-use App\Filament\Components\Filters\Admin\ActivityLogFilter;
 use App\Filament\Components\Filters\Admin\EnumsSelectFilters;
 use App\Filament\Components\Filters\Admin\EnumsTernaryFilters;
 use App\Filament\Components\Filters\Admin\OrganoContratacionFilter;
 use App\Filament\Components\Filters\MiDateRangeFilter;
-use App\Filament\Resources\ActivityLogs\ActivityLogResource;
 use App\Filament\Resources\PLACSP\Adjudicaciones\AdjudicacionResource;
 use App\Filament\Resources\PLACSP\Anuncios\AnuncioResource;
 use App\Filament\Resources\PLACSP\CondicionesEspecialesAdjudicacion\CondicionEspecialEjecucionResource;
@@ -21,7 +19,6 @@ use App\Filament\Resources\PLACSP\Documentos\DocumentoResource;
 use App\Filament\Resources\PLACSP\Lotes\LoteResource;
 use App\Filament\Resources\PLACSP\Modificaciones\ModificacionResource;
 use App\Filament\Resources\PLACSP\RequisitosPreviosParticipacion\RequisitoPrevioParticipacionResource;
-use App\Models\ActivityLog;
 use App\Models\PLACSP\Adjudicacion;
 use App\Models\PLACSP\Anuncio;
 use App\Models\PLACSP\CondicionEspecialEjecucion;
@@ -49,7 +46,6 @@ use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 {
 
-    case ACTIVITY_LOG = 'activity-log';
 
 
     case PLACSP_ADJUDICACION = 'adjudicacion';
@@ -119,8 +115,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
      */
     public function getFilters(): array
     {
-
-        $activitylogFilter = new ActivityLogFilter();
 
 //        $organismoFilter = new OrganismoFilter();
 //        $entidadFilter = new EntidadFilter();
@@ -207,13 +201,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 //                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
             ],
 
-            self::ACTIVITY_LOG => [
-                $activitylogFilter->getActivitylogSelectFilterByEvento(),
-                $activitylogFilter->getActivitylogSelectFilterByCauserId(),
-                $activitylogFilter->getActivityLogSelectFilterBySubjectId(),
-                $activitylogFilter->getActivitylogDateRangeFilterByCreatedAt(),
-            ],
-
             default => [
 
             ]
@@ -293,8 +280,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_CONTRATO_MAYOR,
             self::PLACSP_LOTE,
             self::PLACSP_MODIFICACION,
-            self::PLACSP_REQUISITO_PREVIO_PARTICIPACION,
-            self::ACTIVITY_LOG => [
+            self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => [
 
             ],
 
@@ -345,8 +331,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 
         return match ($this) {
 
-            self::ACTIVITY_LOG => Color::Orange,
-
             self::PLACSP_CONSULTA_PRELIMINAR_MERCADO => Color::Violet,
             self::PLACSP_CONTRATO_MAYOR => Color::Purple,
             self::PLACSP_ADJUDICACION => Color::Fuchsia,
@@ -365,8 +349,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
     {
 
         return match ($this) {
-
-            self::ACTIVITY_LOG => 'heroicon-o-list-bullet',
 
             self::PLACSP_ADJUDICACION => 'heroicon-o-sparkles',
             self::PLACSP_ANUNCIO => 'heroicon-o-megaphone',
@@ -404,7 +386,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 
         return match ($this) {
 
-            self::ACTIVITY_LOG => ActivityLog::class,
 
             self::PLACSP_ADJUDICACION => Adjudicacion::class,
             self::PLACSP_ANUNCIO => Anuncio::class,
@@ -428,8 +409,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 
         return match ($this) {
 
-            self::ACTIVITY_LOG => ActivityLogResource::class,
-
             self::PLACSP_ADJUDICACION => AdjudicacionResource::class,
             self::PLACSP_ANUNCIO => AnuncioResource::class,
             self::PLACSP_CONDICION_ESPECIAL_EJECUCION => CondicionEspecialEjecucionResource::class,
@@ -451,8 +430,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
     {
 
         return match ($this) {
-
-            self::ACTIVITY_LOG => 'activity-logs',
 
             self::PLACSP_ADJUDICACION => 'adjudicaciones',
             self::PLACSP_ANUNCIO => 'anuncios',
@@ -516,8 +493,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_ADJUDICACION => 'Listado de adjudicaciones',
             self::PLACSP_CONTRATO_MAYOR => 'Listado de Contratos Mayores',
 
-            self::ACTIVITY_LOG => 'Listado de los Logs almacenados es el sistema',
-
             default => 'getTableHeading - no implementado'
         };
     }
@@ -541,8 +516,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => '',
 
-            self::ACTIVITY_LOG => 'Permite el acceso detallado a cada actuación realizada por un usuario',
-
             default => 'getTableDescription - no implementado'
         };
     }
@@ -559,8 +532,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_ADJUDICACION => 'Ficha de una adjudicación',
             self::PLACSP_CONTRATO_MAYOR => 'Ficha de un contrato mayor',
 
-            self::ACTIVITY_LOG => 'Ficha de una traza',
-
             default => 'getInfolistHeading - no implementado'
         };
     }
@@ -571,8 +542,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
     public function getInfolistDescription(): string
     {
         return match ($this) {
-
-            self::ACTIVITY_LOG => 'Información ampliada de una traza',
 
             self::PLACSP_ADJUDICACION => 'Información ampliada de una adjudicación',
             self::PLACSP_CONTRATO_MAYOR => 'Información ampliada de un contrato mayor',
@@ -592,9 +561,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
     {
 
         return match ($this) {
-
-            self::ACTIVITY_LOG => 'Trazabilidad de usuarios',
-
 
             self::PLACSP_ADJUDICACION => 'Adjudicaciones',
             self::PLACSP_ANUNCIO => 'Anuncios publicados',
@@ -642,8 +608,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
     {
 
         return match ($this) {
-
-            self::ACTIVITY_LOG => 12,
 
             self::PLACSP_ADJUDICACION => 51,
             self::PLACSP_ANUNCIO => 52,
@@ -708,9 +672,6 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
     public static function getMiNavigationItemFromMiRelationManager (MiRelationManager $miRelationManager): MiNavigationItem
     {
         return match ($miRelationManager) {
-
-            MiRelationManager::ACTIVITYLOG_CAUSER,
-            MiRelationManager::ACTIVITYLOG_SUBJECT => self::ACTIVITY_LOG,
 
             MiRelationManager::PLACSP_ADJUDICACION => self::PLACSP_ADJUDICACION,
             MiRelationManager::PLACSP_ANUNCIO => self::PLACSP_ANUNCIO,

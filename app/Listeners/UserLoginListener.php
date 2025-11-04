@@ -2,8 +2,6 @@
 
 namespace App\Listeners;
 
-use App\Enums\ActivityLog\ActivityLogEvent;
-use App\Enums\ActivityLog\ActivityLogName;
 use App\Models\User;
 use App\Services\ClientInfoService;
 use Exception;
@@ -60,12 +58,6 @@ class UserLoginListener
             /*
              * Registro la actividad de LOGIN ERROR debido a USUARIO DESHABILITADO
              */
-            activity()
-                ->useLog(ActivityLogName::SEGURIDAD->value)
-                ->event(ActivityLogEvent::FAILED_LOGIN_USER_NOT_ENABLED->value)
-                ->causedBy($user)
-                ->withProperties($properties)
-                ->log(ActivityLogEvent::FAILED_LOGIN_USER_NOT_ENABLED->getDescription());
 
             /*
              * Lanzo una excepción si el usuario no está activo
@@ -95,12 +87,6 @@ class UserLoginListener
             /*
              * Registro la actividad de LOGIN ERROR debido a USUARIO NO VERIFICADO
              */
-            activity()
-                ->useLog(ActivityLogName::SEGURIDAD->value)
-                ->event(ActivityLogEvent::FAILED_LOGIN_USER_EMAIL_NOT_VERIFIED->value)
-                ->causedBy($user)
-                ->withProperties($properties)
-                ->log(ActivityLogEvent::FAILED_LOGIN_USER_EMAIL_NOT_VERIFIED->getDescription());
 
             /*
              * Lanzo una excepción si el usuario no ha verificado su correo electrónico
@@ -116,11 +102,5 @@ class UserLoginListener
      * Registro la actividad como Login Correcto
      */
         ds('UserLoginListener -> Usuario: ' . $user->getAttribute('name') . " - ACTIVO e EMAIL VERIFICADO");
-        activity()
-            ->useLog(ActivityLogName::SEGURIDAD->value)
-            ->event(ActivityLogEvent::LOGIN->value)
-            ->causedBy($user)
-            ->withProperties($properties)
-            ->log(ActivityLogEvent::LOGIN->getDescription());
     }
 }

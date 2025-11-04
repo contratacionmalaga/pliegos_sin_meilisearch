@@ -3,8 +3,6 @@
 namespace App\Filament\Components\Infolists;
 
 use App\DTOs\TextEntryConfig;
-use App\Enums\ActivityLog\ActivityLogEvent;
-use App\Enums\ActivityLog\ActivityLogName;
 use App\Enums\Constantes\ConstantesFormato;
 use App\Enums\Constantes\ConstantesString;
 use Filament\Actions\Action;
@@ -64,13 +62,6 @@ class MiTextEntry
                         // - `by()` → quién hace la acción (el usuario actual)
                         // - `on()` → sobre qué modelo se realiza (el modelo que contiene el NIF)
                         // - `withProperties()` → información adicional
-
-                        activity()
-                            ->useLog(ActivityLogName::SEGURIDAD->value) // Log personalizado (opcional)
-                            ->event(ActivityLogEvent::VIEWED->value) // Evento personalizado
-                            ->by(auth()->user()) // El usuario que ve el NIF
-                            ->on($record) // El modelo al que pertenece el NIF (como subject)
-                            ->log("El usuario " . auth()->user()->name . " ha visualizado el NIF de " . $record->getName());
 
                         return new HtmlString('NIF del usuario: <b>' . $record->nif . '</b>');
                     })

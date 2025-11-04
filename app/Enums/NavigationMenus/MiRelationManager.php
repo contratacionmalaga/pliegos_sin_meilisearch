@@ -4,7 +4,6 @@ namespace App\Enums\NavigationMenus;
 
 use App\Enums\Constantes\ConstantesString;
 use App\Filament\Components\Actions\ActionsConstructor;
-use App\Filament\Components\Filters\Admin\ActivityLogFilter;
 use App\Filament\Components\Filters\Admin\EnumsSelectFilters;
 use App\Filament\Components\Filters\Admin\EnumsTernaryFilters;
 use Exception;
@@ -20,8 +19,6 @@ use Filament\Tables\Filters\Filter;
 enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
 {
 
-    case ACTIVITYLOG_CAUSER = 'activitylog-causer';
-    case ACTIVITYLOG_SUBJECT = 'activitylog-subject';
 
     case PLACSP_ADJUDICACION = 'adjudicacion';
     case PLACSP_ANUNCIO = 'anuncio';
@@ -69,17 +66,11 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
     public function getFilters(): array
     {
 
-        $activitylogFilter = new ActivityLogFilter;
         $enumsSelectFilters = new EnumsSelectFilters;
         $enumsTernaryFilters = new EnumsTernaryFilters;
 
         return match ($this) {
 
-            self::ACTIVITYLOG_CAUSER,
-            self::ACTIVITYLOG_SUBJECT => [
-                $activitylogFilter->getActivitylogSelectFilterByEvento(),
-                $activitylogFilter->getActivitylogDateRangeFilterByCreatedAt(),
-            ],
 
 //            self::ENTIDAD => [
 //                $enumsTernaryFilters->getActivoInactivoTernaryFilter()
@@ -142,8 +133,6 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
 
         return match ($this) {
 
-            self::ACTIVITYLOG_CAUSER => 'Número de incidencias causadas por el usuario',
-            self::ACTIVITYLOG_SUBJECT => 'Número de incidencias sobre el usuario',
 
             self::PLACSP_ADJUDICACION => 'Número de adjudicaciones',
             self::PLACSP_ANUNCIO => 'Número de anuncios publicados',
@@ -175,11 +164,8 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
             self::PLACSP_CONTRATO_MAYOR,
             self::PLACSP_LOTE,
             self::PLACSP_MODIFICACION,
-            self::PLACSP_REQUISITO_PREVIO_PARTICIPACION,
+            self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'warning',
 
-
-            self::ACTIVITYLOG_CAUSER,
-            self::ACTIVITYLOG_SUBJECT => 'warning',
 
 //            self::ENTIDAD => 'primary',
         };
@@ -192,9 +178,6 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
     {
 
         return match ($this) {
-
-            self::ACTIVITYLOG_CAUSER => 'activity_causer',
-            self::ACTIVITYLOG_SUBJECT => 'activity_subject',
 
             self::PLACSP_ADJUDICACION => 'adjudicaciones',
             self::PLACSP_ANUNCIO => 'anuncios',

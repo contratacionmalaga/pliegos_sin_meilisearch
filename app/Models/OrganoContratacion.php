@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\ActivityLog\ActivityLogName;
 use App\Enums\Flags\ActivoOrganoContratacionEnum;
 use App\Enums\Flags\MedioPropioEnum;
 //use App\Enums\RegistroContratos\RC_TiposDeOrganosContratacion;
@@ -16,8 +15,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * @method static Builder|static activo()
@@ -29,7 +26,6 @@ class OrganoContratacion extends Model
 {
     use HasActivo;
     use HasUuids;
-    use LogsActivity;
     use SoftDeletes;
 
     protected $table = 'placsp_organos_contratacion';
@@ -73,38 +69,27 @@ class OrganoContratacion extends Model
         ];
     }
 
-    /**
-     * Definición de la trazabilidad en ActivityLog
-     */
-    public function getActivitylogOptions(): LogOptions
-    {
 
-        return LogOptions::defaults()
-            ->useLogName(ActivityLogName::SEGURIDAD->value)
-            ->logAll()
-            ->logOnlyDirty();
-    }
-
-    public function entidad(): BelongsTo
-    {
-        return $this->belongsTo(Entidad::class, 'nif', 'nif');
-    }
+//    public function entidad(): BelongsTo
+//    {
+//        return $this->belongsTo(Entidad::class, 'nif', 'nif');
+//    }
 
     public function adjudicaciones(): HasMany
     {
         return $this->hasMany(Adjudicacion::class, 'id_plataforma', 'id_plataforma');
     }
 
-    public function expedientes(): HasMany
-    {
-        return $this->hasMany(Expediente::class, 'id_plataforma', 'id_plataforma')
-            ->orderBy('contract_folder_id', 'DESC');
-    }
+//    public function expedientes(): HasMany
+//    {
+//        return $this->hasMany(Expediente::class, 'id_plataforma', 'id_plataforma')
+//            ->orderBy('contract_folder_id', 'DESC');
+//    }
 
-    public function organos_contratacion_historicos(): HasMany
-    {
-        return $this->hasMany(OrganoContratacionHistorico::class, 'id_plataforma', 'id_plataforma');
-    }
+//    public function organos_contratacion_historicos(): HasMany
+//    {
+//        return $this->hasMany(OrganoContratacionHistorico::class, 'id_plataforma', 'id_plataforma');
+//    }
 
     public function organizable(): MorphTo
     {

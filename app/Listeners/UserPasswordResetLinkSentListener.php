@@ -2,8 +2,6 @@
 
 namespace App\Listeners;
 
-use App\Enums\ActivityLog\ActivityLogEvent;
-use App\Enums\ActivityLog\ActivityLogName;
 use App\Services\ClientInfoService;
 use Exception;
 use Illuminate\Auth\Events\PasswordResetLinkSent;
@@ -46,11 +44,5 @@ class UserPasswordResetLinkSentListener
             "old" => []
         ];
 
-        activity()
-            ->useLog(ActivityLogName::SEGURIDAD->value)
-            ->event(ActivityLogEvent::PASSWORD_RESET_LINK_SENT->value)
-            ->causedBy($user)
-            ->withProperties($properties)
-            ->log(ActivityLogEvent::PASSWORD_RESET_LINK_SENT->getDescription());
     }
 }

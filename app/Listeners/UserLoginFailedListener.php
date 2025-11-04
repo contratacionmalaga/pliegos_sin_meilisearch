@@ -2,8 +2,6 @@
 
 namespace App\Listeners;
 
-use App\Enums\ActivityLog\ActivityLogEvent;
-use App\Enums\ActivityLog\ActivityLogName;
 use App\Models\User;
 use App\Services\ClientInfoService;
 use App\Services\LoginAlertService;
@@ -68,25 +66,12 @@ class UserLoginFailedListener
         // Registrar la actividad (solo si el usuario existe, en caso contrario, solo registramos el intento)
         if (! is_null($user)) {
             // Si el usuario fue encontrado, registramos el evento de fallo de contraseña
-            activity()
-                ->useLog(ActivityLogName::SEGURIDAD->value)
-                ->event(ActivityLogEvent::FAILED_LOGIN_PASSWORD->value)
-                ->causedBy($autenticable)
-                ->withProperties($properties)
-                ->performedOn($user)
-                ->on($user)
-                ->log(ActivityLogEvent::FAILED_LOGIN_PASSWORD->getDescription());
 
             // ✅ Usar el servicio inyectado para enviar la alerta
             $this->loginAlertService->handle($user, $properties);
 
         } else {
             // Si no se encontró el usuario, registramos el intento con las credenciales
-            activity()
-                ->useLog(ActivityLogName::SEGURIDAD->value)
-                ->event(ActivityLogEvent::FAILED_LOGIN_USER->value)
-                ->withProperties($properties)
-                ->log(ActivityLogEvent::FAILED_LOGIN_USER->getDescription());
         }
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\ActivityLog\ActivityLogName;
 use App\Enums\Flags\ActivoEnum;
 use App\Enums\Flags\DobleFactorEnum;
 use App\Enums\Flags\LecturaEnum;
@@ -27,8 +26,6 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable implements FilamentUser, MustVerifyEmail, HasAppAuthentication, HasAppAuthenticationRecovery
 {
@@ -40,7 +37,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Has
     use Notifiable;
 
     /** @use HasFactory<UserFactory> */
-    use HasFactory, LogsActivity, Notifiable;
+    use HasFactory, Notifiable;
     use SoftDeletes;
 
     /**
@@ -100,19 +97,6 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Has
         ];
     }
 
-    /**
-     * Definición de la trazabilidad en ActivityLog
-     */
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->useLogName(ActivityLogName::SEGURIDAD->value)
-            ->logExcept(['password', 'remember_token'])
-            ->logAll()
-            ->logOnlyDirty()
-            ->dontLogIfAttributesChangedOnly(['remember_token']);
-    }
-
     public function getAppAuthenticationSecret(): ?string
     {
         // This method should return the user's saved app authentication secret.
@@ -158,21 +142,6 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Has
         $this->save();
     }
 
-    /**
-     * Relación entre User y ActivityLog
-     */
-    public function activity_causer(): MorphMany
-    {
-        return $this->morphMany(ActivityLog::class, 'causer');
-    }
-
-    /**
-     * Relación entre User y ActivityLog
-     */
-    public function activity_subject(): MorphMany
-    {
-        return $this->morphMany(ActivityLog::class, 'subject');
-    }
 
     /**
      * Función para determinar los usuarios que pueden acceder a un determinado Panel
