@@ -9,6 +9,7 @@ use App\Filament\Components\Filters\Admin\EnumsSelectFilters;
 use App\Filament\Components\Filters\Admin\EnumsTernaryFilters;
 use App\Filament\Components\Filters\Admin\OrganoContratacionFilter;
 use App\Filament\Components\Filters\MiDateRangeFilter;
+use App\Filament\Resources\Incidencias\IncidenciaResource;
 use App\Filament\Resources\PLACSP\Adjudicaciones\AdjudicacionResource;
 use App\Filament\Resources\PLACSP\Anuncios\AnuncioResource;
 use App\Filament\Resources\PLACSP\CondicionesEspecialesAdjudicacion\CondicionEspecialEjecucionResource;
@@ -19,6 +20,7 @@ use App\Filament\Resources\PLACSP\Documentos\DocumentoResource;
 use App\Filament\Resources\PLACSP\Lotes\LoteResource;
 use App\Filament\Resources\PLACSP\Modificaciones\ModificacionResource;
 use App\Filament\Resources\PLACSP\RequisitosPreviosParticipacion\RequisitoPrevioParticipacionResource;
+use App\Models\Incidencia;
 use App\Models\PLACSP\Adjudicacion;
 use App\Models\PLACSP\Anuncio;
 use App\Models\PLACSP\CondicionEspecialEjecucion;
@@ -60,6 +62,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
     case PLACSP_LOTE = 'lote';
     case PLACSP_MODIFICACION = 'modificacion';
     case PLACSP_REQUISITO_PREVIO_PARTICIPACION = 'requisito-previo-participacion';
+    case PLACSP_INCIDENCIA = 'incidencia';
 
 
     /**
@@ -242,6 +245,11 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
                 $actions->getEnlacePlacsp()
             ],
 
+            self::PLACSP_INCIDENCIA => $array = [
+                $actions->getCreateAction(),
+                $actions->getViewAction(),
+            ],
+
             self::PLACSP_DOCUMENTO => $array = [
                 $actions->getEnlaceDocumento(),
                 $actions->getVerExpediente(),
@@ -361,6 +369,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE => 'heroicon-o-puzzle-piece',
             self::PLACSP_MODIFICACION => 'heroicon-o-pencil-square',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'heroicon-o-user-plus',
+            self::PLACSP_INCIDENCIA => 'heroicon-o-user-plus',
 
             default => 'heroicon-o-no-symbol'
         };
@@ -398,6 +407,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE => Lote::class,
             self::PLACSP_MODIFICACION => Modificacion::class,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => RequisitoPrevioParticipacion::class,
+            self::PLACSP_INCIDENCIA => Incidencia::class,
         };
     }
 
@@ -419,6 +429,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE => LoteResource::class,
             self::PLACSP_MODIFICACION => ModificacionResource::class,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => RequisitoPrevioParticipacionResource::class,
+            self::PLACSP_INCIDENCIA => IncidenciaResource::class,
 
         };
     }
@@ -442,6 +453,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE => 'lotes',
             self::PLACSP_MODIFICACION => 'modificaciones',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'requisitos-previos-participacion',
+            self::PLACSP_INCIDENCIA => 'incidencias',
 
             default => 'getSlug() - No implementado'
         };
@@ -573,6 +585,10 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE => 'Lotes',
             self::PLACSP_MODIFICACION => 'Modificaciones',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'Requisitos previos',
+            self::PLACSP_INCIDENCIA => 'Incidencias',
+
+            default => 'getLabel - no implementado'
+
         };
     }
 
@@ -620,6 +636,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE => 59,
             self::PLACSP_MODIFICACION => 60,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 61,
+            self::PLACSP_INCIDENCIA => 62,
 
         };
     }
@@ -661,6 +678,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_MODIFICACION,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => MiNavigationGroup::PLACSP->getLabel(),
 
+            self::PLACSP_INCIDENCIA => null, // No se muestra en ningún grupo
             self::PLACSP_CONTRATO_MAYOR => null, // No se muestra en ningún grupo
 
         };
@@ -683,6 +701,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             MiRelationManager::PLACSP_LOTE => self::PLACSP_LOTE,
             MiRelationManager::PLACSP_MODIFICACION => self::PLACSP_MODIFICACION,
             MiRelationManager::PLACSP_REQUISITO_PREVIO_PARTICIPACION => self::PLACSP_REQUISITO_PREVIO_PARTICIPACION,
+            MiRelationManager::PLACSP_INCIDENCIA => self::PLACSP_INCIDENCIA,
 
         };
     }

@@ -8,6 +8,7 @@ use App\Enums\Placsp\PLACSP_SyndicationContractFolderStatusCode;
 use App\Enums\Placsp\PLACSP_SyndicationTenderingProcessCode;
 use App\Enums\Placsp\PLACSP_TenderingDocumentTypeCode;
 use App\Enums\Placsp\PLACSP_TenderingNoticeTypeCode;
+use App\Traits\HasIncidencias;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +17,8 @@ class Anuncio extends Model
 {
 
     use HasUuids;
+    use HasIncidencias;
+
     protected $table = "placsp_anuncios";
 
     /**

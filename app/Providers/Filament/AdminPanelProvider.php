@@ -6,6 +6,7 @@ use App\Enums\NavigationMenus\MiNavigationGroup;
 use App\Enums\NavigationMenus\MiPanel;
 use App\Filament\Pages\Auth\MiLogin;
 use App\Filament\Pages\MiDashboard;
+use App\Filament\Resources\Incidencias\IncidenciaResource;
 use App\Filament\Resources\PLACSP\Adjudicaciones\AdjudicacionResource;
 use App\Filament\Resources\PLACSP\Anuncios\AnuncioResource;
 use App\Filament\Resources\PLACSP\CondicionesEspecialesAdjudicacion\CondicionEspecialEjecucionResource;
@@ -125,6 +126,7 @@ class AdminPanelProvider extends PanelProvider
                 CriterioAdjudicacionResource::class,
                 DocumentoResource::class,
                 ContratoMayorResource::class,
+                IncidenciaResource::class,
                 LoteResource::class,
                 ModificacionResource::class,
                 RequisitoPrevioParticipacionResource::class,

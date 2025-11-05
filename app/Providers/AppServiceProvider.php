@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Incidencia;
 use App\Models\User;
+use App\Observers\IncidenciasObserver;
 use App\Observers\UserObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\URL;
@@ -15,7 +17,7 @@ use Illuminate\Support\Facades\Vite;
 
 class AppServiceProvider extends ServiceProvider
 {
-    
+
     /**
      * Register any application services.
      */
@@ -32,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
 
         //
         User::observe(UserObserver::class);
+
+        Incidencia::observe(IncidenciasObserver::class);
 
         // Prevenir las conulstas del tipo N+1
         Model::preventLazyLoading();

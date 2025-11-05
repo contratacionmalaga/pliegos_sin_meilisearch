@@ -30,6 +30,7 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
     case PLACSP_LOTE = 'lote';
     case PLACSP_MODIFICACION = 'modificacion';
     case PLACSP_REQUISITO_PREVIO_PARTICIPACION = 'requisito-previo-participacion';
+    case PLACSP_INCIDENCIA = 'incidencia';
 
 
     /**
