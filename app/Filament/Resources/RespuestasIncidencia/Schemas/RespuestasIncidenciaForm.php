@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Incidencias\Schemas;
+namespace App\Filament\Resources\RespuestasIncidencia\Schemas;
 
 use App\DTOs\SectionConfig;
 use App\Filament\Components\Forms\MiRichEditor;
@@ -14,7 +14,7 @@ use App\Filament\Components\Schemas\MiSectionInfolist;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
-class IncidenciaForm
+class RespuestasIncidenciaForm
 {
     public function getForm(Schema $schema): Schema
     {
@@ -78,35 +78,17 @@ class IncidenciaForm
 //                $miTextInput->getTextInputTelefono(true, 3),
 
 //                $miTextInput->getTextInputTitulo('id', false,'id'),
-                $miTextInput->getTextInputTitulo('titulo',true, 3, 'Titulo'),
-                $miTextInput->getTextInputDescripcion('descripcion',true, 3,'Descripcion'),
-                $miTextInput->getTextInputEstado('estado',true, 3,'Estado'),               // TODO: Select?
-                $miTextInput->getTextInputTitulo('incidenciable_id',true, 3,'incidenciable_id'),
-                $miTextInput->getTextInputTitulo('incidenciable_type',true, 3,'incidenciable_type'),
+                $miTextInput->getTextInputTitulo('respuesta',true, 3, 'Respuesta'),
+//                $miTextInput->getTextInputDescripcion('descripcion',true, 3,'Descripcion'),
+//                $miTextInput->getTextInputEstado('estado',true, 3,'Estado'),               // TODO: Select?
+//                $miTextInput->getTextInputTitulo('incidenciable_id',true, 3,'incidenciable_id'),
+//                $miTextInput->getTextInputTitulo('incidenciable_type',true, 3,'incidenciable_type'),
                 $miTextInput->getTextInputTitulo('created_at',true, 3,'created_at'),
                 $miTextInput->getTextInputTitulo('updated_at',true, 3,'updated_at'),
                 $miTextInput->getTextInputTitulo('deleted_at',true, 3,'deleted_at'),
-                $miTextInput->getTextInputTitulo('created_by',true, 3,'created_by'),
-                $miTextInput->getTextInputTitulo('updated_by',true, 3,'updated_by'),
-                $miTextInput->getTextInputTitulo('deleted_by',true, 3,'deleted_by'),
 
             ])
             ->columnSpan('full');
-
-/*
-            $this->miTextColumn->getSearchableTextColumn('id', 'id'),
-            $this->miTextColumn->getSearchableTextColumn('titulo', 'titulo'),
-            $this->miTextColumn->getSearchableTextColumn('descripcion', 'descripcion'),
-            $this->miTextColumn->getSearchableTextColumn('estado', 'estado'),
-            $this->miTextColumn->getSearchableTextColumn('incidenciable_id', 'incidenciable_id'),
-            $this->miTextColumn->getSearchableTextColumn('incidenciable_type', 'incidenciable_type'),
-            $this->miTextColumn->getBadgeDateTimeSortableTextColumn('created_at', 'created_at'),
-            $this->miTextColumn->getBadgeDateTimeSortableTextColumn('updated_at', 'updated_at'),
-            $this->miTextColumn->getBadgeDateTimeSortableTextColumn('deleted_at', 'deleted_at'),
-            $this->miTextColumn->getSearchableTextColumn('created_by', 'created_by'),
-            $this->miTextColumn->getSearchableTextColumn('updated_by', 'updated_by'),
-            $this->miTextColumn->getSearchableTextColumn('deleted_by', 'deleted_by'),
-*/
 
     }
 

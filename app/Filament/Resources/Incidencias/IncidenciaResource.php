@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Incidencias;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Filament\Abstracts\BaseResourceNavigationItem;
+use App\Filament\RelationManagers\RespuestasIncidenciaRelationManager;
 use App\Filament\Resources\Incidencias\Pages\ListIncidencias;
 use App\Filament\Resources\Incidencias\Schemas\IncidenciaForm;
 
@@ -38,14 +39,8 @@ class IncidenciaResource extends BaseResourceNavigationItem
     {
 
         return [
-//            LotesRelationManager::class,
-//            RequisitosPreviosParticipacionRelationManager::class,
-//            CriteriosAdjudicacionRelationManager::class,
-//            CondicionesEspecialesEjecucionRelationManager::class,
-//            AnunciosRelationManager::class,
-//            DocumentosRelationManager::class,
-//            AdjudicacionesRelationManager::class,
-//            ModificacionesRelationManager::class,
+            RespuestasIncidenciaRelationManager::class,
+
         ];
     }
 }

@@ -5,10 +5,13 @@ namespace App\Filament\Components\Actions;
 use App\Enums\Acciones\MiAccionEnum;
 use App\Enums\Constantes\ConstantesString;
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Filament\Resources\Incidencias\Schemas\RespuestasIncidenciaForm;
+use App\Models\Incidencia;
 use App\Models\User;
 use Exception;
 use Filament\Actions\Action;
 use Filament\Actions\AssociateAction;
+use Filament\Actions\CreateAction;
 use Filament\Actions\CreateAction as CreateActionPage;
 use Filament\Actions\DeleteAction as DeleteActionPage;
 use Filament\Actions\DeleteBulkAction;
@@ -20,10 +23,77 @@ use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Notifications\Notification;
 use Filament\Support\Enums\Width;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Password;
 
 class ActionsConstructor
 {
+
+    public function getCrearIncidencia(MiNavigationItem $miNavigationItem): Action
+    {
+
+//        return Action::make(MiAccionEnum::VerExpediente->value)
+//            ->label(MiAccionEnum::VerExpediente->getLabel())
+//            ->tooltip(MiAccionEnum::VerExpediente->getTooltip())
+//            ->icon(MiAccionEnum::VerExpediente->getIcon())
+//            ->color(MiAccionEnum::VerExpediente->getColor())
+////            ->url(fn($record) => route('filament.admin.resources.expedientes.view', ['record' => $record->id_entry]))
+//            ->url(fn($record) => route('filament.admin.resources.contratos-mayores.view', ['record' => $record->id_entry]))
+//            ->visible(fn($record) => filled($record->id_entry));
+
+
+//        ->actions([
+//        Action::make('crearIncidencia')
+//            ->label('Crear incidencia')
+//            ->icon('heroicon-m-plus')
+//            ->color('primary')
+//            ->form(\App\Filament\Resources\Incidencias\Schemas\IncidenciaForm::schema())
+//            ->mountUsing(function (Forms\ComponentContainer $form, Anuncio $record) {
+//                $form->fill(['anuncio_id' => $record->id]);
+//            })
+//            ->action(function (array $data) {
+//                Incidencia::create($data);
+//            }),
+//    ]);
+
+//        Action::make('edit')
+//            ->url(fn (): string => route('posts.edit', ['post' => $this->post]));
+
+//        return Action::make(MiAccionEnum::CrearIncidencia->value)
+//            ->label(MiAccionEnum::CrearIncidencia->getLabel())
+//            ->tooltip(MiAccionEnum::CrearIncidencia->getTooltip())
+//            ->icon(MiAccionEnum::CrearIncidencia->getIcon())
+//            ->color(MiAccionEnum::CrearIncidencia->getColor())
+//            ->modalWidth(Width::FourExtraLarge)
+////            ->url(fn ($record): string => route('filament.admin.resources.incidencias.index', ['record' => $record->id]));
+//            ->schema(function ($schema){ return new IncidenciaForm()->getForm($schema); })
+//            ->action(function (array $data) {Incidencia::create($data); });
+
+
+        return CreateAction::make(MiAccionEnum::CrearIncidencia->value)
+                ->label(MiAccionEnum::CrearIncidencia->getLabel())
+                ->tooltip(MiAccionEnum::CrearIncidencia->getTooltip())
+                ->icon(MiAccionEnum::CrearIncidencia->getIcon())
+                ->color(MiAccionEnum::CrearIncidencia->getColor())
+                ->modalWidth(Width::FourExtraLarge)
+                ->schema(function ($schema){ return new RespuestasIncidenciaForm()->getForm($schema); })
+                ->using(function (array $data, string $model): Model {
+                    return Incidencia::create($data);
+                })
+                ->mutateDataUsing(function (array $data, $record) use($miNavigationItem): array {
+//                    $data['incidenciable_id'] = $record->incidenciable_id;
+//                    $data['incidenciable_type'] = $miNavigationItem->value;
+                    $data['incidenciable_id'] = $record->getKey();
+//                    $data['incidenciable_type'] = $record->getMorphClass();
+                    $data['incidenciable_type'] = $miNavigationItem->value;
+
+                    return $data;
+                })
+//                ->action(function (array $data) {Incidencia::create($data); })
+            ;
+
+    }
+
 
     public function getVerExpediente(): Action
     {
@@ -77,31 +147,31 @@ class ActionsConstructor
             ->visible(fn($record) => !is_null($record->codigo_invente));
     }
 
-    public function getEstablecerRetirarLecturaAction(): EstablecerRetirarLecturaAction
-    {
-        return EstablecerRetirarLecturaAction::make(EstablecerRetirarLecturaAction::getDefaultName())
-            ->authorize(auth()->user()->esSuperAdmin());
-    }
-
-    public function getEstablecerRetirarSuperAdminAction(): EstablecerRetirarSuperAdminAction
-    {
-        return EstablecerRetirarSuperAdminAction::make(EstablecerRetirarSuperAdminAction::getDefaultName())
-            ->authorize(auth()->user()->esSuperAdmin());
-    }
-
-    public function getActivarDesactivarAction(): EstablecerRetirarActivoAction
-    {
-
-        return EstablecerRetirarActivoAction::make(EstablecerRetirarActivoAction::getDefaultName())
-            ->authorize(auth()->user()->esSuperAdmin());
-    }
-
-    public function getActivarDesactivarDobleFactorAction(): EstablecerRetirarDobleFactorAction
-    {
-
-        return EstablecerRetirarDobleFactorAction::make(EstablecerRetirarDobleFactorAction::getDefaultName())
-            ->authorize(auth()->user()->esSuperAdmin());
-    }
+//    public function getEstablecerRetirarLecturaAction(): EstablecerRetirarLecturaAction
+//    {
+//        return EstablecerRetirarLecturaAction::make(EstablecerRetirarLecturaAction::getDefaultName())
+//            ->authorize(auth()->user()->esSuperAdmin());
+//    }
+//
+//    public function getEstablecerRetirarSuperAdminAction(): EstablecerRetirarSuperAdminAction
+//    {
+//        return EstablecerRetirarSuperAdminAction::make(EstablecerRetirarSuperAdminAction::getDefaultName())
+//            ->authorize(auth()->user()->esSuperAdmin());
+//    }
+//
+//    public function getActivarDesactivarAction(): EstablecerRetirarActivoAction
+//    {
+//
+//        return EstablecerRetirarActivoAction::make(EstablecerRetirarActivoAction::getDefaultName())
+//            ->authorize(auth()->user()->esSuperAdmin());
+//    }
+//
+//    public function getActivarDesactivarDobleFactorAction(): EstablecerRetirarDobleFactorAction
+//    {
+//
+//        return EstablecerRetirarDobleFactorAction::make(EstablecerRetirarDobleFactorAction::getDefaultName())
+//            ->authorize(auth()->user()->esSuperAdmin());
+//    }
 
     public function getGoToListAction(MiNavigationItem $miNavigationItem): Action
     {

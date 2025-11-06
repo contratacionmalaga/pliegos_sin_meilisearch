@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Filament\Resources\PLACSP\Anuncios\Tables;
+namespace App\Filament\Resources\RespuestasIncidencia\Tables;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Enums\NavigationMenus\MiRelationManager;
 use App\Filament\Components\Tables\MiTable;
 use App\Filament\Components\Tables\MiTextColumn;
-use App\Models\PLACSP\Anuncio;
+use App\Models\PLACSP\ContratoMayor;
 use App\Traits\HasCommonColumns;
 use Exception;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-readonly class AnuncioTable
+readonly class RespuestasIncidenciaTable
 {
+
     use HasCommonColumns;
 
     public function __construct(
@@ -35,24 +36,20 @@ readonly class AnuncioTable
 
         // Determinamos el tipo de configuración que se debe aplicar
         $configurableItem = $isRelationManager
-            ? MiRelationManager::PLACSP_ANUNCIO
-            : MiNavigationItem::PLACSP_ANUNCIO;
+            ? MiRelationManager::PLACSP_RESPUESTA_INCIDENCIA
+            : MiNavigationItem::PLACSP_RESPUESTA_INCIDENCIA;
 
         // Usamos la función pública `getTable` para obtener la tabla configurada
         return $this->miTable->getTable($table, $configurableItem)
-            ->columns(
-                array_merge(
-                    [
-                        $this->miTextColumn->getBadgeTextColumn('id', 'ID'),
-                    ],
-                    $this->getColumnasComunes($table),
-                    [
-                        $this->miTextColumn->getBadgeTextColumn('notice_type_code', 'Tipo de anuncio'),
-                        $this->miTextColumn->getSortableTextColumn('publication_media_name', 'Medio de publicación'),
-                        $this->miTextColumn->getBadgeDateTextColumn('issue_date', 'Fecha de publicación'),
-                    ],
-                ))
-            ->searchable(!$isRelationManager);
-
+            ->columns([
+                        $this->miTextColumn->getSearchableTextColumn('id', 'id'),
+                        $this->miTextColumn->getSearchableTextColumn('respuesta', 'respuesta'),
+                        $this->miTextColumn->getSearchableTextColumn('incidencia_id', '_incidencia_id'),
+                        $this->miTextColumn->getBadgeDateTimeSortableTextColumn('created_at', 'created_at'),
+                        $this->miTextColumn->getBadgeDateTimeSortableTextColumn('updated_at', 'updated_at'),
+                        $this->miTextColumn->getBadgeDateTimeSortableTextColumn('deleted_at', 'deleted_at'),
+                    ])
+            ->searchable(true);
+//            ->searchable(!$isRelationManager);
     }
 }

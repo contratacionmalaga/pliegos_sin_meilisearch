@@ -424,6 +424,10 @@ return [
     'validation_telefono' => 'El valor introducido no coincide con un teléfono',
     'validation_unique' => 'El valor del campo ya figura es el sistema',
 
+    // Incidencias
+    'placeholder_titulo' => 'Título',
+    'placeholder_descripcion' => 'Descripción',
+    'placeholder_estado' => 'Estado',
 
 
 ];

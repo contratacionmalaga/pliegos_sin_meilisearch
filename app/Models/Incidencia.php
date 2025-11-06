@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Incidencia extends Model
 {
+
+    use HasUuids;
+
 //    public function getTable()
 //    {
 //        return config('notable.table_name', 'notables');
@@ -16,14 +21,11 @@ class Incidencia extends Model
         'titulo',
         'descripcion',
         'estado',
-        'descripcion',
         'incidenciable_type',
         'incidenciable_id',
-//        'creator_type',
-//        'creator_id',
-        'created_bye',
-        'updated_bye',
-        'deleted_bye',
+        'created_by',
+        'updated_by',
+        'deleted_by',
     ];
 
     protected $casts = [
@@ -32,6 +34,14 @@ class Incidencia extends Model
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
+
+
+    public function respuestas(): HasMany
+    {
+        return $this
+            ->hasMany(RespuestasIncidencia::class, 'incidencia_id', 'id');
+    }
+
 
     /**
      *

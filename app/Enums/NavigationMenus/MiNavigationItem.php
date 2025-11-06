@@ -20,6 +20,8 @@ use App\Filament\Resources\PLACSP\Documentos\DocumentoResource;
 use App\Filament\Resources\PLACSP\Lotes\LoteResource;
 use App\Filament\Resources\PLACSP\Modificaciones\ModificacionResource;
 use App\Filament\Resources\PLACSP\RequisitosPreviosParticipacion\RequisitoPrevioParticipacionResource;
+use App\Filament\Resources\RespuestasIncidencia\RespuestasIncidenciaResource;
+use App\Filament\Resources\RespuestasIncidencia\Tables\RespuestasIncidenciaTable;
 use App\Models\Incidencia;
 use App\Models\PLACSP\Adjudicacion;
 use App\Models\PLACSP\Anuncio;
@@ -63,6 +65,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
     case PLACSP_MODIFICACION = 'modificacion';
     case PLACSP_REQUISITO_PREVIO_PARTICIPACION = 'requisito-previo-participacion';
     case PLACSP_INCIDENCIA = 'incidencia';
+    case PLACSP_RESPUESTA_INCIDENCIA = 'respuesta-incidencia';
 
 
     /**
@@ -231,7 +234,12 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 
         match ($this) {
 
-            self::PLACSP_ANUNCIO,
+            self::PLACSP_ANUNCIO => $array = [
+                $actions->getVerExpediente(),
+                $actions->getEnlacePlacsp(),
+                $actions->getCrearIncidencia(self::PLACSP_ANUNCIO),
+            ],
+
             self::PLACSP_CONDICION_ESPECIAL_EJECUCION,
             self::PLACSP_CONSULTA_PRELIMINAR_MERCADO,
             self::PLACSP_CPV,
@@ -246,7 +254,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             ],
 
             self::PLACSP_INCIDENCIA => $array = [
-                $actions->getCreateAction(),
+//                $actions->getCreateAction(),
                 $actions->getViewAction(),
             ],
 
@@ -308,6 +316,11 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 
         match ($this) {
 
+            self::PLACSP_INCIDENCIA => $acciones = [
+                $actionsConstructor->getCreateAction(),
+                $actionsConstructor->getViewAction(),
+            ],
+
             default =>
 
                 $acciones = [
@@ -316,7 +329,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 
         };
 
-        return ActionGroup::make($acciones)
+        return ActionGroup::make(array_merge($acciones))
             ->color(Color::Green)
             ->button()
             ->label(ConstantesString::ACCIONES_DIPONIBLES->value);
@@ -408,6 +421,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_MODIFICACION => Modificacion::class,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => RequisitoPrevioParticipacion::class,
             self::PLACSP_INCIDENCIA => Incidencia::class,
+            self::PLACSP_RESPUESTA_INCIDENCIA => RespuestasIncidencia::class,
         };
     }
 
@@ -430,6 +444,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_MODIFICACION => ModificacionResource::class,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => RequisitoPrevioParticipacionResource::class,
             self::PLACSP_INCIDENCIA => IncidenciaResource::class,
+            self::PLACSP_RESPUESTA_INCIDENCIA => RespuestasIncidenciaResource::class,
 
         };
     }
@@ -586,6 +601,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_MODIFICACION => 'Modificaciones',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'Requisitos previos',
             self::PLACSP_INCIDENCIA => 'Incidencias',
+            self::PLACSP_RESPUESTA_INCIDENCIA => 'Respuestas a Incidencias',
 
             default => 'getLabel - no implementado'
 
@@ -678,6 +694,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_MODIFICACION,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => MiNavigationGroup::PLACSP->getLabel(),
 
+            self::PLACSP_RESPUESTA_INCIDENCIA => null, // No se muestra en ningún grupo
             self::PLACSP_INCIDENCIA => null, // No se muestra en ningún grupo
             self::PLACSP_CONTRATO_MAYOR => null, // No se muestra en ningún grupo
 
@@ -702,6 +719,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             MiRelationManager::PLACSP_MODIFICACION => self::PLACSP_MODIFICACION,
             MiRelationManager::PLACSP_REQUISITO_PREVIO_PARTICIPACION => self::PLACSP_REQUISITO_PREVIO_PARTICIPACION,
             MiRelationManager::PLACSP_INCIDENCIA => self::PLACSP_INCIDENCIA,
+            MiRelationManager::PLACSP_RESPUESTAS_INCIDENCIA => self::PLACSP_RESPUESTA_INCIDENCIA,
 
         };
     }

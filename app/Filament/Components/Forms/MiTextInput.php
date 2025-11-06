@@ -11,6 +11,55 @@ use Schmeits\FilamentCharacterCounter\Forms\Components\TextInput;
 
 class MiTextInput
 {
+    public function getTextInputTitulo(string $make, bool $requerido, int $columnSpam, ?string $label = null): TextInput
+    {
+
+        return $this->create(
+            new TextInputConfig(
+                make: 'titulo',
+                columnSpan: $columnSpam,
+                characterLimit: ConstantesInt::TAMANO_200->value,
+                required: $requerido,
+                label: $label
+            )
+        );
+    }
+
+    public function getTextInputDescripcion(string $make, bool $requerido, int $columnSpam, ?string $label = null): TextInput
+    {
+
+        return $this->create(
+            new TextInputConfig(
+                make: 'descripcion',
+                columnSpan: $columnSpam,
+                characterLimit: ConstantesInt::TAMANO_200->value,
+                required: $requerido,
+                label: $label
+            )
+        );
+    }
+
+    public function getTextInputEstado(string $make, bool $requerido, int $columnSpam, ?string $label = null): TextInput
+    {
+
+        return $this->create(
+            new TextInputConfig(
+                make: 'estado',
+                columnSpan: $columnSpam,
+                characterLimit: ConstantesInt::TAMANO_200->value,
+                required: $requerido,
+                label: $label
+            )
+        );
+    }
+
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+
+
+
     public function getTextInputName(string $make, bool $requerido, int $columnSpam, ?string $label = null): TextInput
     {
 
