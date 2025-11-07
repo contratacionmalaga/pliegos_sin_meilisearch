@@ -12,7 +12,7 @@ class ViewRespuestasIncidencia extends BaseViewRecord
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_RESPUESTA_INCIDENCIA;
+    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_RESPUESTAS_INCIDENCIA;
 
 
     /**

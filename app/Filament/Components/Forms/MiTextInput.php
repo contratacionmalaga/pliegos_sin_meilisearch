@@ -53,6 +53,19 @@ class MiTextInput
         );
     }
 
+    public function getTextInputRespuesta(string $make, bool $requerido, int $columnSpam, ?string $label = null): TextInput
+    {
+
+        return $this->create(
+            new TextInputConfig(
+                make: 'respuesta',
+                columnSpan: $columnSpam,
+                characterLimit: ConstantesInt::TAMANO_200->value,
+                required: $requerido,
+                label: $label
+            )
+        );
+    }
 
 
 // ---------------------------------------------------------------------------------------------------------------------

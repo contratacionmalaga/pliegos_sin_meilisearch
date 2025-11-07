@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Notifications\Notifiable;
 
 class Incidencia extends Model
 {
 
     use HasUuids;
+    use Notifiable;
 
 //    public function getTable()
 //    {
@@ -21,6 +23,7 @@ class Incidencia extends Model
         'titulo',
         'descripcion',
         'estado',
+        'email',
         'incidenciable_type',
         'incidenciable_id',
         'created_by',

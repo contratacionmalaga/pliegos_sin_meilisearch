@@ -17,6 +17,7 @@ use App\Filament\Resources\PLACSP\Documentos\DocumentoResource;
 use App\Filament\Resources\PLACSP\Lotes\LoteResource;
 use App\Filament\Resources\PLACSP\Modificaciones\ModificacionResource;
 use App\Filament\Resources\PLACSP\RequisitosPreviosParticipacion\RequisitoPrevioParticipacionResource;
+use App\Filament\Resources\RespuestasIncidencia\RespuestasIncidenciaResource;
 use App\Filament\Widgets\EstadisticaCountAdjudicacionesPorEstadoChart;
 use App\Filament\Widgets\EstadisticaCountAdjudicacionesPorTipoContratoChart;
 use App\Filament\Widgets\EstadisticaCountAdjudicacionesPorTipoOrgContratacionChart;
@@ -127,6 +128,7 @@ class AdminPanelProvider extends PanelProvider
                 DocumentoResource::class,
                 ContratoMayorResource::class,
                 IncidenciaResource::class,
+                RespuestasIncidenciaResource::class,
                 LoteResource::class,
                 ModificacionResource::class,
                 RequisitoPrevioParticipacionResource::class,

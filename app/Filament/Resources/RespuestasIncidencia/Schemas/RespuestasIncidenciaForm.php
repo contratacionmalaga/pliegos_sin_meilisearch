@@ -78,14 +78,14 @@ class RespuestasIncidenciaForm
 //                $miTextInput->getTextInputTelefono(true, 3),
 
 //                $miTextInput->getTextInputTitulo('id', false,'id'),
-                $miTextInput->getTextInputTitulo('respuesta',true, 3, 'Respuesta'),
+                $miTextInput->getTextInputRespuesta('respuesta',true, 3, 'Respuesta'),
 //                $miTextInput->getTextInputDescripcion('descripcion',true, 3,'Descripcion'),
 //                $miTextInput->getTextInputEstado('estado',true, 3,'Estado'),               // TODO: Select?
 //                $miTextInput->getTextInputTitulo('incidenciable_id',true, 3,'incidenciable_id'),
 //                $miTextInput->getTextInputTitulo('incidenciable_type',true, 3,'incidenciable_type'),
-                $miTextInput->getTextInputTitulo('created_at',true, 3,'created_at'),
-                $miTextInput->getTextInputTitulo('updated_at',true, 3,'updated_at'),
-                $miTextInput->getTextInputTitulo('deleted_at',true, 3,'deleted_at'),
+                $miTextInput->getTextInputTitulo('created_at',false, 3,'created_at'),
+                $miTextInput->getTextInputTitulo('updated_at',false, 3,'updated_at'),
+                $miTextInput->getTextInputTitulo('deleted_at',false, 3,'deleted_at'),
 
             ])
             ->columnSpan('full');

@@ -191,7 +191,7 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
             self::PLACSP_LOTE => 'lotes',
             self::PLACSP_MODIFICACION => 'modificaciones',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'requisitos_previos_participacion',
-            self::PLACSP_RESPUESTAS_INCIDENCIA => 'respuestas_incidencia',
+            self::PLACSP_RESPUESTAS_INCIDENCIA => 'respuestas',
         };
     }
 

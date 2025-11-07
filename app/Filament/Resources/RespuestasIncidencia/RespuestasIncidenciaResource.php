@@ -16,7 +16,7 @@ class RespuestasIncidenciaResource extends BaseResourceNavigationItem
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_RESPUESTA_INCIDENCIA;
+    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_RESPUESTAS_INCIDENCIA;
 
     public static function getPages(): array
     {

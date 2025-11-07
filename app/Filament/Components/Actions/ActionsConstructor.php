@@ -5,8 +5,10 @@ namespace App\Filament\Components\Actions;
 use App\Enums\Acciones\MiAccionEnum;
 use App\Enums\Constantes\ConstantesString;
 use App\Enums\NavigationMenus\MiNavigationItem;
-use App\Filament\Resources\Incidencias\Schemas\RespuestasIncidenciaForm;
+use App\Filament\Resources\Incidencias\Schemas\IncidenciaForm;
+use App\Filament\Resources\RespuestasIncidencia\Schemas\RespuestasIncidenciaForm;
 use App\Models\Incidencia;
+use App\Models\RespuestasIncidencia;
 use App\Models\User;
 use Exception;
 use Filament\Actions\Action;
@@ -76,20 +78,44 @@ class ActionsConstructor
                 ->icon(MiAccionEnum::CrearIncidencia->getIcon())
                 ->color(MiAccionEnum::CrearIncidencia->getColor())
                 ->modalWidth(Width::FourExtraLarge)
-                ->schema(function ($schema){ return new RespuestasIncidenciaForm()->getForm($schema); })
+                ->schema(function ($schema){ return new IncidenciaForm()->getForm($schema); })
                 ->using(function (array $data, string $model): Model {
                     return Incidencia::create($data);
                 })
                 ->mutateDataUsing(function (array $data, $record) use($miNavigationItem): array {
-//                    $data['incidenciable_id'] = $record->incidenciable_id;
+                    $data['incidenciable_id'] = $record->id;
 //                    $data['incidenciable_type'] = $miNavigationItem->value;
-                    $data['incidenciable_id'] = $record->getKey();
-//                    $data['incidenciable_type'] = $record->getMorphClass();
-                    $data['incidenciable_type'] = $miNavigationItem->value;
+//                    $data['incidenciable_id'] = $record->getKey();
+                    $data['incidenciable_type'] = $record->getMorphClass();
+//                    $data['incidenciable_type'] = $miNavigationItem->value;
 
                     return $data;
                 })
 //                ->action(function (array $data) {Incidencia::create($data); })
+            ;
+
+    }
+
+//    public function getCrearRespuestaIncidencia(MiNavigationItem $miNavigationItem): Action
+    public function getCrearRespuestaIncidencia(): Action
+    {
+
+        return CreateAction::make(MiAccionEnum::CrearRespuestaIncidencia->value)
+                ->label(MiAccionEnum::CrearRespuestaIncidencia->getLabel())
+                ->tooltip(MiAccionEnum::CrearRespuestaIncidencia->getTooltip())
+                ->icon(MiAccionEnum::CrearRespuestaIncidencia->getIcon())
+                ->color(MiAccionEnum::CrearRespuestaIncidencia->getColor())
+                ->modalWidth(Width::FourExtraLarge)
+                ->schema(function ($schema){ return new RespuestasIncidenciaForm()->getForm($schema); })
+                ->using(function (array $data, string $model): Model {
+                    return RespuestasIncidencia::create($data);
+                })
+//                ->mutateDataUsing(function (array $data, $record) use($miNavigationItem): array {
+                ->mutateDataUsing(function (array $data, $record): array {
+                    $data['incidencia_id'] = $record->id;
+
+                    return $data;
+                })
             ;
 
     }

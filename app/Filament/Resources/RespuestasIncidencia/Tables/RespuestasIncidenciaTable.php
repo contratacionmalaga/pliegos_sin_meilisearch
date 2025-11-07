@@ -36,15 +36,15 @@ readonly class RespuestasIncidenciaTable
 
         // Determinamos el tipo de configuración que se debe aplicar
         $configurableItem = $isRelationManager
-            ? MiRelationManager::PLACSP_RESPUESTA_INCIDENCIA
-            : MiNavigationItem::PLACSP_RESPUESTA_INCIDENCIA;
+            ? MiRelationManager::PLACSP_RESPUESTAS_INCIDENCIA
+            : MiNavigationItem::PLACSP_RESPUESTAS_INCIDENCIA;
 
         // Usamos la función pública `getTable` para obtener la tabla configurada
         return $this->miTable->getTable($table, $configurableItem)
             ->columns([
                         $this->miTextColumn->getSearchableTextColumn('id', 'id'),
                         $this->miTextColumn->getSearchableTextColumn('respuesta', 'respuesta'),
-                        $this->miTextColumn->getSearchableTextColumn('incidencia_id', '_incidencia_id'),
+                        $this->miTextColumn->getSearchableTextColumn('incidencia_id', 'incidencia_id'),
                         $this->miTextColumn->getBadgeDateTimeSortableTextColumn('created_at', 'created_at'),
                         $this->miTextColumn->getBadgeDateTimeSortableTextColumn('updated_at', 'updated_at'),
                         $this->miTextColumn->getBadgeDateTimeSortableTextColumn('deleted_at', 'deleted_at'),

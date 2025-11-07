@@ -13,7 +13,7 @@ class ListRespuestasIncidencia extends BaseListRecords
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_RESPUESTA_INCIDENCIA;
+    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_RESPUESTAS_INCIDENCIA;
 
     /**
      * @throws Exception

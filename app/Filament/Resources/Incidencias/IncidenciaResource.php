@@ -6,6 +6,7 @@ use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Filament\Abstracts\BaseResourceNavigationItem;
 use App\Filament\RelationManagers\RespuestasIncidenciaRelationManager;
 use App\Filament\Resources\Incidencias\Pages\ListIncidencias;
+use App\Filament\Resources\Incidencias\Pages\ViewIncidencia;
 use App\Filament\Resources\Incidencias\Schemas\IncidenciaForm;
 
 
@@ -23,7 +24,7 @@ class IncidenciaResource extends BaseResourceNavigationItem
     {
         return [
             'index' => ListIncidencias::route('/'),
-//            'view' => ViewIncidencia::route('/{record}/view'),
+            'view' => ViewIncidencia::route('/{record}/view'),
         ];
     }
 

@@ -13,6 +13,7 @@ class RespuestasIncidencia extends Model
 
     protected $fillable = [
         'respuesta',
+        'incidencia_id',
     ];
 
     protected $casts = [

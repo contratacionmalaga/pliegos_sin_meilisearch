@@ -28,26 +28,6 @@ class IncidenciaForm
         $miSelect = new MiSelect;
         $miRichEditor = new MiRichEditor;
 
-//        // Obtengo si existen registros por si es necesario incluir la sección secundaria
-//        $record = $schema->getRecord();
-//        $hasRecord = ! is_null($record);
-//
-//        $seccionesPrincipales = [
-//            $miSectionInfolist->getInfolistSectionDatosOrganoContratacionPlacsp($miSection, $miTextEntry),
-////            $this->getFormSectionDatosEntidadAsociada($miSection, $miTextEntry, $miSelect),
-//            $this->getFormSectionContacto($miSection, $miTextInput),
-//            $miSectionForm->getFormSectionLinkPerfilContratante($miSection, $miTextInput),
-////            $miSectionForm->getSectionFormObservaciones($miSection, $miRichEditor),
-//        ];
-//
-//        $seccionesSecundarias = $hasRecord
-//            ? [
-//                $miSectionInfolist->getInfoListSectionFechasRegistro($miSection, $miTextEntry)->columnSpan(2),
-//                $miSectionInfolist->getInfoListSectionEstadoRegistro($miSection, $miTextEntry)->columnSpan(2),
-//            ]
-//            : [];
-
-
         $seccionesPrincipales = [
             $this->getFormSectionGeneral($miSection, $miTextInput,$miTextEntry),
         ];
@@ -81,14 +61,16 @@ class IncidenciaForm
                 $miTextInput->getTextInputTitulo('titulo',true, 3, 'Titulo'),
                 $miTextInput->getTextInputDescripcion('descripcion',true, 3,'Descripcion'),
                 $miTextInput->getTextInputEstado('estado',true, 3,'Estado'),               // TODO: Select?
-                $miTextInput->getTextInputTitulo('incidenciable_id',true, 3,'incidenciable_id'),
-                $miTextInput->getTextInputTitulo('incidenciable_type',true, 3,'incidenciable_type'),
-                $miTextInput->getTextInputTitulo('created_at',true, 3,'created_at'),
-                $miTextInput->getTextInputTitulo('updated_at',true, 3,'updated_at'),
-                $miTextInput->getTextInputTitulo('deleted_at',true, 3,'deleted_at'),
-                $miTextInput->getTextInputTitulo('created_by',true, 3,'created_by'),
-                $miTextInput->getTextInputTitulo('updated_by',true, 3,'updated_by'),
-                $miTextInput->getTextInputTitulo('deleted_by',true, 3,'deleted_by'),
+                $miTextInput->getTextInputEmail(true, 3),
+
+//                $miTextInput->getTextInputTitulo('incidenciable_id',true, 3,'incidenciable_id'),
+//                $miTextInput->getTextInputTitulo('incidenciable_type',true, 3,'incidenciable_type'),
+//                $miTextInput->getTextInputTitulo('created_at',true, 3,'created_at'),
+//                $miTextInput->getTextInputTitulo('updated_at',true, 3,'updated_at'),
+//                $miTextInput->getTextInputTitulo('deleted_at',true, 3,'deleted_at'),
+//                $miTextInput->getTextInputTitulo('created_by',true, 3,'created_by'),
+//                $miTextInput->getTextInputTitulo('updated_by',true, 3,'updated_by'),
+//                $miTextInput->getTextInputTitulo('deleted_by',true, 3,'deleted_by'),
 
             ])
             ->columnSpan('full');

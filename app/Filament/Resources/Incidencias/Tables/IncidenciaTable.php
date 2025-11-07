@@ -53,15 +53,16 @@ readonly class IncidenciaTable
                         $this->miTextColumn->getSearchableTextColumn('id', 'id'),
                         $this->miTextColumn->getSearchableTextColumn('titulo', 'titulo'),
                         $this->miTextColumn->getSearchableTextColumn('descripcion', 'descripcion'),
+                        $this->miTextColumn->getSearchableTextColumn('email', 'email'),
                         $this->miTextColumn->getSearchableTextColumn('estado', 'estado'),
                         $this->miTextColumn->getSearchableTextColumn('incidenciable_id', 'incidenciable_id'),
                         $this->miTextColumn->getSearchableTextColumn('incidenciable_type', 'incidenciable_type'),
                         $this->miTextColumn->getBadgeDateTimeSortableTextColumn('created_at', 'created_at'),
                         $this->miTextColumn->getBadgeDateTimeSortableTextColumn('updated_at', 'updated_at'),
                         $this->miTextColumn->getBadgeDateTimeSortableTextColumn('deleted_at', 'deleted_at'),
-                        $this->miTextColumn->getSearchableTextColumn('created_by', 'created_by'),
-                        $this->miTextColumn->getSearchableTextColumn('updated_by', 'updated_by'),
-                        $this->miTextColumn->getSearchableTextColumn('deleted_by', 'deleted_by'),
+//                        $this->miTextColumn->getSearchableTextColumn('created_by', 'created_by'),
+//                        $this->miTextColumn->getSearchableTextColumn('updated_by', 'updated_by'),
+//                        $this->miTextColumn->getSearchableTextColumn('deleted_by', 'deleted_by'),
 
                     ])
             ->searchable(true);

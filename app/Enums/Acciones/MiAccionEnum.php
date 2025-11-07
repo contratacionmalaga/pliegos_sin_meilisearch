@@ -41,6 +41,7 @@ enum MiAccionEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
     case ExportarExcel = 'exportar-excel';
     case VerExpediente = 'ver-expediente';
     case CrearIncidencia = 'crear-incidencia';
+    case CrearRespuestaIncidencia = 'crear-respuesta-incidencia';
 
 //    public function getRolByAccion(): Roles
 //    {
@@ -107,6 +108,7 @@ enum MiAccionEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
             self::AbrirEnlaceDocumento => 'Abrir enlace documento',
             self::ExportarExcel => 'Exportar a Excel',
             self::CrearIncidencia => 'Crear Incidencia',
+            self::CrearRespuestaIncidencia => 'Crear Respuesta Incidencia',
         };
     }
 
@@ -138,6 +140,7 @@ enum MiAccionEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
             self::AbrirEnlaceDocumento => 'heroicon-o-document-arrow-up',
             self::ExportarExcel => 'heroicon-o-cloud-arrow-down',
             self::CrearIncidencia => 'heroicon-o-cloud-arrow-down',
+            self::CrearRespuestaIncidencia => 'heroicon-o-cloud-arrow-down',
         };
     }
 
@@ -149,6 +152,7 @@ enum MiAccionEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
         return match ($this) {
 
             self::CrearIncidencia => Color::Zinc,
+            self::CrearRespuestaIncidencia => Color::Zinc,
 
             self::VolverAlListado => Color::Slate,
             self::VerExpediente,
@@ -210,6 +214,7 @@ enum MiAccionEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
             self::RetirarLectura => 'Asignar permiso de escritura',
             self::ExportarExcel => 'Exportar Excel',
             self::CrearIncidencia => 'Crear Incidencia',
+            self::CrearRespuestaIncidencia => 'Crear Respuesta Incidencia',
         };
     }
 
