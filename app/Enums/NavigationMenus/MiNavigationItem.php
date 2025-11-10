@@ -591,6 +591,9 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_ANUNCIO => 'Información ampliada de un anuncio',
             self::PLACSP_DOCUMENTO => 'Información ampliada de un documento',
 
+            self::PLACSP_INCIDENCIA => 'Información ampliada de una incidencia',
+            self::PLACSP_RESPUESTAS_INCIDENCIA => 'Información ampliada de una respuesta a una incidencia',
+
             default => 'getInfolistDescription - no implementado'
         };
     }

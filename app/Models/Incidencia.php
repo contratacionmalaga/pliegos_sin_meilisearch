@@ -7,12 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
 
 class Incidencia extends Model
 {
 
     use HasUuids;
     use Notifiable;
+
+//    /**
+//     * Route notifications for the mail channel.
+//     *
+//     * @return  array<string, string>|string
+//     */
+//    public function routeNotificationForMail(Notification $notification): array|string
+//    {
+//        // Return email address only...
+//        return $this->email_address;
+//
+//        // Return email address and name...
+//        return [$this->email_address => $this->name];
+//    }
+
 
 //    public function getTable()
 //    {

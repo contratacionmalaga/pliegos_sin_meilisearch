@@ -5,6 +5,8 @@ namespace App\Observers;
 use App\Models\Incidencia;
 use App\Notifications\CustomNotification;
 
+use Illuminate\Support\Facades\Notification;
+
 class IncidenciasObserver
 {
 //    public function creating(Incidencia $incidencia): void
@@ -46,22 +48,89 @@ class IncidenciasObserver
     public function created(Incidencia $incidencia): void
     {
         // Después de crear una incidencia se envía una notificación al mail indicado en la misma
-        // con la respuesta asociada
 
-        // mail to ($incidencia->email, 'Nueva Incidencia Creada',
-        //     "Se ha creado una nueva incidencia con el título: {$incidencia->titulo}.\n\nDescripción: {$incidencia->descripcion}\n\nEstado: {$incidencia->estado}");
+        ds('$incidencia=');
+        ds($incidencia);
 
-        // Paso 3: Enviar notificación al usuario
-        $incidencia->notify(new CustomNotification(
+        // OPCIÓN 1: Usando Notification::sendNow()
+        // $destinatarios = [$incidencia];
+        // Notification::sendNow($destinatarios, new CustomNotification(
+        //                                             // channels: ['mail', 'database'],
+        //                                             channels: ['mail'],
+        //                                             subject: 'Nueva Incidencia',
+        //                                             greeting: 'Hola ',
+        //                                             message: 'Se ha creado una nueva incidencia.',
+        //                                             actionText: 'Restablecer contraseña',
+        //                                             // actionUrl: $resetLink,
+        //                                             type: 'info'));
+
+
+//        // OPCIÓN 2: Usando el metodo notify() sobre el modelo Incidencia
+//        $incidencia->notify(new CustomNotification(
+////        $incidencia->notifyNow(new CustomNotification(
+//                                  channels: ['mail', 'database'],
+//                                  // channels: ['mail'],
+//                                  subject: 'Notificación creación incidencia.',
+//                                  greeting: 'Hola.',
+//                                  message: 'Se ha creado la incidencia con id \''. $incidencia->id . '\'.',
+//                                  actionText: 'Pulse en el link para ver la incidencia.',
+//                                  actionUrl: route('filament.admin.resources.incidencias.view', ['record' => $incidencia->id]),
+//                                  type: 'info'),
+//                              ['mail', 'database']
+//                              );
+
+//        // Se notifica también a la lista de correos fija de incidencias (.env)
+//        $incidencia->notify(new CustomNotification(
+//                                  channels: ['mail', 'database'],
+//                                  // channels: ['mail'],
+//                                  subject: 'Notificación creación incidencia.',
+//                                  greeting: 'Hola.',
+//                                  message: 'Se ha creado la incidencia con id \''. $incidencia->id . '\'.',
+//                                  actionText: 'Pulse en el link para ver la incidencia.',
+//                                  actionUrl: route('filament.admin.resources.incidencias.view', ['record' => $incidencia->id]),
+//                                  type: 'info'),
+//                              );
+
+
+        // Se notifica también a la lista de correos fija de incidencias (.env)
+        // No se puede usar canal 'database' aquí porque AnonymousNotifiable no tiene tabla de notificaciones
+        Notification::route('mail', 'incidenciascontratacion@malaga.es')
+//                    ->route('mail', 'jamores@malaga.es')
+            ->notify(new CustomNotification(
+                channels: ['mail', 'database'],
+                subject: 'Notificación creación incidencia.',
+                greeting: 'Hola.',
+                message: "Se ha creado la incidencia con id '{$incidencia->id}'.",
+//                actionText: 'Pulse en el link para ver la incidencia.',
+//                actionUrl: route('filament.admin.resources.incidencias.view', ['record' => $incidencia->id]),
+                type: 'info',
+            ));
+
+//        // Alternativa con lista dinámica
+//        $emails = ['incidenciascontratacion@malaga.es', 'jamores@malaga.es'];
+//
+//        $notifiables = collect($emails)->map(
+//            fn ($email) => (new AnonymousNotifiable())->route('mail', $email)
+//        );
+//
+//        Notification::sendNow($notifiables, new CustomNotification(
+//            channels: ['mail'],
+//            subject: 'Notificación creación incidencia.',
+//            greeting: 'Hola.',
+//            message: "Se ha creado la incidencia con id '{$incidencia->id}'.",
+//            type: 'info',
+//        ));
+
+//        $incidencia->notify(new CustomNotification(
 //            channels: ['mail', 'database'],
-            channels: ['mail'],
-            subject: 'Recupera tu contraseña',
-            greeting: 'Hola ',
-            message: 'Haz clic para restablecer tu contraseña.',
-            actionText: 'Restablecer contraseña',
-//            actionUrl: $resetLink,
-            type: 'info'
-        ));
+//            // channels: ['mail'],
+//            subject: 'Notificación creación incidencia.',
+//            greeting: 'Hola.',
+//            message: 'Se ha creado la incidencia con id \''. $incidencia->id . '\'.',
+//            actionText: 'Pulse en el link para ver la incidencia.',
+//            actionUrl: route('filament.admin.resources.incidencias.view', ['record' => $incidencia->id]),
+//            type: 'info'),
+//        );
 
     }
 
