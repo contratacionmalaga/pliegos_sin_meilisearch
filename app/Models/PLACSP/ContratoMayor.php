@@ -18,6 +18,7 @@ use App\Enums\Placsp\PLACSP_SyndicationTenderingProcessCode;
 use App\Enums\Placsp\PLACSP_TenderDeliveryCode;
 use App\Enums\Placsp\PLACSP_WorksContractCode;
 use App\Enums\Placsp\TipoSindicacion;
+use App\Traits\HasIncidencias;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
@@ -27,6 +28,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ContratoMayor extends Model
 {
+
+    use HasIncidencias;
 
     protected $table = "placsp_contratos_mayores";
     protected $primaryKey = "id_entry";

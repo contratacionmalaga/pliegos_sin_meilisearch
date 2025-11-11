@@ -4,7 +4,9 @@ namespace App\Filament\Resources\RespuestasIncidencia;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Filament\Abstracts\BaseResourceNavigationItem;
+use App\Filament\Resources\Incidencias\Pages\ViewIncidencia;
 use App\Filament\Resources\RespuestasIncidencia\Pages\ListRespuestasIncidencia;
+use App\Filament\Resources\RespuestasIncidencia\Pages\ViewRespuestasIncidencia;
 use App\Filament\Resources\RespuestasIncidencia\Schemas\RespuestasIncidenciaForm;
 
 
@@ -22,7 +24,7 @@ class RespuestasIncidenciaResource extends BaseResourceNavigationItem
     {
         return [
             'index' => ListRespuestasIncidencia::route('/'),
-//            'view' => ViewIncidencia::route('/{record}/view'),
+//            'view' => ViewRespuestasIncidencia::route('/{record}/view'),
         ];
     }
 

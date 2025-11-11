@@ -246,13 +246,19 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_CONSULTA_PRELIMINAR_MERCADO,
             self::PLACSP_CPV,
             self::PLACSP_CRITERIO_ADJUDICACION,
-            self::PLACSP_CONTRATO_MAYOR,
+//            self::PLACSP_CONTRATO_MAYOR,
             self::PLACSP_LOTE,
             self::PLACSP_ADJUDICACION,
             self::PLACSP_MODIFICACION,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => $array = [
                 $actions->getVerExpediente(),
                 $actions->getEnlacePlacsp()
+            ],
+
+            self::PLACSP_CONTRATO_MAYOR => $array = [
+                $actions->getVerExpediente(),
+                $actions->getEnlacePlacsp(),
+                $actions->getCrearIncidencia(self::PLACSP_CONTRATO_MAYOR),
             ],
 
             self::PLACSP_RESPUESTAS_INCIDENCIA => $array = [
@@ -262,7 +268,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 
             self::PLACSP_INCIDENCIA => $array = [
 //                $actions->getCreateAction(),
-                $actions->getViewAction(),
+                $actions->getViewIncidenciaAction(),
 //                $actions->getCrearRespuestaIncidencia(self::PLACSP_INCIDENCIA),
                 $actions->getCrearRespuestaIncidencia(),
             ],
@@ -326,11 +332,11 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
         match ($this) {
 
             self::PLACSP_RESPUESTAS_INCIDENCIA => $acciones = [
-                $actionsConstructor->getCreateAction(),
+//                $actionsConstructor->getCreateAction(),
             ],
 
             self::PLACSP_INCIDENCIA => $acciones = [
-                $actionsConstructor->getCreateAction(),
+//                $actionsConstructor->getCreateAction(),
             ],
 
             default =>

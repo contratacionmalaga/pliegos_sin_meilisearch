@@ -2,9 +2,12 @@
 
 namespace App\Filament\Resources\RespuestasIncidencia\Schemas;
 
+use App\DTOs\SectionConfig;
+use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Filament\Components\Infolists\MiTextEntry;
 use App\Filament\Components\Schemas\MiSchema;
 use App\Filament\Components\Schemas\MiSectionSchema;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class RespuestasIncidenciaInfolist
@@ -22,11 +25,7 @@ class RespuestasIncidenciaInfolist
          * Creo el array con las Secciones asociadas a la sección principal
          */
         $arraySectionPrincipal = [
-            $miSectionSchema->getSchemaSectionDatosExpediente( $miTextEntry)->columnSpan(12)->collapsible(),
-            $miSectionSchema->getSchemaSectionTenderingProcess( $miTextEntry)->columnSpan(12)->collapsible(),
-            $miSectionSchema->getSchemaSectionTenderingTerms( $miTextEntry)->columnSpan(12)->collapsible(),
-            $miSectionSchema->getSchemaSectionDatosOrganoContratacion( $miTextEntry)->columnSpan(12)->collapsible(),
-            $miSectionSchema->getSchemaSectionLogFeedEntry( $miTextEntry)->columnSpan(12)->collapsible(),
+            $this->getSectionSchemaRespuestaIncidencia($miSectionSchema, $miTextEntry)->columnSpan(12)->collapsible(),
         ];
 
         /*
@@ -36,8 +35,32 @@ class RespuestasIncidenciaInfolist
         ];
 
         /*
-         * Devuelvo el obtjeto Schema según se define es el consturctor
+         * Devuelvo el objeto Schema según se define es el constructor
          */
         return $miSchema->getSchema($schema, $arraySectionPrincipal, $arraySectionSecundaria);
     }
+
+    private function getSectionSchemaRespuestaIncidencia(
+        MiSectionSchema $misectionSchema,
+        MiTextEntry     $miTextEntry
+    ): Section
+    {
+
+        $description = MiNavigationItem::PLACSP_INCIDENCIA->getInfolistDescription();
+        $icon = 'heroicon-o-information-circle';
+
+        return $misectionSchema
+            ->create(
+                new SectionConfig(
+                    description: $description,
+                    icon: $icon,
+                ))
+            ->schema([
+                $miTextEntry->getTextEntry('respuesta', 3, 'Respuesta'),
+                $miTextEntry->getBadgeDateTimeTextEntry('created_at', 3, null,'created_at'),
+                $miTextEntry->getBadgeDateTimeTextEntry('updated_at', 3, null,'updated_at'),
+                $miTextEntry->getBadgeDateTimeTextEntry('deleted_at', 3, null,'deleted_at'),
+            ]);
+    }
+
 }

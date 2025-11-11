@@ -6,6 +6,8 @@ use App\Enums\Acciones\MiAccionEnum;
 use App\Enums\Constantes\ConstantesString;
 use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Filament\Resources\Incidencias\Schemas\IncidenciaForm;
+use App\Filament\Resources\Incidencias\Schemas\IncidenciaInfolist;
+use App\Filament\Resources\Incidencias\Schemas\IncidenciaSimpleInfolist;
 use App\Filament\Resources\RespuestasIncidencia\Schemas\RespuestasIncidenciaForm;
 use App\Models\Incidencia;
 use App\Models\RespuestasIncidencia;
@@ -91,6 +93,7 @@ class ActionsConstructor
 
                     return $data;
                 })
+                ->slideOver() // 👈 Esto hace que el formulario se abra desde la derecha
 //                ->action(function (array $data) {Incidencia::create($data); })
             ;
 
@@ -293,6 +296,60 @@ class ActionsConstructor
             ->icon(MiAccionEnum::View->getIcon())
             ->modalWidth(Width::Full)
             ->authorize(true);
+    }
+
+//    public function getViewIncidenciaAction(): ViewAction
+//    {
+//
+//        return ViewAction::make()
+//            ->label(MiAccionEnum::View->getLabel())
+//            ->tooltip(MiAccionEnum::View->getTooltip())
+//            ->color(MiAccionEnum::View->getColor())
+//            ->icon(MiAccionEnum::View->getIcon())
+////            ->authorize(true)
+////            ->modalWidth(Width::FourExtraLarge)
+////            ->schema(function ($schema){ return new IncidenciaSimpleInfolist()->getSchema($schema); })
+//            ->url(fn ($record) => route('filament.admin.resources.incidencias.view-simple', ['record' => $record]))
+////            ->openUrlInNewTab(false)
+//            ->slideOver() // 👈 Esto hace que el formulario se abra desde la derecha
+//            ;
+//    }
+
+//    public function getViewIncidenciaAction(): ViewAction
+//    {
+//        return ViewAction::make(MiAccionEnum::View->value)
+//            ->label(MiAccionEnum::View->getLabel())
+//            ->tooltip(MiAccionEnum::View->getTooltip())
+//            ->color(MiAccionEnum::View->getColor())
+//            ->icon(MiAccionEnum::View->getIcon())
+////            ->authorize(true)
+////            ->schema(function ($schema){ return new IncidenciaSimpleInfolist()->getSchema($schema); })
+//            ->url(fn ($record) => route('filament.admin.resources.incidencias.view-simple', ['record' => $record]))
+//            ->openUrlInNewTab(false)
+////            ->modalWidth(Width::FourExtraLarge)
+//            ->slideOver() // 👈 abre desde la derecha
+////            ->modalHeading('Detalles de la incidencia')
+////            ->modalSubmitAction(false)
+////            ->modalCancelActionLabel('Cerrar')
+////            ->extraModalFooterActions([])
+//            ; // sin botones extra
+//    }
+
+    public function getViewIncidenciaAction(): ViewAction
+    {
+        return ViewAction::make()
+            ->label(MiAccionEnum::View->getLabel())
+            ->tooltip(MiAccionEnum::View->getTooltip())
+            ->color(MiAccionEnum::View->getColor())
+            ->icon(MiAccionEnum::View->getIcon())
+            ->slideOver() // 👈 esto lo hace abrir desde el borde derecho
+//            ->authorize(true)
+//            ->openUrlInNewTab(false)
+            ->modalHeading('Detalles de la incidencia')
+            ->modalSubmitAction(false) // sin botón de "Guardar"
+            ->modalCancelActionLabel('Cerrar')
+            ->modalWidth(Width::FourExtraLarge)
+            ->modalContent(fn ($record) => view('filament.admin.resources.incidencias.view-simple', ['record' => $record]));
     }
 
     public function getForceDeleteAction(): ForceDeleteActionPage

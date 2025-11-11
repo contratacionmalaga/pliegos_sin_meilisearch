@@ -11,7 +11,7 @@ use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
-class IncidenciaInfolist
+class IncidenciaSimpleInfolist
 {
 
     public function getSchema(Schema $schema): Schema
@@ -82,10 +82,11 @@ class IncidenciaInfolist
             ->schema([
                 RepeatableEntry::make('respuestas')
                     ->label('Respuestas')
+                    ->columns(12)
                     ->schema([
-                        $miTextEntry->getTextEntry('respuesta', 12, 'Respuesta'),
-                        $miTextEntry->getBadgeDateTimeTextEntry('created_at', 6, null, 'Creada'),
-                        $miTextEntry->getBadgeDateTimeTextEntry('updated_at', 6, null, 'Actualizada'),
+                        $miTextEntry->getTextEntry('respuesta', 6, 'Respuesta2'),
+                        $miTextEntry->getBadgeDateTimeTextEntry('created_at', 3, null, 'Creada'),
+                        $miTextEntry->getBadgeDateTimeTextEntry('updated_at', 3, null, 'Actualizada'),
                     ])
                     ->columnSpan(12)
                     ->visible(fn($record) => $record?->respuestas?->isNotEmpty()),

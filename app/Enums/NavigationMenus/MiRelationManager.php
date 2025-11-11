@@ -136,6 +136,7 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
         return match ($this) {
 
 
+            self::PLACSP_INCIDENCIA => 'Número de indidencias',
             self::PLACSP_ADJUDICACION => 'Número de adjudicaciones',
             self::PLACSP_ANUNCIO => 'Número de anuncios publicados',
             self::PLACSP_CONDICION_ESPECIAL_EJECUCION => 'Número de condiciones especiales de ejecución',
@@ -157,6 +158,7 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
         // $badgeColor to either danger, gray, info, primary, success or warning
         return match ($this) {
 
+            self::PLACSP_INCIDENCIA,
             self::PLACSP_ADJUDICACION,
             self::PLACSP_ANUNCIO,
             self::PLACSP_CONDICION_ESPECIAL_EJECUCION,
@@ -192,6 +194,7 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
             self::PLACSP_MODIFICACION => 'modificaciones',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'requisitos_previos_participacion',
             self::PLACSP_RESPUESTAS_INCIDENCIA => 'respuestas',
+            self::PLACSP_INCIDENCIA => 'incidencias',
         };
     }
 
