@@ -11,7 +11,7 @@ use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
-class IncidenciaSimpleInfolist
+class IncidenciaInfolist2
 {
 
     public function getSchema(Schema $schema): Schema
@@ -40,28 +40,6 @@ class IncidenciaSimpleInfolist
          * Devuelvo el obtjeto Schema según se define es el consturctor
          */
         return $miSchema->getSchema($schema, $arraySectionPrincipal, $arraySectionSecundaria);
-
-//
-//        $miTextEntry = new MiTextEntry();
-//
-//        return $schema
-//            ->schema([
-//                RepeatableEntry::make('incidencias')
-//                    ->label('Productos')
-//                    ->schema([
-////                        TextEntry::make('name')->label('Nombre'),
-////                        TextEntry::make('price')->label('Precio'),
-////                        TextEntry::make('quantity')->label('Cantidad'),
-//
-//                        $miTextEntry->getTextEntry('titulo', 5, 'Titulo'),
-//                        $miTextEntry->getTextEntry('descripcion', 5, 'Descripcion'),
-//                        $miTextEntry->getBadgeTextEntry('estado', 5, 'Estado'),
-//                        $miTextEntry->getTextEntry('email', 5, 'email'),
-//
-//                    ])
-//                    ->columns(4),
-//            ]);
-
     }
 
     private function getSectionSchemaIncidencia(
@@ -80,10 +58,10 @@ class IncidenciaSimpleInfolist
                     icon: $icon,
                 ))
             ->schema([
-                $miTextEntry->getTextEntry('titulo', 5, 'Titulo(SIMPLE)'),
-                $miTextEntry->getTextEntry('descripcion', 5, 'Descripcion(SIMPLE)'),
-                $miTextEntry->getBadgeTextEntry('estado', 5, 'Estado(SIMPLE)'),
-                $miTextEntry->getTextEntry('email', 5, 'email(SIMPLE)'),
+                $miTextEntry->getTextEntry('titulo', 5, 'Titulo'),
+                $miTextEntry->getTextEntry('descripcion', 5, 'Descripcion'),
+                $miTextEntry->getBadgeTextEntry('estado', 5, 'Estado'),
+                $miTextEntry->getTextEntry('email', 5, 'email'),
             ]);
     }
 
@@ -104,11 +82,10 @@ class IncidenciaSimpleInfolist
             ->schema([
                 RepeatableEntry::make('respuestas')
                     ->label('Respuestas')
-                    ->columns(12)
                     ->schema([
-                        $miTextEntry->getTextEntry('respuesta', 6, 'Respuesta2'),
-                        $miTextEntry->getBadgeDateTimeTextEntry('created_at', 3, null, 'Creada'),
-                        $miTextEntry->getBadgeDateTimeTextEntry('updated_at', 3, null, 'Actualizada'),
+                        $miTextEntry->getTextEntry('respuesta', 12, 'Respuesta'),
+                        $miTextEntry->getBadgeDateTimeTextEntry('created_at', 6, null, 'Creada'),
+                        $miTextEntry->getBadgeDateTimeTextEntry('updated_at', 6, null, 'Actualizada'),
                     ])
                     ->columnSpan(12)
                     ->visible(fn($record) => $record?->respuestas?->isNotEmpty()),

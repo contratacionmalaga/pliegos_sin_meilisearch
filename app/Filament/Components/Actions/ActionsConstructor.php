@@ -27,6 +27,7 @@ use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Notifications\Notification;
 use Filament\Support\Enums\Width;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Password;
 
@@ -335,7 +336,7 @@ class ActionsConstructor
 //            ; // sin botones extra
 //    }
 
-    public function getViewIncidenciaAction(): ViewAction
+    public function getViewIncidencia_ViewAction(): ViewAction
     {
         return ViewAction::make()
             ->label(MiAccionEnum::View->getLabel())
@@ -343,13 +344,85 @@ class ActionsConstructor
             ->color(MiAccionEnum::View->getColor())
             ->icon(MiAccionEnum::View->getIcon())
             ->slideOver() // 👈 esto lo hace abrir desde el borde derecho
-//            ->authorize(true)
-//            ->openUrlInNewTab(false)
-            ->modalHeading('Detalles de la incidencia')
+            ->schema(function ($schema){ return new IncidenciaInfolist()->getSchema($schema); })
+            ->modalHeading('Detalles 222 de la incidencia')
             ->modalSubmitAction(false) // sin botón de "Guardar"
             ->modalCancelActionLabel('Cerrar')
             ->modalWidth(Width::FourExtraLarge)
-            ->modalContent(fn ($record) => view('filament.admin.resources.incidencias.view-simple', ['record' => $record]));
+            ->requiresConfirmation()
+            //            ->slideOver() // 👈 esto lo hace abrir desde el borde derecho
+//            ->modalContent(fn (Incidencia $record): View => view('filament.admin.resources.incidencias.view-simple', ['record' => $record]));
+//            ->modalContent(function (Incidencia $record): View {
+//                $viewPath = 'filament.admin.resources.incidencias.view-simple';
+//
+//                // Debug: ver la ruta real que busca Laravel
+//                ds('Buscando vista... ' );
+//                ds(view()->getFinder()->find($viewPath));
+//
+//                return view($viewPath, ['record' => $record]);
+//            })
+              ;
+//            ->modalContent(fn (Incidencia $record): View => view('app.filament.resources.incidencias.pages.view-incidencia-simple', ['record' => $record]));
+    }
+
+    public function getViewIncidencia_Action_SimpleInfolist(): Action
+    {
+        return Action::make('view-incidencia-action-simpleinfolist')
+            ->label('View--Modal-SimpleInfolist')
+            ->tooltip('View-Modal-SimpleInfolist')
+            ->color(MiAccionEnum::View->getColor())
+            ->icon(MiAccionEnum::View->getIcon())
+            ->slideOver() // 👈 esto lo hace abrir desde el borde derecho
+            ->schema(function ($schema){ return new IncidenciaSimpleInfolist()->getSchema($schema); })
+//            ->schema(function ($schema){ return new IncidenciaInfolist()->getSchema($schema); })
+            ->modalHeading('Detalles de la incidencia ( MODAL)')
+            ->modalSubmitAction(false) // sin botón de "Guardar"
+            ->modalCancelActionLabel('Cerrar')
+            ->modalWidth(Width::FourExtraLarge)
+//            ->requiresConfirmation()
+            //            ->slideOver() // 👈 esto lo hace abrir desde el borde derecho
+//            ->modalContent(fn (Incidencia $record): View => view('filament.admin.resources.incidencias.view-simple', ['record' => $record]));
+//            ->modalContent(function (Incidencia $record): View {
+//                $viewPath = 'filament.admin.resources.incidencias.view-simple';
+//
+//                // Debug: ver la ruta real que busca Laravel
+//                ds('Buscando vista... ' );
+//                ds(view()->getFinder()->find($viewPath));
+//
+//                return view($viewPath, ['record' => $record]);
+//            })
+              ;
+//            ->modalContent(fn (Incidencia $record): View => view('app.filament.resources.incidencias.pages.view-incidencia-simple', ['record' => $record]));
+    }
+
+    public function getViewIncidencia_Action_Infolist(): Action
+    {
+        return Action::make('view-incidencia-action-infolist')
+            ->label('View-Modal-Infolist')
+            ->tooltip('View-Modal-Infolist')
+            ->color(MiAccionEnum::View->getColor())
+            ->icon(MiAccionEnum::View->getIcon())
+            ->slideOver() // 👈 esto lo hace abrir desde el borde derecho
+//            ->schema(function ($schema){ return new IncidenciaSimpleInfolist()->getSchema($schema); })
+            ->schema(function ($schema){ return new IncidenciaInfolist()->getSchema($schema); })
+            ->modalHeading('Detalles de la incidencia ( MODAL)')
+            ->modalSubmitAction(false) // sin botón de "Guardar"
+            ->modalCancelActionLabel('Cerrar')
+            ->modalWidth(Width::FourExtraLarge)
+//            ->requiresConfirmation()
+            //            ->slideOver() // 👈 esto lo hace abrir desde el borde derecho
+//            ->modalContent(fn (Incidencia $record): View => view('filament.admin.resources.incidencias.view-simple', ['record' => $record]));
+//            ->modalContent(function (Incidencia $record): View {
+//                $viewPath = 'filament.admin.resources.incidencias.view-simple';
+//
+//                // Debug: ver la ruta real que busca Laravel
+//                ds('Buscando vista... ' );
+//                ds(view()->getFinder()->find($viewPath));
+//
+//                return view($viewPath, ['record' => $record]);
+//            })
+              ;
+//            ->modalContent(fn (Incidencia $record): View => view('app.filament.resources.incidencias.pages.view-incidencia-simple', ['record' => $record]));
     }
 
     public function getForceDeleteAction(): ForceDeleteActionPage

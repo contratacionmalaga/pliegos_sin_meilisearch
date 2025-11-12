@@ -50,6 +50,11 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
                 $miActiosConstructor->getEnlaceDocumento(),
             ],
 
+            self::PLACSP_INCIDENCIA =>
+            $acciones = [
+                $miActiosConstructor->getViewIncidenciaAction(),
+            ],
+
 
             default =>
                 $acciones = [

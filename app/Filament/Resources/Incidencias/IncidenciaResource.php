@@ -26,7 +26,7 @@ class IncidenciaResource extends BaseResourceNavigationItem
         return [
             'index' => ListIncidencias::route('/'),
             'view' => ViewIncidencia::route('/{record}/view'),
-            'view-simple' => ViewIncidenciaSimple::route('/{record}/view-simple'),
+//            'view-simple' => ViewIncidenciaSimple::route('/{record}/view-simple'),
         ];
     }
 
