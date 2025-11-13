@@ -26,8 +26,8 @@ class IncidenciaInfolist
          * Creo el array con las Secciones asociadas a la sección principal
          */
         $arraySectionPrincipal = [
-            $this->getSectionSchemaIncidencia($miSectionSchema, $miTextEntry)->columnSpan(12)->collapsible(),
-            $this->getSectionSchemaRespuestas($miSectionSchema, $miTextEntry)->columnSpan(12)->collapsible(),
+            $this->getSectionSchemaDatosIncidencia($miSectionSchema, $miTextEntry)->columnSpan(12)->collapsible(),
+            $this->getSectionSchemaRespuestasEnviadas($miSectionSchema, $miTextEntry)->columnSpan(12)->collapsible(),
         ];
 
         /*
@@ -42,7 +42,7 @@ class IncidenciaInfolist
         return $miSchema->getSchema($schema, $arraySectionPrincipal, $arraySectionSecundaria);
     }
 
-    private function getSectionSchemaIncidencia(
+    private function getSectionSchemaDatosIncidencia(
         MiSectionSchema $misectionSchema,
         MiTextEntry     $miTextEntry
     ): Section
@@ -65,12 +65,12 @@ class IncidenciaInfolist
             ]);
     }
 
-    private function getSectionSchemaRespuestas(
+    private function getSectionSchemaRespuestasEnviadas(
         MiSectionSchema $misectionSchema,
         MiTextEntry     $miTextEntry
     ): Section
     {
-        $description = 'Respuestas asociadas';
+        $description = 'Respuestas enviadas';
         $icon = 'heroicon-o-chat-bubble-bottom-center-text';
 
         return $misectionSchema

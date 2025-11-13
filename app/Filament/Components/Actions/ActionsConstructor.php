@@ -30,6 +30,7 @@ use Filament\Support\Enums\Width;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Password;
+use Livewire\Livewire;
 
 class ActionsConstructor
 {
@@ -395,7 +396,7 @@ class ActionsConstructor
 //            ->modalContent(fn (Incidencia $record): View => view('app.filament.resources.incidencias.pages.view-incidencia-simple', ['record' => $record]));
     }
 
-    public function getViewIncidencia_Action_Infolist(): Action
+    public function getViewIncidencia_Action_Infolist_Ori(): Action
     {
         return Action::make('view-incidencia-action-infolist')
             ->label('View-Modal-Infolist')
@@ -422,6 +423,44 @@ class ActionsConstructor
 //                return view($viewPath, ['record' => $record]);
 //            })
               ;
+//            ->modalContent(fn (Incidencia $record): View => view('app.filament.resources.incidencias.pages.view-incidencia-simple', ['record' => $record]));
+    }
+    public function getViewIncidencia_Action_Infolist(): Action
+    {
+        return Action::make('view-incidencia-action-infolist')
+            ->label('View-Modal-Infolist')
+            ->tooltip('View-Modal-Infolist')
+            ->color(MiAccionEnum::View->getColor())
+            ->icon(MiAccionEnum::View->getIcon())
+            ->slideOver() // 👈 esto lo hace abrir desde el borde derecho
+//            ->schema(function ($schema){ return new IncidenciaSimpleInfolist()->getSchema($schema); })
+//            ->schema(function ($schema){ return new IncidenciaInfolist()->getSchema($schema); })
+            ->modalHeading('Detalles de la incidencia ( MODAL)')
+            ->modalSubmitAction(false) // sin botón de "Guardar"
+            ->modalCancelActionLabel('Cerrar')
+            ->modalWidth(Width::FourExtraLarge)
+//            ->requiresConfirmation()
+//            ->modalContent(fn (Incidencia $record): View => view('filament.incidencias.view', ['record' => $record]));
+            ->modalContent(function ($record) {
+                // Renderiza el Livewire generado por Filament
+                return Livewire::mount(
+                    'filament.admin.resources.incidencias.view', // nombre completo del componente Livewire
+                    ['record' => $record->getKey()] // importante: pasar el ID del registro
+                )->toHtml();
+            });
+//        ->modalContent(fn (Incidencia $record): View => view('filament.incidencias.view', ['record' => $record]));
+//        ->modalContent(fn (Incidencia $record): View => view('filament.admin.resources.incidencias.view', ['record' => $record]));
+
+//            ->modalContent(function (Incidencia $record): View {
+//                $viewPath = 'filament.admin.resources.incidencias.view-simple';
+//
+//                // Debug: ver la ruta real que busca Laravel
+//                ds('Buscando vista... ' );
+//                ds(view()->getFinder()->find($viewPath));
+//
+//                return view($viewPath, ['record' => $record]);
+//            })
+//              ;
 //            ->modalContent(fn (Incidencia $record): View => view('app.filament.resources.incidencias.pages.view-incidencia-simple', ['record' => $record]));
     }
 
