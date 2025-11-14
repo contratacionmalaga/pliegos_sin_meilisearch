@@ -35,6 +35,8 @@ class ContratoMayorInfolist
         $arraySectionSecundaria = [
         ];
 
+        ds($arraySectionPrincipal);
+
         /*
          * Devuelvo el obtjeto Schema según se define es el consturctor
          */

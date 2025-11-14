@@ -26,8 +26,8 @@ class IncidenciaSimpleInfolist
          * Creo el array con las Secciones asociadas a la sección principal
          */
         $arraySectionPrincipal = [
-            $this->getSectionSchemaIncidencia($miSectionSchema, $miTextEntry)->columnSpan(12)->collapsible(),
-            $this->getSectionSchemaRespuestas($miSectionSchema, $miTextEntry)->columnSpan(12)->collapsible(),
+            $this->getSectionSchemaDatosIncidencia($miSectionSchema, $miTextEntry)->columnSpan(12)->collapsible(),
+            $this->getSectionSchemaRespuestasEnviadas($miSectionSchema, $miTextEntry)->columnSpan(12)->collapsible(),
         ];
 
         /*
@@ -41,30 +41,9 @@ class IncidenciaSimpleInfolist
          */
         return $miSchema->getSchema($schema, $arraySectionPrincipal, $arraySectionSecundaria);
 
-//
-//        $miTextEntry = new MiTextEntry();
-//
-//        return $schema
-//            ->schema([
-//                RepeatableEntry::make('incidencias')
-//                    ->label('Productos')
-//                    ->schema([
-////                        TextEntry::make('name')->label('Nombre'),
-////                        TextEntry::make('price')->label('Precio'),
-////                        TextEntry::make('quantity')->label('Cantidad'),
-//
-//                        $miTextEntry->getTextEntry('titulo', 5, 'Titulo'),
-//                        $miTextEntry->getTextEntry('descripcion', 5, 'Descripcion'),
-//                        $miTextEntry->getBadgeTextEntry('estado', 5, 'Estado'),
-//                        $miTextEntry->getTextEntry('email', 5, 'email'),
-//
-//                    ])
-//                    ->columns(4),
-//            ]);
-
     }
 
-    private function getSectionSchemaIncidencia(
+    private function getSectionSchemaDatosIncidencia(
         MiSectionSchema $misectionSchema,
         MiTextEntry     $miTextEntry
     ): Section
@@ -87,12 +66,12 @@ class IncidenciaSimpleInfolist
             ]);
     }
 
-    private function getSectionSchemaRespuestas(
+    private function getSectionSchemaRespuestasEnviadas(
         MiSectionSchema $misectionSchema,
         MiTextEntry     $miTextEntry
     ): Section
     {
-        $description = 'Respuestas asociadas';
+        $description = 'Respuestas enviadas';
         $icon = 'heroicon-o-chat-bubble-bottom-center-text';
 
         return $misectionSchema
@@ -103,10 +82,10 @@ class IncidenciaSimpleInfolist
                 ))
             ->schema([
                 RepeatableEntry::make('respuestas')
-                    ->label('Respuestas')
+                    ->label('Respuestas Enviadas')
                     ->columns(12)
                     ->schema([
-                        $miTextEntry->getTextEntry('respuesta', 6, 'Respuesta2'),
+                        $miTextEntry->getTextEntry('respuesta', 6, 'Respuesta'),
                         $miTextEntry->getBadgeDateTimeTextEntry('created_at', 3, null, 'Creada'),
                         $miTextEntry->getBadgeDateTimeTextEntry('updated_at', 3, null, 'Actualizada'),
                     ])

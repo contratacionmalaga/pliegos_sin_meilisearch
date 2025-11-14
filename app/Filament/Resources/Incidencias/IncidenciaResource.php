@@ -9,7 +9,6 @@ use App\Filament\Resources\Incidencias\Pages\ListIncidencias;
 use App\Filament\Resources\Incidencias\Pages\ViewIncidencia;
 use App\Filament\Resources\Incidencias\Pages\ViewIncidenciaPage;
 use App\Filament\Resources\Incidencias\Pages\ViewIncidenciaSimple;
-use App\Filament\Resources\Incidencias\Pages\ViewIncidenciaTable;
 use App\Filament\Resources\Incidencias\Schemas\IncidenciaForm;
 
 
@@ -38,10 +37,10 @@ class IncidenciaResource extends BaseResourceNavigationItem
         ];
     }
 
-//    public static function form(Schema $schema): Schema
-//    {
-//        return new IncidenciaForm()->getForm($schema);
-//    }
+    public static function form(Schema $schema): Schema
+    {
+        return new IncidenciaForm()->getForm($schema);
+    }
 
 
 

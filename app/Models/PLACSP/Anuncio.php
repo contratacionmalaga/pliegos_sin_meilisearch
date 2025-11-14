@@ -8,12 +8,13 @@ use App\Enums\Placsp\PLACSP_SyndicationContractFolderStatusCode;
 use App\Enums\Placsp\PLACSP_SyndicationTenderingProcessCode;
 use App\Enums\Placsp\PLACSP_TenderingDocumentTypeCode;
 use App\Enums\Placsp\PLACSP_TenderingNoticeTypeCode;
+use App\Filament\Interfaces\IdentificadorIncidenciableInterface;
 use App\Traits\HasIncidencias;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Anuncio extends Model
+class Anuncio extends Model implements IdentificadorIncidenciableInterface
 {
 
     use HasUuids;
@@ -51,6 +52,14 @@ class Anuncio extends Model
     {
         return $this
             ->belongsTo(Adjudicacion::class, 'id_entry', 'id_entry');
+    }
+
+    public function obtenerIdentificadorIncidenciable(): string
+    {
+        ds('obtenerIdIncidenciable [ANUNCIO] ==>',$this->getAttribute('name_objeto'));
+
+//        return $this->getAttribute('name_objeto');
+        return $this->getAttribute('contract_folder_id');
     }
 
 }

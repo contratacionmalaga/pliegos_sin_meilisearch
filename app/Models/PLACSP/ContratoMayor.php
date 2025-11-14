@@ -18,17 +18,20 @@ use App\Enums\Placsp\PLACSP_SyndicationTenderingProcessCode;
 use App\Enums\Placsp\PLACSP_TenderDeliveryCode;
 use App\Enums\Placsp\PLACSP_WorksContractCode;
 use App\Enums\Placsp\TipoSindicacion;
+use App\Filament\Interfaces\IdentificadorIncidenciableInterface;
 use App\Traits\HasIncidencias;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ContratoMayor extends Model
+class ContratoMayor extends Model implements IdentificadorIncidenciableInterface
 {
 
+//    use HasUuids;
     use HasIncidencias;
 
     protected $table = "placsp_contratos_mayores";
@@ -142,5 +145,17 @@ class ContratoMayor extends Model
     {
         return $this
             ->hasMany(RequisitoPrevioParticipacion::class, 'id_entry', 'id_entry');
+    }
+
+    public function obtenerIdentificadorIncidenciable(): string
+    {
+
+        ds('obtenerIdIncidenciable [CONTRATO-MAYOR] ==>');
+
+        ds($this->getAttribute('contract_folder_id'));
+
+//        return $this->contract_folder_id;
+        return $this->getAttribute('contract_folder_id');
+
     }
 }

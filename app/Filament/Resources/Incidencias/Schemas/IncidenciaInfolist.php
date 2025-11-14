@@ -37,7 +37,7 @@ class IncidenciaInfolist
         ];
 
         /*
-         * Devuelvo el obtjeto Schema según se define es el consturctor
+         * Devuelvo el objeto Schema según se define es el constructor
          */
         return $miSchema->getSchema($schema, $arraySectionPrincipal, $arraySectionSecundaria);
     }
@@ -81,11 +81,12 @@ class IncidenciaInfolist
                 ))
             ->schema([
                 RepeatableEntry::make('respuestas')
-                    ->label('Respuestas')
+                    ->label('Respuestas Enviadas')
+                    ->columns(12)
                     ->schema([
-                        $miTextEntry->getTextEntry('respuesta', 12, 'Respuesta'),
-                        $miTextEntry->getBadgeDateTimeTextEntry('created_at', 6, null, 'Creada'),
-                        $miTextEntry->getBadgeDateTimeTextEntry('updated_at', 6, null, 'Actualizada'),
+                        $miTextEntry->getTextEntry('respuesta', 6, 'Respuesta'),
+                        $miTextEntry->getBadgeDateTimeTextEntry('created_at', 3, null, 'Creada'),
+                        $miTextEntry->getBadgeDateTimeTextEntry('updated_at', 3, null, 'Actualizada'),
                     ])
                     ->columnSpan(12)
                     ->visible(fn($record) => $record?->respuestas?->isNotEmpty()),

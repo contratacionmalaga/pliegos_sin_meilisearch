@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -137,4 +138,15 @@ class Incidencia extends Model
     {
         return $query->where('descripcion', 'LIKE', '%'.$searchTerm.'%');
     }
+
+
+    // Accessor para el título del incidenciable
+    protected function incidenciableIdentificador(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getRelation('incidenciable')?->obtenerIdentificadorIncidenciable() ?? 'Sin Identificador',
+//            get: fn () => $this->getRelation('incidenciable')?->contract_folder_id ?? 'Sin Identificador',
+        );
+    }
+
 }

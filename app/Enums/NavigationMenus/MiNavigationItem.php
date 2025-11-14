@@ -256,6 +256,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             ],
 
             self::PLACSP_CONTRATO_MAYOR => $array = [
+                $actions->getViewAction(),
                 $actions->getVerExpediente(),
                 $actions->getEnlacePlacsp(),
                 $actions->getCrearIncidencia(self::PLACSP_CONTRATO_MAYOR),
@@ -268,7 +269,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 
             self::PLACSP_INCIDENCIA => $array = [
 //                $actions->getCreateAction(),
-                $actions->getViewIncidencia_ViewAction(),
+                $actions->getViewIncidencia_ViewAction_Infolist(),
                 $actions->getViewIncidencia_Action_Infolist(),
                 $actions->getViewIncidencia_Action_SimpleInfolist(),
 //                $actions->getCrearRespuestaIncidencia(self::PLACSP_INCIDENCIA),

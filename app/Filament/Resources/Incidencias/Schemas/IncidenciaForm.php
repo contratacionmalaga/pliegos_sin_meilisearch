@@ -32,7 +32,7 @@ class IncidenciaForm
 
         $seccionesPrincipales = [
             $this->getFormSectionGeneral($miSection, $miTextInput,$miTextEntry),
-//            $this->getSectionSchemaRespuestas($miSectionForm, $miTextEntry)->columnSpan(12)->collapsible(),
+//            $this->getSectionSchemaRespuestasEnviadas($miSectionForm, $miTextEntry)->columnSpan(12)->collapsible(),
         ];
 
         $seccionesSecundarias = [];
@@ -68,12 +68,12 @@ class IncidenciaForm
 
 
 
-    private function getSectionSchemaRespuestas(
+    private function getSectionSchemaRespuestasEnviadas(
         MiSectionForm $miSectionForm,
         MiTextEntry   $miTextEntry
     ): Section
     {
-        $description = 'Respuestas asociadas';
+        $description = 'Respuestas enviadas';
         $icon = 'heroicon-o-chat-bubble-bottom-center-text';
 
         return $miSectionForm
