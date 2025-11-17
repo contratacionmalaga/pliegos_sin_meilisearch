@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Incidencias\Schemas;
 
 use App\DTOs\SectionConfig;
+use App\Enums\Pliegos\EstadoIncidenciaEnum;
 use App\Filament\Components\Forms\MiRichEditor;
 use App\Filament\Components\Forms\MiSelect;
 use App\Filament\Components\Forms\MiTextInput;
@@ -31,7 +32,7 @@ class IncidenciaForm
         $miRichEditor = new MiRichEditor;
 
         $seccionesPrincipales = [
-            $this->getFormSectionGeneral($miSection, $miTextInput,$miTextEntry),
+            $this->getFormSectionGeneral($miSection, $miTextInput,$miTextEntry, $miSelect),
 //            $this->getSectionSchemaRespuestasEnviadas($miSectionForm, $miTextEntry)->columnSpan(12)->collapsible(),
         ];
 
@@ -44,6 +45,7 @@ class IncidenciaForm
         MiSection $miSection,
         MiTextInput $miTextInput,
         MiTextEntry $miTextEntry,
+        MiSelect $miSelect
     ): Section {
 
         $description = 'Los campos marcados con * son obligatorios';
@@ -57,7 +59,11 @@ class IncidenciaForm
             ->schema([
                 $miTextInput->getTextInputTitulo('titulo',true, 5, 'Titulo'),
                 $miTextInput->getTextInputDescripcion('descripcion',true, 5,'Descripcion'),
-                $miTextInput->getTextInputEstado('estado',true, 5,'Estado'),               // TODO: Select?
+
+                $miSelect->getSelectEnum('estado', true, EstadoIncidenciaEnum::class, 4, 'Estado'),
+//                    ->disabled(false),
+//                $miTextInput->getTextInputEstado('estado',true, 5,'Estado'),               // TODO: Select?
+
                 $miTextInput->getTextInputEmail(true, 5),
 
             ])

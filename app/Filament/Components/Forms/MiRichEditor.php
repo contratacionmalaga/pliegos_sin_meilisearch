@@ -9,17 +9,17 @@ use Filament\Forms\Components\RichEditor;
 class MiRichEditor
 {
     /**
-     * @param int $columnSpam
+     * @param int $columnSpan
      *
      * @return RichEditor
      */
-    public function getRichEditorWithoutLabel(int $columnSpam): RichEditor
+    public function getRichEditorWithoutLabel(int $columnSpan): RichEditor
     {
 
         return $this->create(
             new RichEditorConfig(
                 make: 'observaciones',
-                columnSpan: $columnSpam,
+                columnSpan: $columnSpan,
                 label: null
             )
         );
@@ -27,23 +27,34 @@ class MiRichEditor
 
     /**
      * @param string      $make
-     * @param int         $columnSpam
+     * @param int         $columnSpan
      * @param string|null $label
      *
      * @return RichEditor
      */
-    public function getRichEditor(string $make, int $columnSpam, ?string $label = null): RichEditor
+    public function getRichEditor(string $make, int $columnSpan, ?string $label = null): RichEditor
     {
 
         return $this->create(
             new RichEditorConfig(
                 make: $make,
-                columnSpan: $columnSpam,
+                columnSpan: $columnSpan,
                 label: $label
             )
         );
     }
 
+    public function getRichEditorRespuesta(int $columnSpan, ?string $label = null): RichEditor
+    {
+
+        return $this->create(
+            new RichEditorConfig(
+                make: 'respuesta',
+                columnSpan: $columnSpan,
+                label: $label
+            )
+        );
+    }
     /**
      * @param RichEditorConfig $config
      *

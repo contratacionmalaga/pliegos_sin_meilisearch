@@ -42,12 +42,12 @@ readonly class RespuestasIncidenciaTable
         // Usamos la función pública `getTable` para obtener la tabla configurada
         return $this->miTable->getTable($table, $configurableItem)
             ->columns([
-                        $this->miTextColumn->getSearchableTextColumn('id', 'id'),
-                        $this->miTextColumn->getSearchableTextColumn('respuesta', 'respuesta'),
-                        $this->miTextColumn->getSearchableTextColumn('incidencia_id', 'incidencia_id'),
-                        $this->miTextColumn->getBadgeDateTimeSortableTextColumn('created_at', 'created_at'),
-                        $this->miTextColumn->getBadgeDateTimeSortableTextColumn('updated_at', 'updated_at'),
-                        $this->miTextColumn->getBadgeDateTimeSortableTextColumn('deleted_at', 'deleted_at'),
+//                        $this->miTextColumn->getSearchableTextColumn('id', 'ID'),
+                        $this->miTextColumn->getMultilineaTextColumn('respuesta', 'Respuesta')->html(),
+//                        $this->miTextColumn->getSearchableTextColumn('incidencia_id', 'incidencia_id'),
+                        $this->miTextColumn->getBadgeDateTimeSortableTextColumn('created_at', 'F.Creacion'),
+                        $this->miTextColumn->getBadgeDateTimeSortableTextColumn('updated_at', 'F.Actualizacion'),
+//                        $this->miTextColumn->getBadgeDateTimeSortableTextColumn('deleted_at', 'deleted_at'),
                     ])
             ->searchable(true);
 //            ->searchable(!$isRelationManager);

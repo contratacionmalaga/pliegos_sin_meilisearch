@@ -180,7 +180,6 @@ class MiTextEntry
             )
         );
     }
-
     /**
      * TextEntry con botón de copiar al portapapeles.
      */
@@ -198,6 +197,20 @@ class MiTextEntry
             ->copyable()
             ->copyMessage('Texto copiado!')
             ->copyMessageDuration(5000);
+    }
+
+    /**
+     * TextEntry Respuestas sin etiqueta.
+     */
+    public function getTextEntryRespuestasSinEtiqueta(int $columnSpan, ?string $label = null): TextEntry
+    {
+        return $this->create(
+            new TextEntryConfig(
+                make: 'respuesta',
+                columnSpan: $columnSpan,
+                label: $label
+            )
+        );
     }
 
     /**

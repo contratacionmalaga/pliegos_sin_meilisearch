@@ -135,7 +135,7 @@ class ActionsConstructor
             ->icon(MiAccionEnum::VerExpediente->getIcon())
             ->color(MiAccionEnum::VerExpediente->getColor())
 //            ->url(fn($record) => route('filament.admin.resources.expedientes.view', ['record' => $record->id_entry]))
-            ->url(fn($record) => route('filament.admin.resources.contratos-mayores.view', ['record' => $record->id_entry]))
+            ->url(fn($record) => route('filament.admin.resources.contratos-mayores.view', ['record' => $record->id]))
             ->visible(fn($record) => filled($record->id_entry));
     }
 
@@ -319,8 +319,8 @@ class ActionsConstructor
     public function getViewIncidencia_Action_Infolist(): Action
     {
         return Action::make('view-incidencia-action-infolist')
-            ->label('View-Modal-Infolist')
-            ->tooltip('View-Modal-Infolist')
+            ->label('View')
+            ->tooltip('View')
             ->color(MiAccionEnum::View->getColor())
             ->icon(MiAccionEnum::View->getIcon())
             ->slideOver() // 👈 esto lo hace abrir desde el borde derecho

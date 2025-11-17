@@ -18,7 +18,9 @@ class MiSelect
      * @return Select
      * @throws InvalidArgumentException
      */
-    public function getSelectEnum(string $make, bool $required, string $class, int $columnSpam): Select
+//    public function getSelectEnum(string $make, bool $required, string $class, int $columnSpam): Select
+    public function getSelectEnum(string $make, bool $required, string $class, int $columnSpan, ?string $label = null): Select
+
     {
         if (!class_exists($class)) {
             throw new InvalidArgumentException("La clase '$class' no existe.");
@@ -28,9 +30,42 @@ class MiSelect
             throw new InvalidArgumentException("La clase '$class' no tiene el método 'ordenar'.");
         }
 
-        return $this->constructSelect($make, $required, $columnSpam)
-            ->options($class::ordenar());
+//        return $this->constructSelect($make, $required, $columnSpam)
+//            ->options($class::ordenar());
+
+        ds(
+        collect($class::ordenar())
+            ->mapWithKeys(fn ($enum) => [$enum->value => $enum->getLabel()])
+            ->toArray()
+        );
+
+        return $this->constructSelect($make, $required, $columnSpan, $label)
+            ->options(
+                collect($class::ordenar())
+                    ->mapWithKeys(fn ($enum) => [$enum->value => $enum->getLabel()])
+                    ->toArray()
+            );
     }
+
+//    public function create(string $make, bool $required, int $columnSpan, ?string $label = null): Select
+//    {
+//
+//        $select = Select::make($make)
+//            ->label(($label ?? __('etiquetas.select_'.$make)))
+//            ->preload()
+//            ->columnSpan($columnSpan)
+//            ->reactive();
+//
+//        if ($required) {
+//            $select->markAsRequired()
+//                ->rules(['required'])
+//                ->validationMessages([
+//                    'required' => fn () => __('etiquetas.validation_required'),
+//                ]);
+//        }
+//
+//        return $select;
+//    }
 
     /**
      * @param string      $make

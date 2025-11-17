@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Incidencias\Schemas;
 
 use App\DTOs\SectionConfig;
+use App\Enums\Constantes\ConstantesInt;
 use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Filament\Components\Infolists\MiTextEntry;
 use App\Filament\Components\Schemas\MiSchema;
@@ -27,7 +28,7 @@ class IncidenciaInfolist
          */
         $arraySectionPrincipal = [
             $this->getSectionSchemaDatosIncidencia($miSectionSchema, $miTextEntry)->columnSpan(12)->collapsible(),
-            $this->getSectionSchemaRespuestasEnviadas($miSectionSchema, $miTextEntry)->columnSpan(12)->collapsible(),
+//            $this->getSectionSchemaRespuestasEnviadas($miSectionSchema, $miTextEntry)->columnSpan(12)->collapsible(),
         ];
 
         /*
@@ -84,7 +85,9 @@ class IncidenciaInfolist
                     ->label('Respuestas Enviadas')
                     ->columns(12)
                     ->schema([
-                        $miTextEntry->getTextEntry('respuesta', 6, 'Respuesta'),
+//                        $miTextEntry->getTextEntry('respuesta', 6, 'Respuesta'),
+                        $miTextEntry->getTextEntryRespuestasSinEtiqueta(ConstantesInt::TAMANO_10->value, 'Respuesta')
+                            ->html(),
                         $miTextEntry->getBadgeDateTimeTextEntry('created_at', 3, null, 'Creada'),
                         $miTextEntry->getBadgeDateTimeTextEntry('updated_at', 3, null, 'Actualizada'),
                     ])

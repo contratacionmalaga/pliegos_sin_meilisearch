@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\RespuestasIncidencia\Schemas;
 
 use App\DTOs\SectionConfig;
+use App\Enums\Constantes\ConstantesInt;
 use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Filament\Components\Infolists\MiTextEntry;
 use App\Filament\Components\Schemas\MiSchema;
@@ -56,7 +57,13 @@ class RespuestasIncidenciaInfolist
                     icon: $icon,
                 ))
             ->schema([
-                $miTextEntry->getTextEntry('respuesta', 3, 'Respuesta'),
+//                $miTextEntry->getTextEntry('respuesta', 3, 'Respuesta'),
+
+                $miTextEntry->getTextEntryRespuestasSinEtiqueta(ConstantesInt::TAMANO_10->value, 'Respuesta')
+//                    ->label(' ')
+                    ->html()
+                ,
+
                 $miTextEntry->getBadgeDateTimeTextEntry('created_at', 3, null,'created_at'),
                 $miTextEntry->getBadgeDateTimeTextEntry('updated_at', 3, null,'updated_at'),
                 $miTextEntry->getBadgeDateTimeTextEntry('deleted_at', 3, null,'deleted_at'),

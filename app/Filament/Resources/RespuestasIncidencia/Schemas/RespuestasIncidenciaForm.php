@@ -49,7 +49,7 @@ class RespuestasIncidenciaForm
 
 
         $seccionesPrincipales = [
-            $this->getFormSectionGeneral($miSection, $miTextInput,$miTextEntry),
+            $this->getFormSectionGeneral($miSection, $miTextInput,$miTextEntry, $miRichEditor),
         ];
 
         $seccionesSecundarias = [];
@@ -61,6 +61,7 @@ class RespuestasIncidenciaForm
         MiSection $miSection,
         MiTextInput $miTextInput,
         MiTextEntry $miTextEntry,
+        MiRichEditor $miRichEditor
     ): Section {
 
         $description = 'Los campos marcados con * son obligatorios';
@@ -78,14 +79,15 @@ class RespuestasIncidenciaForm
 //                $miTextInput->getTextInputTelefono(true, 3),
 
 //                $miTextInput->getTextInputTitulo('id', false,'id'),
-                $miTextInput->getTextInputRespuesta('respuesta',true, 3, 'Respuesta'),
+//                $miTextInput->getTextInputRespuesta('respuesta',true, 3, 'Respuesta'),
+                $miRichEditor->getRichEditorRespuesta(3, 'Respuesta'),
 //                $miTextInput->getTextInputDescripcion('descripcion',true, 3,'Descripcion'),
 //                $miTextInput->getTextInputEstado('estado',true, 3,'Estado'),               // TODO: Select?
 //                $miTextInput->getTextInputTitulo('incidenciable_id',true, 3,'incidenciable_id'),
 //                $miTextInput->getTextInputTitulo('incidenciable_type',true, 3,'incidenciable_type'),
-                $miTextInput->getTextInputTitulo('created_at',false, 3,'created_at'),
-                $miTextInput->getTextInputTitulo('updated_at',false, 3,'updated_at'),
-                $miTextInput->getTextInputTitulo('deleted_at',false, 3,'deleted_at'),
+//                $miTextInput->getTextInputTitulo('created_at',false, 3,'created_at'),
+//                $miTextInput->getTextInputTitulo('updated_at',false, 3,'updated_at'),
+//                $miTextInput->getTextInputTitulo('deleted_at',false, 3,'deleted_at'),
 
             ])
             ->columnSpan('full');

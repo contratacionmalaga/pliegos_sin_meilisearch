@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Pliegos\EstadoIncidenciaEnum;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
@@ -50,6 +51,7 @@ class Incidencia extends Model
 
     protected $casts = [
         'id' => 'string',
+        'estado' => EstadoIncidenciaEnum::class,
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
@@ -147,6 +149,56 @@ class Incidencia extends Model
             get: fn () => $this->getRelation('incidenciable')?->obtenerIdentificadorIncidenciable() ?? 'Sin Identificador',
 //            get: fn () => $this->getRelation('incidenciable')?->contract_folder_id ?? 'Sin Identificador',
         );
+    }
+
+    // Accessor para la descripcion del incidenciable
+    protected function incidenciableDescripcion(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getRelation('incidenciable')?->obtenerDescripcionIncidenciable() ?? 'Sin Identificador',
+        );
+    }
+
+    // Accessor para el Tipo del incidenciable
+    protected function incidenciableTipo(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getRelation('incidenciable')?->obtenerTypeIncidenciable() ?? 'Sin Identificador',
+        );
+    }
+
+    public function miincidenciableIdentificador(): string
+    {
+//        return $this->getRelation('incidenciable')?->obtenerIdentificadorIncidenciable() ?? 'Sin Identificador';
+
+        ds($this);
+        ds($this->incidenciable);
+
+        return $this->incidenciable?->obtenerIdentificadorIncidenciable() ?? 'Sin Identificador';
+    }
+
+    public function getIdentificadorAttribute()
+    {
+        return $this->incidenciable?->obtenerIdentificadorIncidenciable() ?? 'Sin Identificador';
+    }
+
+    public function scopeBuscarPorIdentificador($query, $value)
+    {
+//        return $query->whereRaw('LOWER(obtenerIdentificadorIncidenciable()) LIKE ?', ['%' . strtolower($busqueda) . '%']);
+
+        return $query->whereHasMorph(
+            'incidenciable',
+            [
+                \App\Models\PLACSP\ContratoMayor::class => function ($q) use ($value) {
+                    $q->where('contract_folder_id', 'LIKE', "%{$value}%");
+                },
+                \App\Models\PLACSP\Anuncio::class => function ($q) use ($value) {
+                    $q->where('contract_folder_id', 'LIKE', "%{$value}%");
+                },
+            ]
+        );
+
+
     }
 
 }

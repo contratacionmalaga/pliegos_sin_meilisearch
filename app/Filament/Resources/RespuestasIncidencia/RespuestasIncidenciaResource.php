@@ -24,7 +24,7 @@ class RespuestasIncidenciaResource extends BaseResourceNavigationItem
     {
         return [
             'index' => ListRespuestasIncidencia::route('/'),
-//            'view' => ViewRespuestasIncidencia::route('/{record}/view'),
+            'view' => ViewRespuestasIncidencia::route('/{record}/view'),
         ];
     }
 

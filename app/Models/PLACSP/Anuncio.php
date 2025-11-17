@@ -56,10 +56,18 @@ class Anuncio extends Model implements IdentificadorIncidenciableInterface
 
     public function obtenerIdentificadorIncidenciable(): string
     {
-        ds('obtenerIdIncidenciable [ANUNCIO] ==>',$this->getAttribute('name_objeto'));
-
-//        return $this->getAttribute('name_objeto');
         return $this->getAttribute('contract_folder_id');
     }
+
+    public function obtenerDescripcionIncidenciable(): string
+    {
+        return $this->getAttribute('name_objeto');
+    }
+
+    public function obtenerTypeIncidenciable(): string
+    {
+        return Anuncio::class;
+    }
+
 
 }

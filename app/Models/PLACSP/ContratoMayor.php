@@ -31,11 +31,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class ContratoMayor extends Model implements IdentificadorIncidenciableInterface
 {
 
-//    use HasUuids;
+    use HasUuids;
     use HasIncidencias;
 
     protected $table = "placsp_contratos_mayores";
-    protected $primaryKey = "id_entry";
+//    protected $primaryKey = "id_entry";
 
     protected function casts(): array
     {
@@ -149,13 +149,17 @@ class ContratoMayor extends Model implements IdentificadorIncidenciableInterface
 
     public function obtenerIdentificadorIncidenciable(): string
     {
-
-        ds('obtenerIdIncidenciable [CONTRATO-MAYOR] ==>');
-
-        ds($this->getAttribute('contract_folder_id'));
-
-//        return $this->contract_folder_id;
         return $this->getAttribute('contract_folder_id');
-
     }
+
+    public function obtenerDescripcionIncidenciable(): string
+    {
+        return $this->getAttribute('name_objeto');
+    }
+
+    public function obtenerTypeIncidenciable(): string
+    {
+        return ContratoMayor::class;
+    }
+
 }
