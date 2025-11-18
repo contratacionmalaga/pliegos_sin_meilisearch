@@ -14,6 +14,8 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
+use Filament\Tables\Columns\TextColumn;
+
 readonly class IncidenciaTable
 {
 
@@ -42,7 +44,10 @@ readonly class IncidenciaTable
 
         // Usamos la función pública `getTable` para obtener la tabla configurada
         return $this->miTable->getTable($table, $configurableItem)
-            ->modifyQueryUsing(fn ($query) => $query->with('incidenciable'))
+            ->modifyQueryUsing(fn ($query) => $query->with('incidenciable')
+                                                    ->leftJoin('placsp_anuncios', 'incidencias.incidenciable_id', '=', 'placsp_anuncios.id')
+                                                    ->select('incidencias.*') // evita columnas duplicadas
+                              )
             ->columns([
 //                        $this->miTextColumn->getSearchableTextColumn('id', 'id'),
                         $this->miTextColumn->getMultilineaTextColumn('titulo', 'Titulo'),
@@ -51,49 +56,83 @@ readonly class IncidenciaTable
 
 //                        $this->miTextColumn->getSearchableTextColumn('incidenciable_identificador', 'IDENTIF. MODELO'),
 
-                        $this->miTextColumn->getSearchableTextColumn('Identificador', 'IDENTIF_2. MODELO')
+                        $this->miTextColumn->getSearchableTextColumn('incidenciable_identificador', 'IDENTIF_2. MODELO')
                             ->searchable(query: function ($query, $search): void {
                                 $query->BuscarPorIdentificador($search);
                             }),
-//                        $this->miTextColumn->getSearchableTextColumn('miincidenciableIdentificador', 'miIDENTIF. MODELO'),
 
-                        $this->miTextColumn->getMultilineaTextColumn('incidenciable_descripcion', 'DESCRIPCION MODELO'),
-                        $this->miTextColumn->getMultilineaTextColumn('incidenciable_tipo', 'Tipo MODELO'),
+                        $this->miTextColumn->getMultilineaTextColumn('incidenciable_descripcion', 'DESCRIPCION MODELO')
+                            ->searchable(query: function ($query, $search): void {
+                                $query->BuscarPorDescripcion($search);
+                            }),
+                        $this->miTextColumn->getMultilineaTextColumn('incidenciable_tipo', 'Tipo MODELO')
+                            ->searchable(false),
+        //                            ->searchable(query: function ($query, $search): void {
+        //                                $query->BuscarPorIdentificador($search);
+        //                            }),
+
+////                TextColumn::make('incidenciable_identificador')
+//                        $this->miTextColumn->getMultilineaTextColumn('incidenciable_identificador', 'Identificador Mod.')
+////                    ->label('Identificador Mod.')
+//                    ->getStateUsing(fn ($record) => $record->incidenciable?->obtenerIdentificadorIncidenciable())
+//                    ->searchable(query: function (Builder $query, string $search) {
+//                        $query->orWhereHasMorph(
+//                            'incidenciable',
+//                            ['App\Models\PLACSP\Anuncio','App\Models\PLACSP\ContratoMayor'], // todos los modelos incidenciables
+//                            function ($q) use ($search) {
+//                                $q->whereRaw('LOWER(contract_folder_id) LIKE ?', ['%' . strtolower($search) . '%']);
+//                            }
+//                        );
+//                    }),
+//
+////                TextColumn::make('incidenciable_descripcion')
+//                $this->miTextColumn->getMultilineaTextColumn('incidenciable_descripcion', 'Descripcion Mod.')
+////                    ->label('Descripcion Mod.')
+//                    ->wrap()
+//                    ->getStateUsing(fn ($record) => $record->incidenciable?->obtenerDescripcionIncidenciable())
+//                    ->searchable(query: function (Builder $query, string $search) {
+//                        $query->orWhereHasMorph(
+//                            'incidenciable',
+//                            ['App\Models\PLACSP\Anuncio','App\Models\PLACSP\ContratoMayor'], // todos los modelos incidenciables
+//                            function ($q) use ($search) {
+//                                $q->whereRaw('LOWER(name_objeto) LIKE ?', ['%' . strtolower($search) . '%']);
+//                            }
+//                        );
+//                    }),
+//
+////                TextColumn::make('incidenciable_tipo')
+//                $this->miTextColumn->getMultilineaTextColumn('incidenciable_tipo', 'Tipo Mod.')
+////                    ->label('Tipo Mod.')
+//                    ->getStateUsing(fn ($record) => $record->incidenciable?->obtenerTypeIncidenciable())
+//                    ->searchable(false),
+////                    ->searchable(query: function (Builder $query, string $search) {
+////                        $query->orWhereHasMorph(
+////                            'incidenciable',
+////                            ['App\Models\PLACSP\Anuncio','App\Models\PLACSP\ContratoMayor'], // todos los modelos incidenciables
+////                            function ($q) use ($search) {
+////                                $q->whereRaw('LOWER(XXXXXXXXXXXXX) LIKE ?', ['%' . strtolower($search) . '%']);
+////                            }
+////                        );
+////                    }),
+
+
 
 
 //                        $this->miTextColumn->getSearchableTextColumn('custom_incidenciable_id3', 'ID_INCIDENCIABLE3')
-////                            ->getStateUsing(function (Incidencia $record): ?string {
 //                            ->getStateUsing(function ($record): ?string {
-//
-////                                ds('$record->incidenciable=');
-////                                ds($record->incidenciable);
-//
-////                                ds('$record->incidenciable?->obtenerIdIncidenciable()=');
 //                                return $record->incidenciable?->obtenerIdentificadorIncidenciable();
 //                            }),
 //
 //                        $this->miTextColumn->getSearchableTextColumn('custom_incidenciable_des3', 'DES_INCIDENCIABLE3')
-////                            ->getStateUsing(function (Incidencia $record): ?string {
 //                            ->getStateUsing(function ($record): ?string {
-//
-////                                ds('$record->incidenciable=');
-////                                ds($record->incidenciable);
-//
-////                                ds('$record->incidenciable?->obtenerIdIncidenciable()=');
 //                                return $record->incidenciable?->obtenerDescripcionIncidenciable();
 //                            }),
 //
 //                        $this->miTextColumn->getSearchableTextColumn('custom_incidenciable2', 'INCIDENCIABLE2')
-//                            ->getStateUsing(function (Incidencia $record): ?string {
-//                                return $record->incidenciable?->obtenerIdentificadorIncidenciable();
+//                            ->getStateUsing(function ($record): ?string {
+//                                return $record->incidenciable?->obtenerTypeIncidenciable();
 //                            }),
 //
-//                        $this->miTextColumn->getSearchableTextColumn('custom_incidenciable1', 'INCIDENCIABLE1')
-//                             ->state(function (Incidencia $record): string {
-//                                // Aquí puedes agregar lógica adicional
-//                                $identificador = $record->incidenciable?->obtenerIdentificadorIncidenciable();
-//                                return strtoupper($identificador); // ejemplo de transformación
-//                             }),
 
 
                 $this->miTextColumn->getSearchableTextColumn('email', 'email'),

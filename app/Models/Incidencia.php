@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Enums\Pliegos\EstadoIncidenciaEnum;
+use App\Models\PLACSP\Anuncio;
+use App\Models\PLACSP\ContratoMayor;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\DB;
 
 class Incidencia extends Model
 {
@@ -177,25 +180,117 @@ class Incidencia extends Model
         return $this->incidenciable?->obtenerIdentificadorIncidenciable() ?? 'Sin Identificador';
     }
 
-    public function getIdentificadorAttribute()
+    public function getincidenciableIdentificadorAttribute()
     {
         return $this->incidenciable?->obtenerIdentificadorIncidenciable() ?? 'Sin Identificador';
     }
 
+
+    public function getincidenciableDescripcionAttribute()
+    {
+        return $this->incidenciable?->obtenerDescripcionIncidenciable() ?? 'Sin Descripción';
+    }
+
+
+    public function getincidenciableTipoAttribute()
+    {
+        return $this->incidenciable?->obtenerTypeIncidenciable() ?? 'Sin Tipo';
+    }
+
     public function scopeBuscarPorIdentificador($query, $value)
     {
-//        return $query->whereRaw('LOWER(obtenerIdentificadorIncidenciable()) LIKE ?', ['%' . strtolower($busqueda) . '%']);
+
+//        return $query
+////                    ->join('placsp_anuncios', 'incidencia.incidenciable_id', '=', 'placsp_anuncios.id')
+//                    ->whereRaw('LOWER(placsp_anuncios.contract_folder_id) LIKE ?', ['%' . strtolower($value) . '%']);
+
+//        return $query->whereHasMorph(
+//            'incidenciable',
+//            [
+//                \App\Models\PLACSP\ContratoMayor::class => function ($q) use ($value) {
+//                    $q->where('LOWER(contract_folder_id)', 'LIKE', "%{$value}%");
+//                },
+//                \App\Models\PLACSP\Anuncio::class => function ($q) use ($value) {
+//                    $q->where('LOWER(contract_folder_id)', 'LIKE', "%{$value}%");
+//                },
+//            ]
+//        );
+
+
+//        return $query->WhereHasMorph(
+//            'incidenciable',
+//
+//            ['App\Models\PLACSP\Anuncio','App\Models\PLACSP\ContratoMayor'],
+//            function ($q) use ($value) {
+//                $q->whereRaw('LOWER(contract_folder_id) LIKE ?', ['%' . strtolower($value) . '%']);
+//            }
+//        );
+
 
         return $query->whereHasMorph(
             'incidenciable',
             [
-                \App\Models\PLACSP\ContratoMayor::class => function ($q) use ($value) {
-                    $q->where('contract_folder_id', 'LIKE', "%{$value}%");
-                },
-                \App\Models\PLACSP\Anuncio::class => function ($q) use ($value) {
-                    $q->where('contract_folder_id', 'LIKE', "%{$value}%");
-                },
-            ]
+                Anuncio::class,
+                ContratoMayor::class,
+            ],
+            function ($q, $type) use ($value) {
+
+                $campo = match ($type) {
+                    Anuncio::class => 'contract_folder_id',
+                    ContratoMayor::class => 'contract_folder_id',
+                    default => 'contract_folder_id',
+                };
+
+                $q->whereRaw('LOWER('.$campo.') LIKE ?', ['%'.strtolower($value).'%']);
+            }
+        );
+
+    }
+
+    public function scopeBuscarPorDescripcion($query, $value)
+    {
+
+//        return $query
+////                    ->join('placsp_anuncios', 'incidencia.incidenciable_id', '=', 'placsp_anuncios.id')
+//                    ->whereRaw('LOWER(placsp_anuncios.name_objeto) LIKE ?', ['%' . strtolower($value) . '%']);
+
+//        return $query->orWhereHasMorph(
+//            'incidenciable',
+//            [
+//                ContratoMayor::class => function ($q) use ($value) {
+//                    $q->where('LOWER(name_objeto)', 'LIKE', "%{$value}%");
+//                },
+//                Anuncio::class => function ($q) use ($value) {
+//                    $q->where('LOWER(name_objeto)', 'LIKE', "%{$value}%");
+//                },
+//            ]
+//        );
+
+//        return $query->WhereHasMorph(
+//            'incidenciable',
+//
+//            ['App\Models\PLACSP\Anuncio','App\Models\PLACSP\ContratoMayor'],
+//            function ($q) use ($value) {
+//                $q->whereRaw('LOWER(name_objeto) LIKE ?', ['%' . strtolower($value) . '%']);
+//            }
+//        );
+
+        return $query->whereHasMorph(
+            'incidenciable',
+            [
+                Anuncio::class,
+                ContratoMayor::class,
+            ],
+            function ($q, $type) use ($value) {
+
+                $campo = match ($type) {
+                    Anuncio::class => 'name_objeto',
+                    ContratoMayor::class => 'name_objeto',
+                    default => 'name_objeto',
+                };
+
+                $q->whereRaw('LOWER('.$campo.') LIKE ?', ['%'.strtolower($value).'%']);
+            }
         );
 
 
