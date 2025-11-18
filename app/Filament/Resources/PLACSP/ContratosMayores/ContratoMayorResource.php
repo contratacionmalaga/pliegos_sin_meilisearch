@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PLACSP\ContratosMayores;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Abstracts\BaseResourceNavigationItem;
 use App\Filament\RelationManagers\IncidenciaRelationManager;
 use App\Filament\Resources\PLACSP\ContratosMayores\Pages\ListContratosMayores;
@@ -22,7 +23,7 @@ class ContratoMayorResource extends BaseResourceNavigationItem
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_CONTRATO_MAYOR;
+    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_CONTRATO_MAYOR;
 
     public static function getPages(): array
     {

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PLACSP\CriteriosAdjudicacion\Pages;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Abstracts\BaseViewRecord;
 use App\Filament\Resources\PLACSP\CriteriosAdjudicacion\Schemas\CriterioAdjudicacionInfolist;
 use Filament\Schemas\Schema;
@@ -12,7 +13,7 @@ class ViewCriterioAdjudicacion extends BaseViewRecord
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_CRITERIO_ADJUDICACION;
+    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_CRITERIO_ADJUDICACION;
 
 
     /**

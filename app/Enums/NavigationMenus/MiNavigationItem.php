@@ -5,6 +5,7 @@ namespace App\Enums\NavigationMenus;
 //use App\Enums\Acciones\Roles;
 use App\Enums\Constantes\ConstantesString;
 use App\Filament\Components\Actions\ActionsConstructor;
+use App\Filament\Components\Actions\ActionsConstructorIncidencias;
 use App\Filament\Components\Filters\Admin\EnumsSelectFilters;
 use App\Filament\Components\Filters\Admin\EnumsTernaryFilters;
 use App\Filament\Components\Filters\Admin\OrganoContratacionFilter;
@@ -232,6 +233,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
     public function getTableRecordActions(): ActionGroup
     {
         $actions = new ActionsConstructor;
+        $actionsIncidencias = new ActionsConstructorIncidencias();
 
 
         match ($this) {
@@ -239,7 +241,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_ANUNCIO => $array = [
                 $actions->getVerExpediente(),
                 $actions->getEnlacePlacsp(),
-                $actions->getCrearIncidencia(self::PLACSP_ANUNCIO),
+                $actionsIncidencias->getCrearIncidencia(self::PLACSP_ANUNCIO),
             ],
 
             self::PLACSP_CONDICION_ESPECIAL_EJECUCION,
@@ -259,7 +261,7 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 //                $actions->getViewAction(),
                 $actions->getVerExpediente(),
                 $actions->getEnlacePlacsp(),
-                $actions->getCrearIncidencia(self::PLACSP_CONTRATO_MAYOR),
+                $actionsIncidencias->getCrearIncidencia(self::PLACSP_CONTRATO_MAYOR),
             ],
 
             self::PLACSP_RESPUESTAS_INCIDENCIA => $array = [
@@ -269,10 +271,10 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 
             self::PLACSP_INCIDENCIA => $array = [
 //                $actions->getCreateAction(),
-                $actions->getViewIncidencia_ViewAction_Infolist(),
-                $actions->getViewIncidencia_Action_Infolist(),
-//                $actions->getViewIncidencia_Action_SimpleInfolist(),
-                $actions->getCrearRespuestaIncidencia(),
+                $actionsIncidencias->getViewIncidencia_ViewAction_Infolist(),
+                $actionsIncidencias->getViewIncidencia_Action_Infolist(),
+//                $actionsIncidencias->getViewIncidencia_Action_SimpleInfolist(),
+                $actionsIncidencias->getCrearRespuestaIncidencia(),
             ],
 
             self::PLACSP_DOCUMENTO => $array = [

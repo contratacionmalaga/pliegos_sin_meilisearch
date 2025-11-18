@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\Pliegos\EstadoIncidenciaEnum;
+use App\Enums\Incidencias\EstadoIncidenciaEnum;
 use App\Models\PLACSP\Anuncio;
 use App\Models\PLACSP\ContratoMayor;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -293,6 +293,14 @@ class Incidencia extends Model
             }
         );
 
+
+    }
+
+    public function scopeBuscarPorTipo($query, $value)
+    {
+
+        return $query
+                    ->whereRaw('LOWER(incidenciable_type) LIKE ?', ['%' . strtolower($value) . '%']);
 
     }
 

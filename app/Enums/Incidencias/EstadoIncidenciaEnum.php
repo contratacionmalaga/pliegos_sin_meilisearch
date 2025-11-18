@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums\Pliegos;
+namespace App\Enums\Incidencias;
 
 use Filament\Support\Colors\Color;
 use Filament\Support\Contracts\HasColor;

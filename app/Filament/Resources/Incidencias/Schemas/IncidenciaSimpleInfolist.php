@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Incidencias\Schemas;
 
 use App\DTOs\SectionConfig;
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Components\Infolists\MiTextEntry;
 use App\Filament\Components\Schemas\MiSchema;
 use App\Filament\Components\Schemas\MiSectionSchema;
@@ -49,7 +50,7 @@ class IncidenciaSimpleInfolist
     ): Section
     {
 
-        $description = MiNavigationItem::PLACSP_INCIDENCIA->getInfolistDescription();
+        $description = MiNavigationItemIncidencias::PLACSP_INCIDENCIA->getInfolistDescription();
         $icon = 'heroicon-o-information-circle';
 
         return $misectionSchema

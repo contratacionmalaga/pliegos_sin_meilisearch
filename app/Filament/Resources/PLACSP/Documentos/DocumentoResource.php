@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PLACSP\Documentos;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Abstracts\BaseResourceNavigationItem;
 use App\Filament\Resources\PLACSP\Documentos\Pages\ListDocumentos;
 use App\Filament\Resources\PLACSP\Documentos\Pages\ViewDocumento;
@@ -14,7 +15,7 @@ class DocumentoResource extends BaseResourceNavigationItem
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_DOCUMENTO;
+    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_DOCUMENTO;
 
     /**
      * @return array|PageRegistration[]

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PLACSP\Modificaciones\Pages;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Abstracts\BaseListRecords;
 use App\Filament\Resources\PLACSP\Modificaciones\Tables\ModificacionTable;
 use Exception;
@@ -13,7 +14,7 @@ class ListModificaciones extends BaseListRecords
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_MODIFICACION;
+    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_MODIFICACION;
 
     /**
      * @throws Exception

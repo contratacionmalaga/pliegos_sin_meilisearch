@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Incidencias\Tables;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Enums\NavigationMenus\MiRelationManager;
 use App\Filament\Components\Tables\MiTable;
 use App\Filament\Components\Tables\MiTextColumn;
@@ -40,7 +41,7 @@ readonly class IncidenciaTable
         // Determinamos el tipo de configuración que se debe aplicar
         $configurableItem = $isRelationManager
             ? MiRelationManager::PLACSP_INCIDENCIA
-            : MiNavigationItem::PLACSP_INCIDENCIA;
+            : MiNavigationItemIncidencias::PLACSP_INCIDENCIA;
 
         // Usamos la función pública `getTable` para obtener la tabla configurada
         return $this->miTable->getTable($table, $configurableItem)
@@ -66,10 +67,10 @@ readonly class IncidenciaTable
                                 $query->BuscarPorDescripcion($search);
                             }),
                         $this->miTextColumn->getMultilineaTextColumn('incidenciable_tipo', 'Tipo MODELO')
-                            ->searchable(false),
-        //                            ->searchable(query: function ($query, $search): void {
-        //                                $query->BuscarPorIdentificador($search);
-        //                            }),
+//                            ->searchable(true),
+                                    ->searchable(query: function ($query, $search): void {
+                                        $query->BuscarPorTipo($search);
+                                    }),
 
 ////                TextColumn::make('incidenciable_identificador')
 //                        $this->miTextColumn->getMultilineaTextColumn('incidenciable_identificador', 'Identificador Mod.')

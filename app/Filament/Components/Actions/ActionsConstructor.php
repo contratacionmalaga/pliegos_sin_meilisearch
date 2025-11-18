@@ -5,6 +5,7 @@ namespace App\Filament\Components\Actions;
 use App\Enums\Acciones\MiAccionEnum;
 use App\Enums\Constantes\ConstantesString;
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Resources\Incidencias\Schemas\IncidenciaForm;
 use App\Filament\Resources\Incidencias\Schemas\IncidenciaInfolist;
 use App\Filament\Resources\Incidencias\Schemas\IncidenciaSimpleInfolist;
@@ -204,7 +205,7 @@ class ActionsConstructor
 //            ->authorize(auth()->user()->esSuperAdmin());
 //    }
 
-    public function getGoToListAction(MiNavigationItem $miNavigationItem): Action
+    public function getGoToListAction(MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem): Action
     {
 
         /*

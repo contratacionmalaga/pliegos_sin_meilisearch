@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PLACSP\Documentos\Pages;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Abstracts\BaseListRecords;
 use App\Filament\Resources\PLACSP\Documentos\Tables\DocumentoTable;
 use Exception;
@@ -13,7 +14,7 @@ class ListDocumentos extends BaseListRecords
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_DOCUMENTO;
+    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_DOCUMENTO;
 
     /**
      * @throws Exception

@@ -3,6 +3,7 @@
 namespace App\Filament\Abstracts\Traits;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 trait ComunTrait
 {
-    protected static MiNavigationItem $miNavigationItem;
+    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem;
 
     /**
      * Devuelve el Label de MiNavigationItem

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PLACSP\CriteriosAdjudicacion\Pages;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Enums\Placsp\PLACSP_AwardingCriteriaCode;
 use App\Filament\Abstracts\BaseListRecords;
 use App\Filament\Resources\PLACSP\CriteriosAdjudicacion\Tables\CriterioAdjudicacionTable;
@@ -17,7 +18,7 @@ class ListCriteriosAdjudicacion extends BaseListRecords
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_CRITERIO_ADJUDICACION;
+    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_CRITERIO_ADJUDICACION;
 
     /**
      * @throws Exception

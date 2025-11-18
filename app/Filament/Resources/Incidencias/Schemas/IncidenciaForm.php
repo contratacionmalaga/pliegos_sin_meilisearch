@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Incidencias\Schemas;
 
 use App\DTOs\SectionConfig;
-use App\Enums\Pliegos\EstadoIncidenciaEnum;
+use App\Enums\Incidencias\EstadoIncidenciaEnum;
 use App\Filament\Components\Forms\MiRichEditor;
 use App\Filament\Components\Forms\MiSelect;
 use App\Filament\Components\Forms\MiTextInput;

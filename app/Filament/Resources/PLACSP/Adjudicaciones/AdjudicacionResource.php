@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PLACSP\Adjudicaciones;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Abstracts\BaseResourceNavigationItem;
 use App\Filament\Resources\PLACSP\Adjudicaciones\Pages\ListAdjudicaciones;
 use App\Filament\RelationManagers\AnunciosRelationManager;
@@ -15,7 +16,7 @@ class AdjudicacionResource extends BaseResourceNavigationItem
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_ADJUDICACION;
+    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_ADJUDICACION;
 
     /**
      * @return array|PageRegistration[]

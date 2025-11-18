@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PLACSP\Modificaciones\Pages;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Abstracts\BaseViewRecord;
 use App\Filament\Resources\PLACSP\Modificaciones\Schemas\ModificacionInfolist;
 use Filament\Schemas\Schema;
@@ -12,7 +13,7 @@ class ViewModificacion extends BaseViewRecord
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_MODIFICACION;
+    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_MODIFICACION;
 
 
     /**

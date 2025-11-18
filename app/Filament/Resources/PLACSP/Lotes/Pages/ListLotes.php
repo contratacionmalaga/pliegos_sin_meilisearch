@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PLACSP\Lotes\Pages;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Abstracts\BaseListRecords;
 use App\Filament\Resources\PLACSP\Lotes\Tables\LoteTable;
 use Exception;
@@ -13,7 +14,7 @@ class ListLotes extends BaseListRecords
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_LOTE;
+    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_LOTE;
 
     /**
      * @throws Exception

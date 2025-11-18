@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PLACSP\Anuncios\Pages;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Abstracts\BaseListRecords;
 use App\Filament\Resources\PLACSP\Anuncios\Tables\AnuncioTable;
 use Exception;
@@ -13,7 +14,7 @@ class ListAnuncios extends BaseListRecords
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_ANUNCIO;
+    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_ANUNCIO;
 
     /**
      * @throws Exception
