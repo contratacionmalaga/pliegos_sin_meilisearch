@@ -100,7 +100,7 @@ enum MiNavigationItem: string implements MiNavigationItemContract
     {
         return array_filter(
             self::cases(),
-            static fn (self $item) => $item->isNavigationItemPermisible()
+            static fn(self $item) => $item->isNavigationItemPermisible()
         );
     }
 
@@ -127,8 +127,8 @@ enum MiNavigationItem: string implements MiNavigationItemContract
     public function getFilters(): array
     {
 
-//        $organismoFilter = new OrganismoFilter();
-//        $entidadFilter = new EntidadFilter();
+        //        $organismoFilter = new OrganismoFilter();
+        //        $entidadFilter = new EntidadFilter();
 
         $enumsSelectFilters = new EnumsSelectFilters();
         $enumsTernaryFilters = new EnumsTernaryFilters();
@@ -140,28 +140,28 @@ enum MiNavigationItem: string implements MiNavigationItemContract
         return match ($this) {
 
             self::PLACSP_CONTRATO_MAYOR => [
-                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion',true),
+                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion', true),
                 $enumsSelectFilters->getContractFolderStatusCodeSelectFilter(),
                 $enumsSelectFilters->getTypeCodeSelectFilter(),
                 $enumsSelectFilters->getProcedureCodeSelectFilter(),
-//                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
+                //                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
             ],
 
             self::PLACSP_ADJUDICACION => [
-                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion',true),
+                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion', true),
                 $enumsSelectFilters->getTypeCodeSelectFilter(),
                 $enumsSelectFilters->getProcedureCodeSelectFilter(),
                 $enumsSelectFilters->getResultCodeSelectFilter(),
                 $enumsTernaryFilters->getPymeTernaryFilter(),
-//                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
+                //                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
             ],
 
             self::PLACSP_MODIFICACION => [
                 $enumsSelectFilters->getContractFolderStatusCodeSelectFilter(),
                 $enumsSelectFilters->getTypeCodeSelectFilter(),
                 $enumsSelectFilters->getProcedureCodeSelectFilter(),
-                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion',true),
-//                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
+                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion', true),
+                //                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
             ],
 
             self::PLACSP_ANUNCIO => [
@@ -169,9 +169,9 @@ enum MiNavigationItem: string implements MiNavigationItemContract
                 $enumsSelectFilters->getContractFolderStatusCodeSelectFilter(),
                 $enumsSelectFilters->getTypeCodeSelectFilter(),
                 $enumsSelectFilters->getProcedureCodeSelectFilter(),
-                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion',true),
+                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion', true),
                 $miDateRangeFilter->getDateRangeFilterByIssueDate(),
-//                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
+                //                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
             ],
 
             self::PLACSP_DOCUMENTO => [
@@ -179,18 +179,18 @@ enum MiNavigationItem: string implements MiNavigationItemContract
                 $enumsSelectFilters->getContractFolderStatusCodeSelectFilter(),
                 $enumsSelectFilters->getTypeCodeSelectFilter(),
                 $enumsSelectFilters->getProcedureCodeSelectFilter(),
-                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion',true),
-//                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
+                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion', true),
+                //                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
             ],
 
             self::PLACSP_CRITERIO_ADJUDICACION => [
                 $enumsSelectFilters->getTipoCriterio(),
-//                $enumsSelectFilters->getSubtipoCriterio(),
+                //                $enumsSelectFilters->getSubtipoCriterio(),
                 $enumsSelectFilters->getContractFolderStatusCodeSelectFilter(),
                 $enumsSelectFilters->getTypeCodeSelectFilter(),
                 $enumsSelectFilters->getProcedureCodeSelectFilter(),
-                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion',true),
-//                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
+                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion', true),
+                //                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
             ],
 
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => [
@@ -198,8 +198,8 @@ enum MiNavigationItem: string implements MiNavigationItemContract
                 $enumsSelectFilters->getContractFolderStatusCodeSelectFilter(),
                 $enumsSelectFilters->getTypeCodeSelectFilter(),
                 $enumsSelectFilters->getProcedureCodeSelectFilter(),
-                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion',true),
-//                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
+                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion', true),
+                //                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
             ],
 
             self::PLACSP_CPV,
@@ -208,13 +208,11 @@ enum MiNavigationItem: string implements MiNavigationItemContract
                 $enumsSelectFilters->getContractFolderStatusCodeSelectFilter(),
                 $enumsSelectFilters->getTypeCodeSelectFilter(),
                 $enumsSelectFilters->getProcedureCodeSelectFilter(),
-                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion',true),
-//                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
+                $organoContratacionFilter->getOrganoContratacionSelectFilter('id_plataforma_organo_contratacion', true),
+                //                $miDateRangeFilter->getDateRangeFilterByUpdaded(),
             ],
 
-            default => [
-
-            ]
+            default => []
         };
     }
 
@@ -243,14 +241,13 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             self::PLACSP_ANUNCIO => $array = [
                 $actions->getVerExpediente(),
                 $actions->getEnlacePlacsp(),
-                $actionsIncidencias->getCrearIncidencia(self::PLACSP_ANUNCIO),
             ],
 
             self::PLACSP_CONDICION_ESPECIAL_EJECUCION,
             self::PLACSP_CONSULTA_PRELIMINAR_MERCADO,
             self::PLACSP_CPV,
             self::PLACSP_CRITERIO_ADJUDICACION,
-//            self::PLACSP_CONTRATO_MAYOR,
+            //            self::PLACSP_CONTRATO_MAYOR,
             self::PLACSP_LOTE,
             self::PLACSP_ADJUDICACION,
             self::PLACSP_MODIFICACION,
@@ -260,24 +257,23 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             ],
 
             self::PLACSP_CONTRATO_MAYOR => $array = [
-//                $actions->getViewAction(),
+                //                $actions->getViewAction(),
                 $actions->getVerExpediente(),
                 $actions->getEnlacePlacsp(),
-                $actionsIncidencias->getCrearIncidencia(self::PLACSP_CONTRATO_MAYOR),
             ],
 
-//             self::PLACSP_RESPUESTAS_INCIDENCIA => $array = [
-// //                $actions->getCreateAction(),
-//                 $actions->getViewAction(),
-//             ],
+            //             self::PLACSP_RESPUESTAS_INCIDENCIA => $array = [
+            // //                $actions->getCreateAction(),
+            //                 $actions->getViewAction(),
+            //             ],
 
-//             self::PLACSP_INCIDENCIA => $array = [
-// //                $actions->getCreateAction(),
-//                 $actionsIncidencias->getViewIncidencia_ViewAction_Infolist(),
-//                 $actionsIncidencias->getViewIncidencia_Action_Infolist(),
-// //                $actionsIncidencias->getViewIncidencia_Action_SimpleInfolist(),
-//                 $actionsIncidencias->getCrearRespuestaIncidencia(),
-//             ],
+            //             self::PLACSP_INCIDENCIA => $array = [
+            // //                $actions->getCreateAction(),
+            //                 $actionsIncidencias->getViewIncidencia_ViewAction_Infolist(),
+            //                 $actionsIncidencias->getViewIncidencia_Action_Infolist(),
+            // //                $actionsIncidencias->getViewIncidencia_Action_SimpleInfolist(),
+            //                 $actionsIncidencias->getCrearRespuestaIncidencia(),
+            //             ],
 
             self::PLACSP_DOCUMENTO => $array = [
                 $actions->getEnlaceDocumento(),
@@ -290,6 +286,10 @@ enum MiNavigationItem: string implements MiNavigationItemContract
 
             ],
         };
+
+        if (in_array(\App\Traits\HasIncidencias::class, class_uses_recursive($this->getModel()))) {
+            $array[] = $actionsIncidencias->getCrearIncidencia($this);
+        }
 
         return ActionGroup::make(array_merge($array))
             ->tooltip(ConstantesString::ACCIONES_DIPONIBLES->value)
@@ -317,9 +317,7 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             self::PLACSP_CONTRATO_MAYOR,
             self::PLACSP_LOTE,
             self::PLACSP_MODIFICACION,
-            self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => [
-
-            ],
+            self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => [],
 
             default => [
                 $constructor->getEditAction(),
@@ -337,20 +335,17 @@ enum MiNavigationItem: string implements MiNavigationItemContract
 
         match ($this) {
 
-//             self::PLACSP_RESPUESTAS_INCIDENCIA => $acciones = [
-// //                $actionsConstructor->getCreateAction(),
-//             ],
+            //             self::PLACSP_RESPUESTAS_INCIDENCIA => $acciones = [
+            // //                $actionsConstructor->getCreateAction(),
+            //             ],
 
-//             self::PLACSP_INCIDENCIA => $acciones = [
-// //                $actionsConstructor->getCreateAction(),
-//             ],
+            //             self::PLACSP_INCIDENCIA => $acciones = [
+            // //                $actionsConstructor->getCreateAction(),
+            //             ],
 
             default =>
 
-                $acciones = [
-
-                ],
-
+            $acciones = [],
         };
 
         return ActionGroup::make(array_merge($acciones))
@@ -437,7 +432,7 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             self::PLACSP_ADJUDICACION => Adjudicacion::class,
             self::PLACSP_ANUNCIO => Anuncio::class,
             self::PLACSP_CONDICION_ESPECIAL_EJECUCION => CondicionEspecialEjecucion::class,
-//            self::PLACSP_CONSULTA_PRELIMINAR_MERCADO => ConsultaPreliminarMercado::class,
+            //            self::PLACSP_CONSULTA_PRELIMINAR_MERCADO => ConsultaPreliminarMercado::class,
             self::PLACSP_CPV => Cpv::class,
             self::PLACSP_CRITERIO_ADJUDICACION => CriterioAdjudicacion::class,
             self::PLACSP_DOCUMENTO => Documento::class,
@@ -621,7 +616,7 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             self::PLACSP_ADJUDICACION => 'Adjudicaciones',
             self::PLACSP_ANUNCIO => 'Anuncios publicados',
             self::PLACSP_CONDICION_ESPECIAL_EJECUCION => 'Condiciones de ejecución',
-//            self::PLACSP_CONSULTA_PRELIMINAR_MERCADO => 'Consultas de mercado',
+            //            self::PLACSP_CONSULTA_PRELIMINAR_MERCADO => 'Consultas de mercado',
             self::PLACSP_CPV => 'Códigos CPV',
             self::PLACSP_CRITERIO_ADJUDICACION => 'Criterios de adjudicación',
             self::PLACSP_DOCUMENTO => 'Documentos',
@@ -633,7 +628,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             // self::PLACSP_RESPUESTAS_INCIDENCIA => 'Respuestas a Incidencias',
 
             default => 'getLabel - no implementado'
-
         };
     }
 
@@ -734,7 +728,7 @@ enum MiNavigationItem: string implements MiNavigationItemContract
     /**
      * @throws Exception
      */
-    public static function getMiNavigationItemFromMiRelationManager (MiRelationManager $miRelationManager): MiNavigationItem
+    public static function getMiNavigationItemFromMiRelationManager(MiRelationManager $miRelationManager): MiNavigationItem
     {
         return match ($miRelationManager) {
 
@@ -756,7 +750,7 @@ enum MiNavigationItem: string implements MiNavigationItemContract
 
     public function getTitle(Model $record): string|Htmlable
     {
-        return match($this) {
+        return match ($this) {
             self::PLACSP_CONSULTA_PRELIMINAR_MERCADO => 'Consulta #' . $record->getAttribute('preliminary_market_consultation_id'),
             default => $this->getLabel(),
         };
