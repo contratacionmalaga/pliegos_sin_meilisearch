@@ -14,7 +14,7 @@ class ListLotes extends BaseListRecords
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_LOTE;
+    protected static \App\Contracts\MiNavigationItemContract $miNavigationItem = MiNavigationItem::PLACSP_LOTE;
 
     /**
      * @throws Exception

@@ -49,7 +49,9 @@ use Illuminate\Database\Eloquent\Model;
 use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 use phpDocumentor\Reflection\Types\Self_;
 
-enum MiNavigationItemIncidencias: string implements HasColor, HasIcon, HasLabel
+use App\Contracts\MiNavigationItemContract;
+
+enum MiNavigationItemIncidencias: string implements MiNavigationItemContract, HasColor, HasIcon, HasLabel
 {
 
 

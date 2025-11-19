@@ -18,7 +18,7 @@ class ListCriteriosAdjudicacion extends BaseListRecords
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_CRITERIO_ADJUDICACION;
+    protected static \App\Contracts\MiNavigationItemContract $miNavigationItem = MiNavigationItem::PLACSP_CRITERIO_ADJUDICACION;
 
     /**
      * @throws Exception

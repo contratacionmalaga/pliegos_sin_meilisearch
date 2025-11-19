@@ -14,7 +14,7 @@ class ListModificaciones extends BaseListRecords
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_MODIFICACION;
+    protected static \App\Contracts\MiNavigationItemContract $miNavigationItem = MiNavigationItem::PLACSP_MODIFICACION;
 
     /**
      * @throws Exception

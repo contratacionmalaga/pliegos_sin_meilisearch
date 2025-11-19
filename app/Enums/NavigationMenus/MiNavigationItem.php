@@ -50,7 +50,9 @@ use Illuminate\Database\Eloquent\Model;
 use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 use phpDocumentor\Reflection\Types\Self_;
 
-enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
+use App\Contracts\MiNavigationItemContract;
+
+enum MiNavigationItem: string implements MiNavigationItemContract, HasColor, HasIcon, HasLabel
 {
 
 
@@ -67,8 +69,8 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
     case PLACSP_LOTE = 'lote';
     case PLACSP_MODIFICACION = 'modificacion';
     case PLACSP_REQUISITO_PREVIO_PARTICIPACION = 'requisito-previo-participacion';
-    case PLACSP_INCIDENCIA = 'incidencia';
-    case PLACSP_RESPUESTAS_INCIDENCIA = 'respuestas-incidencia';
+    // case PLACSP_INCIDENCIA = 'incidencia';
+    // case PLACSP_RESPUESTAS_INCIDENCIA = 'respuestas-incidencia';
 
 
     /**
@@ -264,18 +266,18 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
                 $actionsIncidencias->getCrearIncidencia(self::PLACSP_CONTRATO_MAYOR),
             ],
 
-            self::PLACSP_RESPUESTAS_INCIDENCIA => $array = [
-//                $actions->getCreateAction(),
-                $actions->getViewAction(),
-            ],
+//             self::PLACSP_RESPUESTAS_INCIDENCIA => $array = [
+// //                $actions->getCreateAction(),
+//                 $actions->getViewAction(),
+//             ],
 
-            self::PLACSP_INCIDENCIA => $array = [
-//                $actions->getCreateAction(),
-                $actionsIncidencias->getViewIncidencia_ViewAction_Infolist(),
-                $actionsIncidencias->getViewIncidencia_Action_Infolist(),
-//                $actionsIncidencias->getViewIncidencia_Action_SimpleInfolist(),
-                $actionsIncidencias->getCrearRespuestaIncidencia(),
-            ],
+//             self::PLACSP_INCIDENCIA => $array = [
+// //                $actions->getCreateAction(),
+//                 $actionsIncidencias->getViewIncidencia_ViewAction_Infolist(),
+//                 $actionsIncidencias->getViewIncidencia_Action_Infolist(),
+// //                $actionsIncidencias->getViewIncidencia_Action_SimpleInfolist(),
+//                 $actionsIncidencias->getCrearRespuestaIncidencia(),
+//             ],
 
             self::PLACSP_DOCUMENTO => $array = [
                 $actions->getEnlaceDocumento(),
@@ -335,13 +337,13 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
 
         match ($this) {
 
-            self::PLACSP_RESPUESTAS_INCIDENCIA => $acciones = [
-//                $actionsConstructor->getCreateAction(),
-            ],
+//             self::PLACSP_RESPUESTAS_INCIDENCIA => $acciones = [
+// //                $actionsConstructor->getCreateAction(),
+//             ],
 
-            self::PLACSP_INCIDENCIA => $acciones = [
-//                $actionsConstructor->getCreateAction(),
-            ],
+//             self::PLACSP_INCIDENCIA => $acciones = [
+// //                $actionsConstructor->getCreateAction(),
+//             ],
 
             default =>
 
@@ -404,8 +406,8 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE => 'heroicon-o-puzzle-piece',
             self::PLACSP_MODIFICACION => 'heroicon-o-pencil-square',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'heroicon-o-user-plus',
-            self::PLACSP_INCIDENCIA => 'heroicon-o-user-plus',
-            self::PLACSP_RESPUESTAS_INCIDENCIA => 'heroicon-o-user-plus',
+            // self::PLACSP_INCIDENCIA => 'heroicon-o-user-plus',
+            // self::PLACSP_RESPUESTAS_INCIDENCIA => 'heroicon-o-user-plus',
 
             default => 'heroicon-o-no-symbol'
         };
@@ -443,8 +445,8 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE => Lote::class,
             self::PLACSP_MODIFICACION => Modificacion::class,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => RequisitoPrevioParticipacion::class,
-            self::PLACSP_INCIDENCIA => Incidencia::class,
-            self::PLACSP_RESPUESTAS_INCIDENCIA => RespuestasIncidencia::class,
+            // self::PLACSP_INCIDENCIA => Incidencia::class,
+            // self::PLACSP_RESPUESTAS_INCIDENCIA => RespuestasIncidencia::class,
         };
     }
 
@@ -466,8 +468,8 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE => LoteResource::class,
             self::PLACSP_MODIFICACION => ModificacionResource::class,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => RequisitoPrevioParticipacionResource::class,
-            self::PLACSP_INCIDENCIA => IncidenciaResource::class,
-            self::PLACSP_RESPUESTAS_INCIDENCIA => RespuestasIncidenciaResource::class,
+            // self::PLACSP_INCIDENCIA => IncidenciaResource::class,
+            // self::PLACSP_RESPUESTAS_INCIDENCIA => RespuestasIncidenciaResource::class,
 
         };
     }
@@ -491,8 +493,8 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE => 'lotes',
             self::PLACSP_MODIFICACION => 'modificaciones',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'requisitos-previos-participacion',
-            self::PLACSP_INCIDENCIA => 'incidencias',
-            self::PLACSP_RESPUESTAS_INCIDENCIA => 'respuestas-incidencia',
+            // self::PLACSP_INCIDENCIA => 'incidencias',
+            // self::PLACSP_RESPUESTAS_INCIDENCIA => 'respuestas-incidencia',
 
             default => 'getSlug() - No implementado'
         };
@@ -601,8 +603,8 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_ANUNCIO => 'Información ampliada de un anuncio',
             self::PLACSP_DOCUMENTO => 'Información ampliada de un documento',
 
-            self::PLACSP_INCIDENCIA => 'Información ampliada de una incidencia',
-            self::PLACSP_RESPUESTAS_INCIDENCIA => 'Información ampliada de una respuesta a una incidencia',
+            // self::PLACSP_INCIDENCIA => 'Información ampliada de una incidencia',
+            // self::PLACSP_RESPUESTAS_INCIDENCIA => 'Información ampliada de una respuesta a una incidencia',
 
             default => 'getInfolistDescription - no implementado'
         };
@@ -627,8 +629,8 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE => 'Lotes',
             self::PLACSP_MODIFICACION => 'Modificaciones',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'Requisitos previos',
-            self::PLACSP_INCIDENCIA => 'Incidencias',
-            self::PLACSP_RESPUESTAS_INCIDENCIA => 'Respuestas a Incidencias',
+            // self::PLACSP_INCIDENCIA => 'Incidencias',
+            // self::PLACSP_RESPUESTAS_INCIDENCIA => 'Respuestas a Incidencias',
 
             default => 'getLabel - no implementado'
 
@@ -679,8 +681,8 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_LOTE => 59,
             self::PLACSP_MODIFICACION => 60,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 61,
-            self::PLACSP_INCIDENCIA => 62,
-            self::PLACSP_RESPUESTAS_INCIDENCIA => 63,
+            // self::PLACSP_INCIDENCIA => 62,
+            // self::PLACSP_RESPUESTAS_INCIDENCIA => 63,
 
         };
     }
@@ -722,8 +724,8 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             self::PLACSP_MODIFICACION,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => MiNavigationGroup::PLACSP->getLabel(),
 
-            self::PLACSP_RESPUESTAS_INCIDENCIA => null, // No se muestra en ningún grupo
-            self::PLACSP_INCIDENCIA => null, // No se muestra en ningún grupo
+            // self::PLACSP_RESPUESTAS_INCIDENCIA => null, // No se muestra en ningún grupo
+            // self::PLACSP_INCIDENCIA => null, // No se muestra en ningún grupo
             self::PLACSP_CONTRATO_MAYOR => null, // No se muestra en ningún grupo
 
         };
@@ -746,8 +748,8 @@ enum MiNavigationItem: string implements HasColor, HasIcon, HasLabel
             MiRelationManager::PLACSP_LOTE => self::PLACSP_LOTE,
             MiRelationManager::PLACSP_MODIFICACION => self::PLACSP_MODIFICACION,
             MiRelationManager::PLACSP_REQUISITO_PREVIO_PARTICIPACION => self::PLACSP_REQUISITO_PREVIO_PARTICIPACION,
-            MiRelationManager::PLACSP_INCIDENCIA => self::PLACSP_INCIDENCIA,
-            MiRelationManager::PLACSP_RESPUESTAS_INCIDENCIA => self::PLACSP_RESPUESTAS_INCIDENCIA,
+            // MiRelationManager::PLACSP_INCIDENCIA => self::PLACSP_INCIDENCIA,
+            // MiRelationManager::PLACSP_RESPUESTAS_INCIDENCIA => self::PLACSP_RESPUESTAS_INCIDENCIA,
 
         };
     }

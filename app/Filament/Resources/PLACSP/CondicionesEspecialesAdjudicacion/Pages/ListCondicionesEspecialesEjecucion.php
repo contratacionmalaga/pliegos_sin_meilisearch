@@ -19,7 +19,7 @@ class ListCondicionesEspecialesEjecucion extends BaseListRecords
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_CONDICION_ESPECIAL_EJECUCION;
+    protected static \App\Contracts\MiNavigationItemContract $miNavigationItem = MiNavigationItem::PLACSP_CONDICION_ESPECIAL_EJECUCION;
 
     /**
      * @throws Exception

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Components\Actions;
 
+use App\Contracts\MiNavigationItemContract;
 use App\Enums\Acciones\MiAccionEnum;
 use App\Enums\Constantes\ConstantesString;
 use App\Enums\NavigationMenus\MiNavigationItem;
@@ -36,7 +37,7 @@ use Livewire\Livewire;
 class ActionsConstructor
 {
 
-    public function getCrearIncidencia(MiNavigationItem $miNavigationItem): Action
+    public function getCrearIncidencia(MiNavigationItemContract $miNavigationItem): Action
     {
 
 //        return Action::make(MiAccionEnum::VerExpediente->value)
@@ -137,7 +138,7 @@ class ActionsConstructor
             ->color(MiAccionEnum::VerExpediente->getColor())
 //            ->url(fn($record) => route('filament.admin.resources.expedientes.view', ['record' => $record->id_entry]))
             ->url(fn($record) => route('filament.admin.resources.contratos-mayores.view', ['record' => $record->id]))
-            ->visible(fn($record) => filled($record->id_entry));
+            ->visible(fn($record) => filled($record->id));
     }
 
     public function getEnlaceDocumento(): Action
@@ -205,7 +206,7 @@ class ActionsConstructor
 //            ->authorize(auth()->user()->esSuperAdmin());
 //    }
 
-    public function getGoToListAction(MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem): Action
+    public function getGoToListAction(MiNavigationItemContract $miNavigationItem): Action
     {
 
         /*
@@ -403,7 +404,7 @@ class ActionsConstructor
             ->authorize(!auth()->user()->esSuperAdmin());
     }
 
-    public function getBulkActionDelete(MiNavigationItem $miNavigationItem): DeleteBulkAction
+    public function getBulkActionDelete(MiNavigationItemContract $miNavigationItem): DeleteBulkAction
     {
 
         return DeleteBulkAction::make(MiAccionEnum::BulkActionDelete->name)
@@ -416,7 +417,7 @@ class ActionsConstructor
             ->authorize(auth()->user()->esSuperAdmin());
     }
 
-    public function getBulkActionForceDelete(MiNavigationItem $miNavigationItem): ForceDeleteBulkAction
+    public function getBulkActionForceDelete(MiNavigationItemContract $miNavigationItem): ForceDeleteBulkAction
     {
 
         return ForceDeleteBulkAction::make(MiAccionEnum::BulkActionForceDelete->name)
@@ -429,7 +430,7 @@ class ActionsConstructor
             ->authorize(auth()->user()->esSuperAdmin());
     }
 
-    public function getBulkActionRestore(MiNavigationItem $miNavigationItem): RestoreBulkAction
+    public function getBulkActionRestore(MiNavigationItemContract $miNavigationItem): RestoreBulkAction
     {
 
         return RestoreBulkAction::make(MiAccionEnum::BulkActionRestore->name)

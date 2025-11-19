@@ -23,7 +23,7 @@ class ContratoMayorResource extends BaseResourceNavigationItem
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_CONTRATO_MAYOR;
+    protected static \App\Contracts\MiNavigationItemContract $miNavigationItem = MiNavigationItem::PLACSP_CONTRATO_MAYOR;
 
     public static function getPages(): array
     {

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Abstracts\Traits;
 
+use App\Contracts\MiNavigationItemContract;
 use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use Illuminate\Contracts\Support\Htmlable;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 trait ComunTrait
 {
-    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem;
+    protected static MiNavigationItemContract $miNavigationItem;
 
     /**
      * Devuelve el Label de MiNavigationItem

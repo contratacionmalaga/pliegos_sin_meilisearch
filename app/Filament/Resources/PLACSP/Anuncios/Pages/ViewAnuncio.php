@@ -12,7 +12,7 @@ class ViewAnuncio extends BaseViewRecord
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_ANUNCIO;
+    protected static \App\Contracts\MiNavigationItemContract $miNavigationItem = MiNavigationItem::PLACSP_ANUNCIO;
 
 
     /**

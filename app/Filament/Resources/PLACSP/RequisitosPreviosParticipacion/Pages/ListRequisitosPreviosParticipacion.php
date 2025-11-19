@@ -14,7 +14,7 @@ class ListRequisitosPreviosParticipacion extends BaseListRecords
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_REQUISITO_PREVIO_PARTICIPACION;
+    protected static \App\Contracts\MiNavigationItemContract $miNavigationItem = MiNavigationItem::PLACSP_REQUISITO_PREVIO_PARTICIPACION;
 
     /**
      * @throws Exception

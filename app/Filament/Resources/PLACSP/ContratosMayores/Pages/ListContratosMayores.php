@@ -15,7 +15,7 @@ class ListContratosMayores extends BaseListRecords
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_CONTRATO_MAYOR;
+    protected static \App\Contracts\MiNavigationItemContract $miNavigationItem = MiNavigationItem::PLACSP_CONTRATO_MAYOR;
 
     /**
      * @throws Exception

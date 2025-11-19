@@ -13,7 +13,7 @@ class ViewIncidencia extends BaseViewRecord
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItemIncidencias::PLACSP_INCIDENCIA;
+    protected static \App\Contracts\MiNavigationItemContract $miNavigationItem = MiNavigationItemIncidencias::PLACSP_INCIDENCIA;
 
 
     /**

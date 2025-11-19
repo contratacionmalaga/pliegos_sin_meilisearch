@@ -2,6 +2,7 @@
 
 namespace App\Filament\Abstracts;
 
+use App\Contracts\MiNavigationItemContract;
 use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use Filament\Panel;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseResourceNavigationItem extends Resource
 {
-    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem;
+    protected static MiNavigationItemContract $miNavigationItem;
 
     public static function getNavigationSort(): int
     {

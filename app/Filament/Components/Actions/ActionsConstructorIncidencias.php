@@ -2,6 +2,7 @@
 
 namespace App\Filament\Components\Actions;
 
+use App\Contracts\MiNavigationItemContract;
 use App\Enums\Acciones\MiAccionEnum;
 use App\Enums\Constantes\ConstantesString;
 use App\Enums\NavigationMenus\MiNavigationItem;
@@ -36,7 +37,7 @@ use Livewire\Livewire;
 class ActionsConstructorIncidencias
 {
 
-    public function getCrearIncidencia(MiNavigationItem $miNavigationItem): Action
+    public function getCrearIncidencia(MiNavigationItemContract $miNavigationItem): Action
     {
 
 //        return Action::make(MiAccionEnum::VerExpediente->value)
@@ -128,7 +129,7 @@ class ActionsConstructorIncidencias
 
 
 
-    public function getGoToListAction(MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem): Action
+    public function getGoToListAction(MiNavigationItemContract $miNavigationItem): Action
     {
 
         /*

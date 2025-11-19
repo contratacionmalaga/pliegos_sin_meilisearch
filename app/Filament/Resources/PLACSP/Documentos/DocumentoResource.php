@@ -15,7 +15,7 @@ class DocumentoResource extends BaseResourceNavigationItem
     /**
      * @var MiNavigationItem
      */
-    protected static MiNavigationItem | MiNavigationItemIncidencias $miNavigationItem = MiNavigationItem::PLACSP_DOCUMENTO;
+    protected static \App\Contracts\MiNavigationItemContract $miNavigationItem = MiNavigationItem::PLACSP_DOCUMENTO;
 
     /**
      * @return array|PageRegistration[]
