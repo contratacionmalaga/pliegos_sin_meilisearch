@@ -52,7 +52,7 @@ use phpDocumentor\Reflection\Types\Self_;
 
 use App\Contracts\MiNavigationItemContract;
 
-enum MiNavigationItem: string implements MiNavigationItemContract, HasColor, HasIcon, HasLabel
+enum MiNavigationItem: string implements MiNavigationItemContract
 {
 
 
