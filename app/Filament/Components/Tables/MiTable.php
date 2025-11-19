@@ -2,6 +2,8 @@
 
 namespace App\Filament\Components\Tables;
 
+use App\Contracts\MiNavigationItemContract;
+use App\Contracts\MiRelationManagerContract;
 use App\DTOs\TableConfig;
 use Exception;
 use Filament\Actions\Action;
@@ -16,7 +18,7 @@ class MiTable
      *
      * @throws Exception
      */
-    public function getTable(Table $table, $configurableItem): Table
+    public function getTable(Table $table, MiNavigationItemContract|MiRelationManagerContract $configurableItem): Table
     {
         // Creamos el TableConfig según el tipo de objeto
         $tableConfig = $this->createTableConfig($table, $configurableItem);
@@ -30,7 +32,7 @@ class MiTable
      *
      * @throws Exception
      */
-    private function createTableConfig(Table $table, $configurableItem): TableConfig
+    private function createTableConfig(Table $table, MiNavigationItemContract|MiRelationManagerContract $configurableItem): TableConfig
     {
         // Verificamos el número de registros en la tabla
         $n_registros = $table->getQuery()?->count() ?? 0;
@@ -82,7 +84,7 @@ class MiTable
             $miTable->filtersLayout($config->filterLayout);
             $miTable->filtersFormWidth(Width::TwoExtraLarge);
             $miTable->filtersTriggerAction(
-                fn (Action $action) => $action
+                fn(Action $action) => $action
                     ->button()
                     ->tooltip('Filtros aplicados sobre la tabla')
                     ->slideOver()

@@ -2,7 +2,9 @@
 
 namespace App\Filament\RelationManagers;
 
+use App\Contracts\MiRelationManagerContract;
 use App\Enums\NavigationMenus\MiRelationManager;
+use App\Enums\NavigationMenus\MiRelationManagerIncidencias;
 use App\Filament\Abstracts\BaseRelationManager;
 use App\Filament\Resources\RespuestasIncidencia\Schemas\RespuestasIncidenciaInfolist;
 use App\Filament\Resources\RespuestasIncidencia\Tables\RespuestasIncidenciaTable;
@@ -16,7 +18,7 @@ class RespuestasIncidenciaRelationManager extends BaseRelationManager
      * Utilizada dentro de la clase BaseRelationManager para heredar todas las propiedades
      *      que es base a este valor allí se calculan
      */
-    protected static MiRelationManager $miRelationManager = MiRelationManager::PLACSP_RESPUESTAS_INCIDENCIA;
+    protected static MiRelationManagerContract $miRelationManager = MiRelationManagerIncidencias::PLACSP_RESPUESTAS_INCIDENCIA;
 
     /**
      * @throws Exception

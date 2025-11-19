@@ -2,6 +2,7 @@
 
 namespace App\Filament\RelationManagers;
 
+use App\Contracts\MiRelationManagerContract;
 use App\Enums\NavigationMenus\MiRelationManager;
 use App\Filament\Abstracts\BaseRelationManager;
 use App\Filament\Resources\PLACSP\Modificaciones\Schemas\ModificacionInfolist;
@@ -16,7 +17,7 @@ class ModificacionesRelationManager extends BaseRelationManager
      * Utilizada dentro de la clase BaseRelationManager para heredar todas las propiedades
      *      que es base a este valor allí se calculan
      */
-    protected static MiRelationManager $miRelationManager = MiRelationManager::PLACSP_MODIFICACION;
+    protected static MiRelationManagerContract $miRelationManager = MiRelationManager::PLACSP_MODIFICACION;
 
     /**
      * @throws Exception

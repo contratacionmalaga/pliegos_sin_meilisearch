@@ -9,7 +9,7 @@ use App\Filament\Resources\Incidencias\Pages\ViewIncidencia;
 use App\Filament\Resources\RespuestasIncidencia\Pages\ListRespuestasIncidencia;
 use App\Filament\Resources\RespuestasIncidencia\Pages\ViewRespuestasIncidencia;
 use App\Filament\Resources\RespuestasIncidencia\Schemas\RespuestasIncidenciaForm;
-
+use App\Contracts\MiNavigationItemContract;
 
 use Filament\Schemas\Schema;
 
@@ -19,7 +19,7 @@ class RespuestasIncidenciaResource extends BaseResourceNavigationItem
     /**
      * @var MiNavigationItem
      */
-    protected static \App\Contracts\MiNavigationItemContract $miNavigationItem = MiNavigationItem::PLACSP_RESPUESTAS_INCIDENCIA;
+    protected static MiNavigationItemContract $miNavigationItem = MiNavigationItemIncidencias::PLACSP_RESPUESTAS_INCIDENCIA;
 
     public static function getPages(): array
     {

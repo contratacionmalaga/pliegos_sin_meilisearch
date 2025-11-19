@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Incidencias\Tables;
 use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Enums\NavigationMenus\MiRelationManager;
+use App\Enums\NavigationMenus\MiRelationManagerIncidencias;
 use App\Filament\Components\Tables\MiTable;
 use App\Filament\Components\Tables\MiTextColumn;
 use App\Models\Incidencia;
@@ -40,7 +41,7 @@ readonly class IncidenciaTable
 
         // Determinamos el tipo de configuración que se debe aplicar
         $configurableItem = $isRelationManager
-            ? MiRelationManager::PLACSP_INCIDENCIA
+            ? MiRelationManagerIncidencias::PLACSP_INCIDENCIA
             : MiNavigationItemIncidencias::PLACSP_INCIDENCIA;
 
         // Usamos la función pública `getTable` para obtener la tabla configurada

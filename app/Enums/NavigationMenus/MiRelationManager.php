@@ -11,12 +11,13 @@ use Filament\Support\Colors\Color;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
+use App\Contracts\MiRelationManagerContract;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkAction;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\Filter;
 
-enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
+enum MiRelationManager: string implements MiRelationManagerContract
 {
 
 
@@ -30,8 +31,8 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
     case PLACSP_LOTE = 'lote';
     case PLACSP_MODIFICACION = 'modificacion';
     case PLACSP_REQUISITO_PREVIO_PARTICIPACION = 'requisito-previo-participacion';
-    case PLACSP_INCIDENCIA = 'incidencia';
-    case PLACSP_RESPUESTAS_INCIDENCIA = 'respuestas-incidencia';
+//    case PLACSP_INCIDENCIA = 'incidencia';
+//    case PLACSP_RESPUESTAS_INCIDENCIA = 'respuestas-incidencia';
 
 
     /**
@@ -50,20 +51,19 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
                 $miActiosConstructor->getEnlaceDocumento(),
             ],
 
-            self::PLACSP_INCIDENCIA =>
-            $acciones = [
-                $miActiosConstructor->getViewIncidencia_ViewAction_Infolist(),
-            ],
+            //            self::PLACSP_INCIDENCIA =>
+            //            $acciones = [
+            //                $miActiosConstructor->getViewIncidencia_ViewAction_Infolist(),
+            //            ],
 
 
             default =>
-                $acciones = [
-                ],
+            $acciones = [],
         };
 
         return ActionGroup::make($acciones)
-                ->color(Color::Purple)
-                ->tooltip(ConstantesString::ACCIONES_DIPONIBLES->value);
+            ->color(Color::Purple)
+            ->tooltip(ConstantesString::ACCIONES_DIPONIBLES->value);
     }
 
     /**
@@ -79,13 +79,11 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
         return match ($this) {
 
 
-//            self::ENTIDAD => [
-//                $enumsTernaryFilters->getActivoInactivoTernaryFilter()
-//            ],
+            //            self::ENTIDAD => [
+            //                $enumsTernaryFilters->getActivoInactivoTernaryFilter()
+            //            ],
 
-            default => [
-
-            ],
+            default => [],
         };
     }
 
@@ -95,9 +93,7 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
     public function getTableBulkActions(): array
     {
 
-        return [
-
-        ];
+        return [];
     }
 
     /**
@@ -127,7 +123,6 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
     {
 
         return MiNavigationItem::getMiNavigationItemFromMiRelationManager($this)->getLabel();
-
     }
 
 
@@ -141,7 +136,7 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
         return match ($this) {
 
 
-            self::PLACSP_INCIDENCIA => 'Número de indidencias',
+            //            self::PLACSP_INCIDENCIA => 'Número de indidencias',
             self::PLACSP_ADJUDICACION => 'Número de adjudicaciones',
             self::PLACSP_ANUNCIO => 'Número de anuncios publicados',
             self::PLACSP_CONDICION_ESPECIAL_EJECUCION => 'Número de condiciones especiales de ejecución',
@@ -163,7 +158,7 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
         // $badgeColor to either danger, gray, info, primary, success or warning
         return match ($this) {
 
-            self::PLACSP_INCIDENCIA,
+            //            self::PLACSP_INCIDENCIA,
             self::PLACSP_ADJUDICACION,
             self::PLACSP_ANUNCIO,
             self::PLACSP_CONDICION_ESPECIAL_EJECUCION,
@@ -176,7 +171,7 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'warning',
 
 
-//            self::ENTIDAD => 'primary',
+            //            self::ENTIDAD => 'primary',
         };
     }
 
@@ -198,8 +193,8 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
             self::PLACSP_LOTE => 'lotes',
             self::PLACSP_MODIFICACION => 'modificaciones',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'requisitos_previos_participacion',
-            self::PLACSP_RESPUESTAS_INCIDENCIA => 'respuestas',
-            self::PLACSP_INCIDENCIA => 'incidencias',
+            //            self::PLACSP_RESPUESTAS_INCIDENCIA => 'respuestas',
+            //            self::PLACSP_INCIDENCIA => 'incidencias',
         };
     }
 
@@ -208,9 +203,9 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
      */
     public function getTableDescription(): string
     {
-        return match($this) {
+        return match ($this) {
 
-//            self::ENTIDAD => 'Listado de las entidades asociadas al organismo',
+            //            self::ENTIDAD => 'Listado de las entidades asociadas al organismo',
 
             self::PLACSP_ADJUDICACION => 'Listado de adjudicaciones',
             self::PLACSP_ANUNCIO => 'Listados de anuncios publicados en la Plataforma de Contratación del Sector Público',
@@ -306,9 +301,7 @@ enum MiRelationManager: string implements HasIcon, HasColor, HasLabel
         match ($this) {
 
             default =>
-                $acciones = [
-
-                ]
+            $acciones = []
         };
 
         return ActionGroup::make($acciones)

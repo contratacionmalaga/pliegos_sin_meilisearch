@@ -11,7 +11,7 @@ use App\Filament\Resources\Incidencias\Pages\ViewIncidencia;
 use App\Filament\Resources\Incidencias\Pages\ViewIncidenciaPage;
 use App\Filament\Resources\Incidencias\Pages\ViewIncidenciaSimple;
 use App\Filament\Resources\Incidencias\Schemas\IncidenciaForm;
-
+use App\Contracts\MiNavigationItemContract;
 
 use Filament\Schemas\Schema;
 
@@ -21,7 +21,7 @@ class IncidenciaResource extends BaseResourceNavigationItem
 
 
 //    protected static MiNavigationItem $miNavigationItem = MiNavigationItem::PLACSP_INCIDENCIA;
-    protected static \App\Contracts\MiNavigationItemContract $miNavigationItem = MiNavigationItemIncidencias::PLACSP_INCIDENCIA;
+    protected static MiNavigationItemContract $miNavigationItem = MiNavigationItemIncidencias::PLACSP_INCIDENCIA;
 
     public static function getPages(): array
     {

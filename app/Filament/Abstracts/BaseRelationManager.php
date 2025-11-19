@@ -2,6 +2,7 @@
 
 namespace App\Filament\Abstracts;
 
+use App\Contracts\MiRelationManagerContract;
 use App\Enums\NavigationMenus\MiRelationManager;
 use Exception;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseRelationManager extends RelationManager
 {
-    protected static MiRelationManager $miRelationManager;
+    protected static MiRelationManagerContract $miRelationManager;
 
     public static function getRelationshipName(): string
     {

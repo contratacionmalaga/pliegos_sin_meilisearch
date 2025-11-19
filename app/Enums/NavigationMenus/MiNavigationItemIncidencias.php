@@ -331,7 +331,7 @@ enum MiNavigationItemIncidencias: string implements MiNavigationItemContract
         return match ($this) {
 
             self::PLACSP_INCIDENCIA,
-            self::PLACSP_RESPUESTAS_INCIDENCIA => 'updated',
+            self::PLACSP_RESPUESTAS_INCIDENCIA => 'updated_at',
 
             default => 'created_at',
         };

@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\RespuestasIncidencia\Tables;
 
 use App\Enums\NavigationMenus\MiNavigationItem;
+use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Enums\NavigationMenus\MiRelationManager;
+use App\Enums\NavigationMenus\MiRelationManagerIncidencias;
 use App\Filament\Components\Tables\MiTable;
 use App\Filament\Components\Tables\MiTextColumn;
 use App\Models\PLACSP\ContratoMayor;
@@ -36,8 +38,8 @@ readonly class RespuestasIncidenciaTable
 
         // Determinamos el tipo de configuración que se debe aplicar
         $configurableItem = $isRelationManager
-            ? MiRelationManager::PLACSP_RESPUESTAS_INCIDENCIA
-            : MiNavigationItem::PLACSP_RESPUESTAS_INCIDENCIA;
+            ? MiRelationManagerIncidencias::PLACSP_RESPUESTAS_INCIDENCIA
+            : MiNavigationItemIncidencias::PLACSP_RESPUESTAS_INCIDENCIA;
 
         // Usamos la función pública `getTable` para obtener la tabla configurada
         return $this->miTable->getTable($table, $configurableItem)

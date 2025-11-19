@@ -11,25 +11,26 @@ use Filament\Support\Colors\Color;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
+use App\Contracts\MiRelationManagerContract;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkAction;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\Filter;
 
-enum MiRelationManagerIncidencias: string implements HasIcon, HasColor, HasLabel
+enum MiRelationManagerIncidencias: string implements MiRelationManagerContract
 {
 
 
-//    case PLACSP_ADJUDICACION = 'adjudicacion';
-//    case PLACSP_ANUNCIO = 'anuncio';
-//    case PLACSP_CONDICION_ESPECIAL_EJECUCION = 'condiciones-especiales-ejecucion';
-//    case PLACSP_CPV = 'cpv';
-//    case PLACSP_CRITERIO_ADJUDICACION = 'criterios-adjudicacion';
-//    case PLACSP_DOCUMENTO = 'documento';
-//    case PLACSP_CONTRATO_MAYOR = 'contrato-mayor';
-//    case PLACSP_LOTE = 'lote';
-//    case PLACSP_MODIFICACION = 'modificacion';
-//    case PLACSP_REQUISITO_PREVIO_PARTICIPACION = 'requisito-previo-participacion';
+    //    case PLACSP_ADJUDICACION = 'adjudicacion';
+    //    case PLACSP_ANUNCIO = 'anuncio';
+    //    case PLACSP_CONDICION_ESPECIAL_EJECUCION = 'condiciones-especiales-ejecucion';
+    //    case PLACSP_CPV = 'cpv';
+    //    case PLACSP_CRITERIO_ADJUDICACION = 'criterios-adjudicacion';
+    //    case PLACSP_DOCUMENTO = 'documento';
+    //    case PLACSP_CONTRATO_MAYOR = 'contrato-mayor';
+    //    case PLACSP_LOTE = 'lote';
+    //    case PLACSP_MODIFICACION = 'modificacion';
+    //    case PLACSP_REQUISITO_PREVIO_PARTICIPACION = 'requisito-previo-participacion';
     case PLACSP_INCIDENCIA = 'incidencia';
     case PLACSP_RESPUESTAS_INCIDENCIA = 'respuestas-incidencia';
 
@@ -53,13 +54,12 @@ enum MiRelationManagerIncidencias: string implements HasIcon, HasColor, HasLabel
 
 
             default =>
-                $acciones = [
-                ],
+            $acciones = [],
         };
 
         return ActionGroup::make($acciones)
-                ->color(Color::Purple)
-                ->tooltip(ConstantesString::ACCIONES_DIPONIBLES->value);
+            ->color(Color::Purple)
+            ->tooltip(ConstantesString::ACCIONES_DIPONIBLES->value);
     }
 
     /**
@@ -74,11 +74,8 @@ enum MiRelationManagerIncidencias: string implements HasIcon, HasColor, HasLabel
 
         return match ($this) {
 
-            default => [
-
-            ],
+            default => [],
         };
-
     }
 
     /**
@@ -87,9 +84,7 @@ enum MiRelationManagerIncidencias: string implements HasIcon, HasColor, HasLabel
     public function getTableBulkActions(): array
     {
 
-        return [
-
-        ];
+        return [];
     }
 
     /**
@@ -119,7 +114,6 @@ enum MiRelationManagerIncidencias: string implements HasIcon, HasColor, HasLabel
     {
 
         return MiNavigationItemIncidencias::getMiNavigationItemFromMiRelationManager($this)->getLabel();
-
     }
 
 
@@ -146,7 +140,6 @@ enum MiRelationManagerIncidencias: string implements HasIcon, HasColor, HasLabel
         return match ($this) {
 
             self::PLACSP_INCIDENCIA => 'warning',
-
         };
     }
 
@@ -168,7 +161,7 @@ enum MiRelationManagerIncidencias: string implements HasIcon, HasColor, HasLabel
      */
     public function getTableDescription(): string
     {
-        return match($this) {
+        return match ($this) {
 
             self::PLACSP_INCIDENCIA => 'Listado de incidencias',
             self::PLACSP_RESPUESTAS_INCIDENCIA => 'Listado de respuestas a incidencias',
@@ -255,9 +248,7 @@ enum MiRelationManagerIncidencias: string implements HasIcon, HasColor, HasLabel
         match ($this) {
 
             default =>
-                $acciones = [
-
-                ]
+            $acciones = []
         };
 
         return ActionGroup::make($acciones)

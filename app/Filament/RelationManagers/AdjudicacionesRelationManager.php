@@ -2,6 +2,7 @@
 
 namespace App\Filament\RelationManagers;
 
+use App\Contracts\MiRelationManagerContract;
 use App\Enums\NavigationMenus\MiRelationManager;
 use App\Filament\Abstracts\BaseRelationManager;
 use App\Filament\Resources\PLACSP\Adjudicaciones\Schemas\AdjudicacionInfolist;
@@ -16,7 +17,7 @@ class AdjudicacionesRelationManager extends BaseRelationManager
      * Utilizada dentro de la clase BaseRelationManager para heredar todas las propiedades
      *      que es base a este valor allí se calculan
      */
-    protected static MiRelationManager $miRelationManager = MiRelationManager::PLACSP_ADJUDICACION;
+    protected static MiRelationManagerContract $miRelationManager = MiRelationManager::PLACSP_ADJUDICACION;
 
     /**
      * @throws Exception
