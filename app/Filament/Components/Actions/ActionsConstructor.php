@@ -136,9 +136,8 @@ class ActionsConstructor
             ->tooltip(MiAccionEnum::VerExpediente->getTooltip())
             ->icon(MiAccionEnum::VerExpediente->getIcon())
             ->color(MiAccionEnum::VerExpediente->getColor())
-//            ->url(fn($record) => route('filament.admin.resources.expedientes.view', ['record' => $record->id_entry]))
-            ->url(fn($record) => route('filament.admin.resources.contratos-mayores.view', ['record' => $record->id]))
-            ->visible(fn($record) => filled($record->id));
+            ->url(fn($record) => route('filament.admin.resources.contratos-mayores.view', ['record' => ObtenerId($record->id_entry)]))
+            ->visible(fn($record) => filled($record->id_entry));
     }
 
     public function getEnlaceDocumento(): Action

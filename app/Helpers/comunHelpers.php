@@ -9,6 +9,8 @@ use Filament\Support\Colors\Color;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
+use App\Repositories\ContratoMayorRepository;
+
 /**
  * @return bool
  */
@@ -145,3 +147,7 @@ function enviarNotificacion(
     $notifiable->notify($notificacion);
 }
 
+function ObtenerId(string $id_entry): ?string
+{
+    return new ContratoMayorRepository()->getContratoMayorIdByIdEntry($id_entry);
+}
