@@ -5,40 +5,17 @@ namespace App\Models;
 use App\Enums\Incidencias\EstadoIncidenciaEnum;
 use App\Models\PLACSP\Anuncio;
 use App\Models\PLACSP\ContratoMayor;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\DB;
 
 class Incidencia extends Model
 {
 
     use HasUuids;
     use Notifiable;
-
-//    /**
-//     * Route notifications for the mail channel.
-//     *
-//     * @return  array<string, string>|string
-//     */
-//    public function routeNotificationForMail(Notification $notification): array|string
-//    {
-//        // Return email address only...
-//        return $this->email_address;
-//
-//        // Return email address and name...
-//        return [$this->email_address => $this->name];
-//    }
-
-
-//    public function getTable()
-//    {
-//        return config('notable.table_name', 'notables');
-//    }
 
     protected $fillable = [
         'titulo',
@@ -78,22 +55,6 @@ class Incidencia extends Model
     {
         return $this->morphTo();
     }
-
-//    public function creator(): MorphTo
-//    {
-//        return $this->morphTo();
-//    }
-//
-//    public function scopeByCreator($query, Model $creator)
-//    {
-//        return $query->where('creator_type', $creator->getMorphClass())
-//            ->where('creator_id', $creator->getKey());
-//    }
-//
-//    public function scopeWithoutCreator($query)
-//    {
-//        return $query->whereNull('creator_type');
-//    }
 
     public function scopeRecent($query, int $days = 7)
     {
@@ -145,41 +106,6 @@ class Incidencia extends Model
     }
 
 
-    // Accessor para el título del incidenciable
-    protected function incidenciableIdentificador(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->getRelation('incidenciable')?->obtenerIdentificadorIncidenciable() ?? 'Sin Identificador',
-//            get: fn () => $this->getRelation('incidenciable')?->contract_folder_id ?? 'Sin Identificador',
-        );
-    }
-
-    // Accessor para la descripcion del incidenciable
-    protected function incidenciableDescripcion(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->getRelation('incidenciable')?->obtenerDescripcionIncidenciable() ?? 'Sin Identificador',
-        );
-    }
-
-    // Accessor para el Tipo del incidenciable
-    protected function incidenciableTipo(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->getRelation('incidenciable')?->obtenerTypeIncidenciable() ?? 'Sin Identificador',
-        );
-    }
-
-    public function miincidenciableIdentificador(): string
-    {
-//        return $this->getRelation('incidenciable')?->obtenerIdentificadorIncidenciable() ?? 'Sin Identificador';
-
-        ds($this);
-        ds($this->incidenciable);
-
-        return $this->incidenciable?->obtenerIdentificadorIncidenciable() ?? 'Sin Identificador';
-    }
-
     public function getincidenciableIdentificadorAttribute()
     {
         return $this->incidenciable?->obtenerIdentificadorIncidenciable() ?? 'Sin Identificador';
@@ -199,33 +125,6 @@ class Incidencia extends Model
 
     public function scopeBuscarPorIdentificador($query, $value)
     {
-
-//        return $query
-////                    ->join('placsp_anuncios', 'incidencia.incidenciable_id', '=', 'placsp_anuncios.id')
-//                    ->whereRaw('LOWER(placsp_anuncios.contract_folder_id) LIKE ?', ['%' . strtolower($value) . '%']);
-
-//        return $query->whereHasMorph(
-//            'incidenciable',
-//            [
-//                \App\Models\PLACSP\ContratoMayor::class => function ($q) use ($value) {
-//                    $q->where('LOWER(contract_folder_id)', 'LIKE', "%{$value}%");
-//                },
-//                \App\Models\PLACSP\Anuncio::class => function ($q) use ($value) {
-//                    $q->where('LOWER(contract_folder_id)', 'LIKE', "%{$value}%");
-//                },
-//            ]
-//        );
-
-
-//        return $query->WhereHasMorph(
-//            'incidenciable',
-//
-//            ['App\Models\PLACSP\Anuncio','App\Models\PLACSP\ContratoMayor'],
-//            function ($q) use ($value) {
-//                $q->whereRaw('LOWER(contract_folder_id) LIKE ?', ['%' . strtolower($value) . '%']);
-//            }
-//        );
-
 
         return $query->whereHasMorph(
             'incidenciable',
@@ -250,31 +149,6 @@ class Incidencia extends Model
     public function scopeBuscarPorDescripcion($query, $value)
     {
 
-//        return $query
-////                    ->join('placsp_anuncios', 'incidencia.incidenciable_id', '=', 'placsp_anuncios.id')
-//                    ->whereRaw('LOWER(placsp_anuncios.name_objeto) LIKE ?', ['%' . strtolower($value) . '%']);
-
-//        return $query->orWhereHasMorph(
-//            'incidenciable',
-//            [
-//                ContratoMayor::class => function ($q) use ($value) {
-//                    $q->where('LOWER(name_objeto)', 'LIKE', "%{$value}%");
-//                },
-//                Anuncio::class => function ($q) use ($value) {
-//                    $q->where('LOWER(name_objeto)', 'LIKE', "%{$value}%");
-//                },
-//            ]
-//        );
-
-//        return $query->WhereHasMorph(
-//            'incidenciable',
-//
-//            ['App\Models\PLACSP\Anuncio','App\Models\PLACSP\ContratoMayor'],
-//            function ($q) use ($value) {
-//                $q->whereRaw('LOWER(name_objeto) LIKE ?', ['%' . strtolower($value) . '%']);
-//            }
-//        );
-
         return $query->whereHasMorph(
             'incidenciable',
             [
@@ -292,7 +166,6 @@ class Incidencia extends Model
                 $q->whereRaw('LOWER('.$campo.') LIKE ?', ['%'.strtolower($value).'%']);
             }
         );
-
 
     }
 
