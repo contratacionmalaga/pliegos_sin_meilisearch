@@ -5,7 +5,7 @@ namespace App\Filament\Resources\PLACSP\ContratosMayores;
 use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Abstracts\BaseResourceNavigationItem;
-use App\Filament\RelationManagers\IncidenciaRelationManager;
+use App\Filament\RelationManagers\IncidenciasRelationManager;
 use App\Filament\Resources\PLACSP\ContratosMayores\Pages\ListContratosMayores;
 use App\Filament\Resources\PLACSP\ContratosMayores\Pages\ViewContratoMayor;
 use App\Filament\RelationManagers\AdjudicacionesRelationManager;
@@ -48,7 +48,7 @@ class ContratoMayorResource extends BaseResourceNavigationItem
             DocumentosRelationManager::class,
             AdjudicacionesRelationManager::class,
             ModificacionesRelationManager::class,
-            IncidenciaRelationManager::class,
+            IncidenciasRelationManager::class,
         ];
     }
 }

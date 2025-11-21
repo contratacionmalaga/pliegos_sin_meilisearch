@@ -12,7 +12,7 @@ use Exception;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 
-class IncidenciaRelationManager extends BaseRelationManager
+class IncidenciasRelationManager extends BaseRelationManager
 {
     /**
      * Utilizada dentro de la clase BaseRelationManager para heredar todas las propiedades
