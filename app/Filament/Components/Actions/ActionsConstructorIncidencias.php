@@ -4,6 +4,7 @@ namespace App\Filament\Components\Actions;
 
 use App\Contracts\MiNavigationItemContract;
 use App\Enums\Acciones\MiAccionEnum;
+use App\Enums\Acciones\MiAccionIncidenciasEnum;
 use App\Enums\Constantes\ConstantesString;
 use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
@@ -40,22 +41,11 @@ class ActionsConstructorIncidencias
     public function getCrearIncidencia(MiNavigationItemContract $miNavigationItem): Action
     {
 
-//        return Action::make(MiAccionEnum::CrearIncidencia->value)
-//            ->label(MiAccionEnum::CrearIncidencia->getLabel())
-//            ->tooltip(MiAccionEnum::CrearIncidencia->getTooltip())
-//            ->icon(MiAccionEnum::CrearIncidencia->getIcon())
-//            ->color(MiAccionEnum::CrearIncidencia->getColor())
-//            ->modalWidth(Width::FourExtraLarge)
-////            ->url(fn ($record): string => route('filament.admin.resources.incidencias.index', ['record' => $record->id]));
-//            ->schema(function ($schema){ return new IncidenciaForm()->getForm($schema); })
-//            ->action(function (array $data) {Incidencia::create($data); });
-
-
-        return CreateActionPage::make(MiAccionEnum::CrearIncidencia->value)
-                ->label(MiAccionEnum::CrearIncidencia->getLabel())
-                ->tooltip(MiAccionEnum::CrearIncidencia->getTooltip())
-                ->icon(MiAccionEnum::CrearIncidencia->getIcon())
-                ->color(MiAccionEnum::CrearIncidencia->getColor())
+        return CreateActionPage::make(MiAccionIncidenciasEnum::CrearIncidencia->value)
+                ->label(MiAccionIncidenciasEnum::CrearIncidencia->getLabel())
+                ->tooltip(MiAccionIncidenciasEnum::CrearIncidencia->getTooltip())
+                ->icon(MiAccionIncidenciasEnum::CrearIncidencia->getIcon())
+                ->color(MiAccionIncidenciasEnum::CrearIncidencia->getColor())
                 ->modalWidth(Width::FourExtraLarge)
                 ->schema(function ($schema){ return new IncidenciaForm()->getForm($schema); })
                 ->using(function (array $data, string $model, $record): Model {
@@ -76,21 +66,19 @@ class ActionsConstructorIncidencias
 
     }
 
-//    public function getCrearRespuestaIncidencia(MiNavigationItem $miNavigationItem): Action
     public function getCrearRespuestaIncidencia(): Action
     {
 
-        return CreateActionPage::make(MiAccionEnum::CrearRespuestaIncidencia->value)
-                ->label(MiAccionEnum::CrearRespuestaIncidencia->getLabel())
-                ->tooltip(MiAccionEnum::CrearRespuestaIncidencia->getTooltip())
-                ->icon(MiAccionEnum::CrearRespuestaIncidencia->getIcon())
-                ->color(MiAccionEnum::CrearRespuestaIncidencia->getColor())
+        return CreateActionPage::make(MiAccionIncidenciasEnum::CrearRespuestaIncidencia->value)
+                ->label(MiAccionIncidenciasEnum::CrearRespuestaIncidencia->getLabel())
+                ->tooltip(MiAccionIncidenciasEnum::CrearRespuestaIncidencia->getTooltip())
+                ->icon(MiAccionIncidenciasEnum::CrearRespuestaIncidencia->getIcon())
+                ->color(MiAccionIncidenciasEnum::CrearRespuestaIncidencia->getColor())
                 ->modalWidth(Width::FourExtraLarge)
                 ->schema(function ($schema){ return new RespuestasIncidenciaForm()->getForm($schema); })
                 ->using(function (array $data, string $model): Model {
                     return RespuestasIncidencia::create($data);
                 })
-//                ->mutateDataUsing(function (array $data, $record) use($miNavigationItem): array {
                 ->mutateDataUsing(function (array $data, $record): array {
                     $data['incidencia_id'] = $record->id;
 
@@ -189,21 +177,7 @@ class ActionsConstructorIncidencias
             ->modalHeading('Detalles de la incidencia ( MODAL)')
             ->modalSubmitAction(false) // sin botón de "Guardar"
             ->modalCancelActionLabel('Cerrar')
-            ->modalWidth(Width::FourExtraLarge)
-//            ->requiresConfirmation()
-            //            ->slideOver() // 👈 esto lo hace abrir desde el borde derecho
-//            ->modalContent(fn (Incidencia $record): View => view('filament.admin.resources.incidencias.view-simple', ['record' => $record]));
-//            ->modalContent(function (Incidencia $record): View {
-//                $viewPath = 'filament.admin.resources.incidencias.view-simple';
-//
-//                // Debug: ver la ruta real que busca Laravel
-//                ds('Buscando vista... ' );
-//                ds(view()->getFinder()->find($viewPath));
-//
-//                return view($viewPath, ['record' => $record]);
-//            })
-              ;
-//            ->modalContent(fn (Incidencia $record): View => view('app.filament.resources.incidencias.pages.view-incidencia-simple', ['record' => $record]));
+            ->modalWidth(Width::FourExtraLarge);
     }
 
 
