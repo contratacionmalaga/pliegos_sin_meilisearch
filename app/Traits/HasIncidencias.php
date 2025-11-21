@@ -34,11 +34,6 @@ trait HasIncidencias
                                 'id')
                     ->orderBy('created_at');
 
-//        return $this->morphMany(Incidencia::class, 'incidenciable')
-//                    ->orderBy('created_at');
-
-//                    ->orderBy(config('notable.order_by_column', 'created_at'),
-//                              config('notable.order_by_direction', 'desc'));
     }
 
     /**
@@ -111,22 +106,22 @@ trait HasIncidencias
                     ->count();
     }
 
-//    public function getIncidenciasByCreator(Model $creator)
-//    {
-//        return $this->incidencias()
-//            ->where('creator_type', $creator->getMorphClass())
-//            ->where('creator_id', $creator->getKey())
-//            ->orderBy('created_at', 'desc')
-//            ->get();
-//    }
-//
-//    public function getIncidenciasWithCreator()
-//    {
-//        return $this->incidencias()
-//            ->with('creator')
-//            ->orderBy('created_at', 'desc')
-//            ->get();
-//    }
+   public function getIncidenciasByCreator(Model $creator)
+   {
+       return $this->incidencias()
+           ->where('creator_type', $creator->getMorphClass())
+           ->where('creator_id', $creator->getKey())
+           ->orderBy('created_at', 'desc')
+           ->get();
+   }
+
+   public function getIncidenciasWithCreator()
+   {
+       return $this->incidencias()
+           ->with('creator')
+           ->orderBy('created_at', 'desc')
+           ->get();
+   }
 
     /**
      *
