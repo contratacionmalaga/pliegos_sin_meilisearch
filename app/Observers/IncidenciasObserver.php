@@ -9,41 +9,6 @@ use Illuminate\Support\Facades\Notification;
 
 class IncidenciasObserver
 {
-//    public function creating(Incidencia $incidencia): void
-//    {
-//        if (empty($incidencia->incidenciable_type) && auth()->check()) {
-//            $incidencia->incidenciable_type = auth()->user()->getMorphClass();
-//            $incidencia->incidenciable_id = auth()->id();
-//        }
-//    }
-
-//    public function creating(RegistroContratoEntidad $registroContratoRemesa): void
-//    {
-//
-//        $registroContratoRemesa->setAttribute('es_aprobado', AprobadoEnum::FALSE);
-//        ds($registroContratoRemesa);
-//    }
-
-//    public function created(RegistroContratoEntidad $registroContratoRemesa): void
-//    {
-//        $annio = $registroContratoRemesa->getAttribute('annio');
-//        $nifEntidad = $registroContratoRemesa->getAttribute('nif_entidad');
-//        $entidadRepository = new EntidadRepository;
-//        $entidad = $entidadRepository->getByNif($nifEntidad);
-//        $nombreEntidad = $entidad?->getAttribute('entidad');
-//
-//        $user = Auth::user();
-//
-//        $mensaje = "El usuario {$user->name} ({$user->email}) ha aprobado el envío al Registro de Contratos del año {$annio} para la entidad {$nombreEntidad}.";
-//
-//        // 💬 Notificar al usuario actual, a los administradores y opcionalmente a un grupo (null en este caso)
-//        NotificationHelper::notifyWithAdminsAndOptionalGroup(
-//            'Aprobación de remesa - Registro de Contratos',
-//            $mensaje,
-//            collect([$user]),
-//            NotificationTypeEnum::SUCCESS
-//        );
-//    }
 
     public function created(Incidencia $incidencia): void
     {
