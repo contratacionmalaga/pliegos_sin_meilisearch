@@ -12,7 +12,6 @@ use App\Filament\Components\Schemas\MiSchema;
 use App\Filament\Components\Schemas\MiSection;
 use App\Filament\Components\Schemas\MiSectionForm;
 use App\Filament\Components\Schemas\MiSectionInfolist;
-use App\Filament\Components\Schemas\MiSectionSchema;
 use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -59,23 +58,16 @@ class IncidenciaForm
             ->schema([
                 $miTextInput->getTextInputTitulo('titulo',true, 5, 'Titulo'),
                 $miTextInput->getTextInputDescripcion('descripcion',true, 5,'Descripcion'),
-
                 $miSelect->getSelectEnum('estado', true, EstadoIncidenciaEnum::class, 4, 'Estado'),
-//                    ->disabled(false),
-//                $miTextInput->getTextInputEstado('estado',true, 5,'Estado'),               // TODO: Select?
-
                 $miTextInput->getTextInputEmail(true, 5),
-
             ])
             ->columnSpan('full')
             ;
 
     }
 
-
-
     private function getSectionSchemaRespuestasEnviadas(
-        MiSectionForm $miSectionForm,
+        MiSection $miSectionForm,
         MiTextEntry   $miTextEntry
     ): Section
     {

@@ -6,16 +6,12 @@ use App\Enums\NavigationMenus\MiNavigationItem;
 use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Abstracts\BaseViewRecord;
 use App\Filament\Resources\Incidencias\IncidenciaResource;
-use App\Filament\Resources\Incidencias\Schemas\IncidenciaInfolist;
 use App\Models\Incidencia;
-use Filament\Infolists\Components\RepeatableEntry;
-use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\ViewEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 use Filament\Tables\Table;
-use Filament\Tables;
 
 class ViewIncidenciaBlade extends BaseViewRecord
 {

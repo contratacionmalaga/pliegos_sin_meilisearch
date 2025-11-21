@@ -5,6 +5,7 @@ namespace App\Enums\NavigationMenus;
 //use App\Enums\Acciones\Roles;
 use App\Enums\Constantes\ConstantesString;
 use App\Filament\Components\Actions\ActionsConstructor;
+use App\Filament\Components\Actions\ActionsConstructorIncidencias;
 use App\Filament\Components\Filters\Admin\EnumsSelectFilters;
 use App\Filament\Components\Filters\Admin\EnumsTernaryFilters;
 use App\Filament\Components\Filters\Admin\OrganoContratacionFilter;
@@ -54,20 +55,6 @@ use App\Contracts\MiNavigationItemContract;
 enum MiNavigationItemIncidencias: string implements MiNavigationItemContract
 {
 
-
-
-//    case PLACSP_ADJUDICACION = 'adjudicacion';
-//    case PLACSP_ANUNCIO = 'anuncio';
-//    case PLACSP_CONDICION_ESPECIAL_EJECUCION = 'condiciones-especiales-ejecucion';
-//    case PLACSP_CONTRATO_MAYOR = 'contrato-mayor';
-//
-//    case PLACSP_CONSULTA_PRELIMINAR_MERCADO = 'consulta-preliminar-mercado';
-//    case PLACSP_CPV = 'cpv';
-//    case PLACSP_CRITERIO_ADJUDICACION = 'criterios-adjudicacion';
-//    case PLACSP_DOCUMENTO = 'documento';
-//    case PLACSP_LOTE = 'lote';
-//    case PLACSP_MODIFICACION = 'modificacion';
-//    case PLACSP_REQUISITO_PREVIO_PARTICIPACION = 'requisito-previo-participacion';
     case PLACSP_INCIDENCIA = 'incidencia';
     case PLACSP_RESPUESTAS_INCIDENCIA = 'respuestas-incidencia';
 
@@ -91,20 +78,6 @@ enum MiNavigationItemIncidencias: string implements MiNavigationItemContract
         );
     }
 
-//    public function getRolByNavigationItem(): array
-//    {
-//        if (! $this->isNavigationItemPermisible()) {
-//            return []; // o lanza una excepción, según tu necesidad
-//        }
-//
-//        return match ($this) {
-//            self::PLACSP_CONTRATO_MAYOR => [Roles::LEER, Roles::ESCRIBIR],
-//            self::PLACSP_ADJUDICACION => [Roles::LEER],
-//
-//            // solo cases permisibles
-//            default => [],
-//        };
-//    }
 
     /**
      * @return array<SelectFilter|DateRangeFilter|Filter>
@@ -136,19 +109,6 @@ enum MiNavigationItemIncidencias: string implements MiNavigationItemContract
         $actions = new ActionsConstructor;
 
         match ($this) {
-
-//            self::PLACSP_ANUNCIO => $array = [
-//                $actions->getVerExpediente(),
-//                $actions->getEnlacePlacsp(),
-//                $actions->getCrearIncidencia(self::PLACSP_ANUNCIO),
-//            ],
-//
-//            self::PLACSP_CONTRATO_MAYOR => $array = [
-////                $actions->getViewAction(),
-//                $actions->getVerExpediente(),
-//                $actions->getEnlacePlacsp(),
-//                $actions->getCrearIncidencia(self::PLACSP_CONTRATO_MAYOR),
-//            ],
 
             self::PLACSP_RESPUESTAS_INCIDENCIA => $array = [
 //                $actions->getCreateAction(),
@@ -185,24 +145,7 @@ enum MiNavigationItemIncidencias: string implements MiNavigationItemContract
         // Acciones específicas por modelo
         return  match ($this) {
 
-//            self::PLACSP_ADJUDICACION,
-//            self::PLACSP_ANUNCIO,
-//            self::PLACSP_CONDICION_ESPECIAL_EJECUCION,
-//            self::PLACSP_CONSULTA_PRELIMINAR_MERCADO,
-//            self::PLACSP_CPV,
-//            self::PLACSP_CRITERIO_ADJUDICACION,
-//            self::PLACSP_DOCUMENTO,
-//            self::PLACSP_CONTRATO_MAYOR,
-//            self::PLACSP_LOTE,
-//            self::PLACSP_MODIFICACION,
-//            self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => [
-//
-//            ],
-
-            default => [
-//                $constructor->getEditAction(),
-//                $constructor->getCreateAction(),
-            ],
+            default => [ ],
         };
     }
 
@@ -212,16 +155,16 @@ enum MiNavigationItemIncidencias: string implements MiNavigationItemContract
     public function getTableHeaderActions(): ActionGroup
     {
 
-        $actionsConstructor = new ActionsConstructor;
+        $actionsConstructorIncidencias = new ActionsConstructorIncidencias();
 
         match ($this) {
 
             self::PLACSP_RESPUESTAS_INCIDENCIA => $acciones = [
-//                $actionsConstructor->getCreateAction(),
+//                $actionsConstructorIncidencias->getCreateAction(),
             ],
 
             self::PLACSP_INCIDENCIA => $acciones = [
-//                $actionsConstructor->getCreateAction(),
+//                $actionsConstructorIncidencias->getCreateAction(),
             ],
 
             default => $acciones = [ ],
@@ -511,7 +454,6 @@ enum MiNavigationItemIncidencias: string implements MiNavigationItemContract
     public function getTitle(Model $record): string|Htmlable
     {
         return match($this) {
-//            self::PLACSP_CONSULTA_PRELIMINAR_MERCADO => 'Consulta #' . $record->getAttribute('preliminary_market_consultation_id'),
             default => $this->getLabel(),
         };
     }

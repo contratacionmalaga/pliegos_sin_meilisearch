@@ -28,26 +28,6 @@ class RespuestasIncidenciaForm
         $miSelect = new MiSelect;
         $miRichEditor = new MiRichEditor;
 
-//        // Obtengo si existen registros por si es necesario incluir la sección secundaria
-//        $record = $schema->getRecord();
-//        $hasRecord = ! is_null($record);
-//
-//        $seccionesPrincipales = [
-//            $miSectionInfolist->getInfolistSectionDatosOrganoContratacionPlacsp($miSection, $miTextEntry),
-////            $this->getFormSectionDatosEntidadAsociada($miSection, $miTextEntry, $miSelect),
-//            $this->getFormSectionContacto($miSection, $miTextInput),
-//            $miSectionForm->getFormSectionLinkPerfilContratante($miSection, $miTextInput),
-////            $miSectionForm->getSectionFormObservaciones($miSection, $miRichEditor),
-//        ];
-//
-//        $seccionesSecundarias = $hasRecord
-//            ? [
-//                $miSectionInfolist->getInfoListSectionFechasRegistro($miSection, $miTextEntry)->columnSpan(2),
-//                $miSectionInfolist->getInfoListSectionEstadoRegistro($miSection, $miTextEntry)->columnSpan(2),
-//            ]
-//            : [];
-
-
         $seccionesPrincipales = [
             $this->getFormSectionGeneral($miSection, $miTextInput,$miTextEntry, $miRichEditor),
         ];
@@ -73,67 +53,10 @@ class RespuestasIncidenciaForm
                     description: $description,
                     icon: $icon))
             ->schema([
-//                $miTextInput->getTextInputEmail(true, 3),
-//                $miTextInput->getTextInputDireccion(true, 4),
-//                $miTextInput->getTextInputCodigo('codigo_postal', true, 2),
-//                $miTextInput->getTextInputTelefono(true, 3),
-
-//                $miTextInput->getTextInputTitulo('id', false,'id'),
-//                $miTextInput->getTextInputRespuesta('respuesta',true, 3, 'Respuesta'),
                 $miRichEditor->getRichEditorRespuesta(3, 'Respuesta'),
-//                $miTextInput->getTextInputDescripcion('descripcion',true, 3,'Descripcion'),
-//                $miTextInput->getTextInputEstado('estado',true, 3,'Estado'),               // TODO: Select?
-//                $miTextInput->getTextInputTitulo('incidenciable_id',true, 3,'incidenciable_id'),
-//                $miTextInput->getTextInputTitulo('incidenciable_type',true, 3,'incidenciable_type'),
-//                $miTextInput->getTextInputTitulo('created_at',false, 3,'created_at'),
-//                $miTextInput->getTextInputTitulo('updated_at',false, 3,'updated_at'),
-//                $miTextInput->getTextInputTitulo('deleted_at',false, 3,'deleted_at'),
-
             ])
             ->columnSpan('full');
 
-    }
-
-//    private function getFormSectionContacto(
-//        MiSection $miSection,
-//        MiTextInput $miTextInput
-//    ): Section {
-//
-//        $description = 'Los campos marcados con * son obligatorios';
-//        $icon = 'heroicon-o-pencil-square';
-//
-//        return $miSection
-//            ->create(
-//                new SectionConfig(
-//                    description: $description,
-//                    icon: $icon))
-//            ->schema([
-//                $miTextInput->getTextInputEmail(true, 3),
-//                $miTextInput->getTextInputDireccion(true, 4),
-//                $miTextInput->getTextInputCodigo('codigo_postal', true, 2),
-//                $miTextInput->getTextInputTelefono(true, 3),
-//            ]);
-//    }
-
-    private function getFormSectionDatosEntidadAsociada(
-        MiSection $miSection,
-        MiTextEntry $miTextEntry,
-        MiSelect $miSelect
-    ): Section {
-
-        $description = 'Los campos marcados con * son obligatorios';
-        $icon = 'heroicon-o-pencil-square';
-
-        return $miSection
-            ->create(
-                new SectionConfig(
-                    description: $description,
-                    icon: $icon))
-            ->schema([
-                $miTextEntry->getTextEntry('estado', 4),
-//                $miSelect->getSelectEnum('tipo_organo_contratacion_rc_id', true, RC_TiposDeOrganosContratacion::class, 4)
-//                    ->disabled(! esSuperAdmin()),
-            ]);
     }
 
 }

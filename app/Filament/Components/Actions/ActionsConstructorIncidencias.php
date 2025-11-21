@@ -5,35 +5,18 @@ namespace App\Filament\Components\Actions;
 use App\Contracts\MiNavigationItemContract;
 use App\Enums\Acciones\MiAccionEnum;
 use App\Enums\Acciones\MiAccionIncidenciasEnum;
-use App\Enums\Constantes\ConstantesString;
-use App\Enums\NavigationMenus\MiNavigationItem;
-use App\Enums\NavigationMenus\MiNavigationItemIncidencias;
 use App\Filament\Resources\Incidencias\Schemas\IncidenciaForm;
 use App\Filament\Resources\Incidencias\Schemas\IncidenciaInfolist;
 use App\Filament\Resources\Incidencias\Schemas\IncidenciaSimpleInfolist;
 use App\Filament\Resources\RespuestasIncidencia\Schemas\RespuestasIncidenciaForm;
 use App\Models\Incidencia;
 use App\Models\RespuestasIncidencia;
-use App\Models\User;
 use Exception;
 use Filament\Actions\Action;
-use Filament\Actions\AssociateAction;
-use Filament\Actions\CreateAction;
 use Filament\Actions\CreateAction as CreateActionPage;
-use Filament\Actions\DeleteAction as DeleteActionPage;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction as EditActionPage;
-use Filament\Actions\ForceDeleteAction as ForceDeleteActionPage;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreAction as RestoreActionPage;
-use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
-use Filament\Notifications\Notification;
 use Filament\Support\Enums\Width;
-use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Password;
-use Livewire\Livewire;
 
 class ActionsConstructorIncidencias
 {
@@ -60,9 +43,7 @@ class ActionsConstructorIncidencias
 
                     return $data;
                 })
-                ->slideOver() // 👈 Esto hace que el formulario se abra desde la derecha
-//                ->action(function (array $data) {Incidencia::create($data); })
-            ;
+                ->slideOver(); // 👈 Esto hace que el formulario se abra desde la derecha
 
     }
 
@@ -172,7 +153,6 @@ class ActionsConstructorIncidencias
             ->color(MiAccionEnum::View->getColor())
             ->icon(MiAccionEnum::View->getIcon())
             ->slideOver() // 👈 esto lo hace abrir desde el borde derecho
-//            ->schema(function ($schema){ return new IncidenciaSimpleInfolist()->getSchema($schema); })
             ->schema(function ($schema){ return new IncidenciaInfolist()->getSchema($schema); })
             ->modalHeading('Detalles de la incidencia ( MODAL)')
             ->modalSubmitAction(false) // sin botón de "Guardar"

@@ -7,9 +7,6 @@ use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasDescription;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
-use phpDocumentor\Reflection\Types\Self_;
-use function Laravel\Prompts\select;
-use function Symfony\Component\String\s;
 
 enum MiAccionIncidenciasEnum: string implements HasColor, HasDescription, HasIcon, HasLabel
 {
@@ -41,7 +38,7 @@ enum MiAccionIncidenciasEnum: string implements HasColor, HasDescription, HasIco
         return match ($this) {
 
             self::CrearIncidencia => Color::Zinc,
-            self::CrearRespuestaIncidencia => Color::Zinc,
+            self::CrearRespuestaIncidencia => Color::Neutral,
 
         };
     }

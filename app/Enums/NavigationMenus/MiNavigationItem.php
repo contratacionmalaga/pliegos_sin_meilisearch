@@ -2,7 +2,6 @@
 
 namespace App\Enums\NavigationMenus;
 
-//use App\Enums\Acciones\Roles;
 use App\Enums\Constantes\ConstantesString;
 use App\Filament\Components\Actions\ActionsConstructor;
 use App\Filament\Components\Actions\ActionsConstructorIncidencias;
@@ -10,7 +9,6 @@ use App\Filament\Components\Filters\Admin\EnumsSelectFilters;
 use App\Filament\Components\Filters\Admin\EnumsTernaryFilters;
 use App\Filament\Components\Filters\Admin\OrganoContratacionFilter;
 use App\Filament\Components\Filters\MiDateRangeFilter;
-use App\Filament\Resources\Incidencias\IncidenciaResource;
 use App\Filament\Resources\PLACSP\Adjudicaciones\AdjudicacionResource;
 use App\Filament\Resources\PLACSP\Anuncios\AnuncioResource;
 use App\Filament\Resources\PLACSP\CondicionesEspecialesAdjudicacion\CondicionEspecialEjecucionResource;
@@ -21,9 +19,6 @@ use App\Filament\Resources\PLACSP\Documentos\DocumentoResource;
 use App\Filament\Resources\PLACSP\Lotes\LoteResource;
 use App\Filament\Resources\PLACSP\Modificaciones\ModificacionResource;
 use App\Filament\Resources\PLACSP\RequisitosPreviosParticipacion\RequisitoPrevioParticipacionResource;
-use App\Filament\Resources\RespuestasIncidencia\RespuestasIncidenciaResource;
-use App\Filament\Resources\RespuestasIncidencia\Tables\RespuestasIncidenciaTable;
-use App\Models\Incidencia;
 use App\Models\PLACSP\Adjudicacion;
 use App\Models\PLACSP\Anuncio;
 use App\Models\PLACSP\CondicionEspecialEjecucion;
@@ -34,21 +29,16 @@ use App\Models\PLACSP\Documento;
 use App\Models\PLACSP\Lote;
 use App\Models\PLACSP\Modificacion;
 use App\Models\PLACSP\RequisitoPrevioParticipacion;
-use App\Models\RespuestasIncidencia;
 use Exception;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkAction;
 use Filament\Support\Colors\Color;
-use Filament\Support\Contracts\HasColor;
-use Filament\Support\Contracts\HasIcon;
-use Filament\Support\Contracts\HasLabel;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
 use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
-use phpDocumentor\Reflection\Types\Self_;
 
 use App\Contracts\MiNavigationItemContract;
 
@@ -69,9 +59,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
     case PLACSP_LOTE = 'lote';
     case PLACSP_MODIFICACION = 'modificacion';
     case PLACSP_REQUISITO_PREVIO_PARTICIPACION = 'requisito-previo-participacion';
-    // case PLACSP_INCIDENCIA = 'incidencia';
-    // case PLACSP_RESPUESTAS_INCIDENCIA = 'respuestas-incidencia';
-
 
     /**
      * @return bool
@@ -104,21 +91,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
         );
     }
 
-//    public function getRolByNavigationItem(): array
-//    {
-//        if (! $this->isNavigationItemPermisible()) {
-//            return []; // o lanza una excepción, según tu necesidad
-//        }
-//
-//        return match ($this) {
-//            self::PLACSP_CONTRATO_MAYOR => [Roles::LEER, Roles::ESCRIBIR],
-//            self::PLACSP_ADJUDICACION => [Roles::LEER],
-//
-//            // solo cases permisibles
-//            default => [],
-//        };
-//    }
-
     /**
      * @return array<SelectFilter|DateRangeFilter|Filter>
      *
@@ -126,9 +98,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
      */
     public function getFilters(): array
     {
-
-        //        $organismoFilter = new OrganismoFilter();
-        //        $entidadFilter = new EntidadFilter();
 
         $enumsSelectFilters = new EnumsSelectFilters();
         $enumsTernaryFilters = new EnumsTernaryFilters();
@@ -262,19 +231,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
                 $actions->getEnlacePlacsp(),
             ],
 
-            //             self::PLACSP_RESPUESTAS_INCIDENCIA => $array = [
-            // //                $actions->getCreateAction(),
-            //                 $actions->getViewAction(),
-            //             ],
-
-            //             self::PLACSP_INCIDENCIA => $array = [
-            // //                $actions->getCreateAction(),
-            //                 $actionsIncidencias->getViewIncidencia_ViewAction_Infolist(),
-            //                 $actionsIncidencias->getViewIncidencia_Action_Infolist(),
-            // //                $actionsIncidencias->getViewIncidencia_Action_SimpleInfolist(),
-            //                 $actionsIncidencias->getCrearRespuestaIncidencia(),
-            //             ],
-
             self::PLACSP_DOCUMENTO => $array = [
                 $actions->getEnlaceDocumento(),
                 $actions->getVerExpediente(),
@@ -335,14 +291,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
 
         match ($this) {
 
-            //             self::PLACSP_RESPUESTAS_INCIDENCIA => $acciones = [
-            // //                $actionsConstructor->getCreateAction(),
-            //             ],
-
-            //             self::PLACSP_INCIDENCIA => $acciones = [
-            // //                $actionsConstructor->getCreateAction(),
-            //             ],
-
             default =>
 
             $acciones = [],
@@ -401,8 +349,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             self::PLACSP_LOTE => 'heroicon-o-puzzle-piece',
             self::PLACSP_MODIFICACION => 'heroicon-o-pencil-square',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'heroicon-o-user-plus',
-            // self::PLACSP_INCIDENCIA => 'heroicon-o-user-plus',
-            // self::PLACSP_RESPUESTAS_INCIDENCIA => 'heroicon-o-user-plus',
 
             default => 'heroicon-o-no-symbol'
         };
@@ -440,8 +386,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             self::PLACSP_LOTE => Lote::class,
             self::PLACSP_MODIFICACION => Modificacion::class,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => RequisitoPrevioParticipacion::class,
-            // self::PLACSP_INCIDENCIA => Incidencia::class,
-            // self::PLACSP_RESPUESTAS_INCIDENCIA => RespuestasIncidencia::class,
         };
     }
 
@@ -463,8 +407,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             self::PLACSP_LOTE => LoteResource::class,
             self::PLACSP_MODIFICACION => ModificacionResource::class,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => RequisitoPrevioParticipacionResource::class,
-            // self::PLACSP_INCIDENCIA => IncidenciaResource::class,
-            // self::PLACSP_RESPUESTAS_INCIDENCIA => RespuestasIncidenciaResource::class,
 
         };
     }
@@ -488,8 +430,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             self::PLACSP_LOTE => 'lotes',
             self::PLACSP_MODIFICACION => 'modificaciones',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'requisitos-previos-participacion',
-            // self::PLACSP_INCIDENCIA => 'incidencias',
-            // self::PLACSP_RESPUESTAS_INCIDENCIA => 'respuestas-incidencia',
 
             default => 'getSlug() - No implementado'
         };
@@ -598,9 +538,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             self::PLACSP_ANUNCIO => 'Información ampliada de un anuncio',
             self::PLACSP_DOCUMENTO => 'Información ampliada de un documento',
 
-            // self::PLACSP_INCIDENCIA => 'Información ampliada de una incidencia',
-            // self::PLACSP_RESPUESTAS_INCIDENCIA => 'Información ampliada de una respuesta a una incidencia',
-
             default => 'getInfolistDescription - no implementado'
         };
     }
@@ -624,8 +561,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             self::PLACSP_LOTE => 'Lotes',
             self::PLACSP_MODIFICACION => 'Modificaciones',
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 'Requisitos previos',
-            // self::PLACSP_INCIDENCIA => 'Incidencias',
-            // self::PLACSP_RESPUESTAS_INCIDENCIA => 'Respuestas a Incidencias',
 
             default => 'getLabel - no implementado'
         };
@@ -675,8 +610,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             self::PLACSP_LOTE => 59,
             self::PLACSP_MODIFICACION => 60,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => 61,
-            // self::PLACSP_INCIDENCIA => 62,
-            // self::PLACSP_RESPUESTAS_INCIDENCIA => 63,
 
         };
     }
@@ -718,8 +651,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             self::PLACSP_MODIFICACION,
             self::PLACSP_REQUISITO_PREVIO_PARTICIPACION => MiNavigationGroup::PLACSP->getLabel(),
 
-            // self::PLACSP_RESPUESTAS_INCIDENCIA => null, // No se muestra en ningún grupo
-            // self::PLACSP_INCIDENCIA => null, // No se muestra en ningún grupo
             self::PLACSP_CONTRATO_MAYOR => null, // No se muestra en ningún grupo
 
         };
@@ -742,8 +673,6 @@ enum MiNavigationItem: string implements MiNavigationItemContract
             MiRelationManager::PLACSP_LOTE => self::PLACSP_LOTE,
             MiRelationManager::PLACSP_MODIFICACION => self::PLACSP_MODIFICACION,
             MiRelationManager::PLACSP_REQUISITO_PREVIO_PARTICIPACION => self::PLACSP_REQUISITO_PREVIO_PARTICIPACION,
-            // MiRelationManager::PLACSP_INCIDENCIA => self::PLACSP_INCIDENCIA,
-            // MiRelationManager::PLACSP_RESPUESTAS_INCIDENCIA => self::PLACSP_RESPUESTAS_INCIDENCIA,
 
         };
     }

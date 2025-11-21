@@ -8,9 +8,6 @@ use App\Filament\Components\Filters\Admin\EnumsSelectFilters;
 use App\Filament\Components\Filters\Admin\EnumsTernaryFilters;
 use Exception;
 use Filament\Support\Colors\Color;
-use Filament\Support\Contracts\HasColor;
-use Filament\Support\Contracts\HasIcon;
-use Filament\Support\Contracts\HasLabel;
 use App\Contracts\MiRelationManagerContract;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkAction;
@@ -21,16 +18,6 @@ enum MiRelationManagerIncidencias: string implements MiRelationManagerContract
 {
 
 
-    //    case PLACSP_ADJUDICACION = 'adjudicacion';
-    //    case PLACSP_ANUNCIO = 'anuncio';
-    //    case PLACSP_CONDICION_ESPECIAL_EJECUCION = 'condiciones-especiales-ejecucion';
-    //    case PLACSP_CPV = 'cpv';
-    //    case PLACSP_CRITERIO_ADJUDICACION = 'criterios-adjudicacion';
-    //    case PLACSP_DOCUMENTO = 'documento';
-    //    case PLACSP_CONTRATO_MAYOR = 'contrato-mayor';
-    //    case PLACSP_LOTE = 'lote';
-    //    case PLACSP_MODIFICACION = 'modificacion';
-    //    case PLACSP_REQUISITO_PREVIO_PARTICIPACION = 'requisito-previo-participacion';
     case PLACSP_INCIDENCIA = 'incidencia';
     case PLACSP_RESPUESTAS_INCIDENCIA = 'respuestas-incidencia';
 
@@ -68,9 +55,6 @@ enum MiRelationManagerIncidencias: string implements MiRelationManagerContract
      */
     public function getFilters(): array
     {
-
-        $enumsSelectFilters = new EnumsSelectFilters;
-        $enumsTernaryFilters = new EnumsTernaryFilters;
 
         return match ($this) {
 
@@ -125,7 +109,6 @@ enum MiRelationManagerIncidencias: string implements MiRelationManagerContract
     {
 
         return match ($this) {
-
 
             self::PLACSP_INCIDENCIA => 'Número de indidencias',
         };
