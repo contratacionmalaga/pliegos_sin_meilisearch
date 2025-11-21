@@ -40,33 +40,6 @@ class ActionsConstructorIncidencias
     public function getCrearIncidencia(MiNavigationItemContract $miNavigationItem): Action
     {
 
-//        return Action::make(MiAccionEnum::VerExpediente->value)
-//            ->label(MiAccionEnum::VerExpediente->getLabel())
-//            ->tooltip(MiAccionEnum::VerExpediente->getTooltip())
-//            ->icon(MiAccionEnum::VerExpediente->getIcon())
-//            ->color(MiAccionEnum::VerExpediente->getColor())
-////            ->url(fn($record) => route('filament.admin.resources.expedientes.view', ['record' => $record->id_entry]))
-//            ->url(fn($record) => route('filament.admin.resources.contratos-mayores.view', ['record' => $record->id_entry]))
-//            ->visible(fn($record) => filled($record->id_entry));
-
-
-//        ->actions([
-//        Action::make('crearIncidencia')
-//            ->label('Crear incidencia')
-//            ->icon('heroicon-m-plus')
-//            ->color('primary')
-//            ->form(\App\Filament\Resources\Incidencias\Schemas\IncidenciaForm::schema())
-//            ->mountUsing(function (Forms\ComponentContainer $form, Anuncio $record) {
-//                $form->fill(['anuncio_id' => $record->id]);
-//            })
-//            ->action(function (array $data) {
-//                Incidencia::create($data);
-//            }),
-//    ]);
-
-//        Action::make('edit')
-//            ->url(fn (): string => route('posts.edit', ['post' => $this->post]));
-
 //        return Action::make(MiAccionEnum::CrearIncidencia->value)
 //            ->label(MiAccionEnum::CrearIncidencia->getLabel())
 //            ->tooltip(MiAccionEnum::CrearIncidencia->getTooltip())
@@ -85,14 +58,14 @@ class ActionsConstructorIncidencias
                 ->color(MiAccionEnum::CrearIncidencia->getColor())
                 ->modalWidth(Width::FourExtraLarge)
                 ->schema(function ($schema){ return new IncidenciaForm()->getForm($schema); })
-                ->using(function (array $data, string $model): Model {
-                    return Incidencia::create($data);
+                ->using(function (array $data, string $model, $record): Model {
+                     return Incidencia::create($data);
+//                    return $record->addIncidencia($data['titulo'], $record->getModel());
                 })
                 ->mutateDataUsing(function (array $data, $record) use($miNavigationItem): array {
                     $data['incidenciable_id'] = $record->id;
-//                    $data['incidenciable_type'] = $miNavigationItem->value;
-//                    $data['incidenciable_id'] = $record->getKey();
                     $data['incidenciable_type'] = $record->getMorphClass();
+//                    $data['incidenciable_id'] = $record->getKey();
 //                    $data['incidenciable_type'] = $miNavigationItem->value;
 
                     return $data;
