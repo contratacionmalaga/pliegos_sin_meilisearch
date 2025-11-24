@@ -42,9 +42,6 @@ readonly class AnuncioTable
         return $this->miTable->getTable($table, $configurableItem)
             ->columns(
                 array_merge(
-                    [
-                        $this->miTextColumn->getBadgeTextColumn('id', 'ID'),
-                    ],
                     $this->getColumnasComunes($table),
                     [
                         $this->miTextColumn->getBadgeTextColumn('notice_type_code', 'Tipo de anuncio'),
