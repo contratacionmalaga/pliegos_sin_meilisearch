@@ -47,7 +47,7 @@ class RespuestasIncidenciaInfolist
     ): Section
     {
 
-        $description = MiNavigationItemIncidencias::PLACSP_INCIDENCIA->getInfolistDescription();
+        $description = MiNavigationItemIncidencias::PLACSP_RESPUESTAS_INCIDENCIA->getInfolistDescription();
         $icon = 'heroicon-o-information-circle';
 
         return $misectionSchema
@@ -57,7 +57,6 @@ class RespuestasIncidenciaInfolist
                     icon: $icon,
                 ))
             ->schema([
-
                 $miTextEntry->getTextEntryRespuestasSinEtiqueta(ConstantesInt::TAMANO_10->value, 'Respuesta')
                     ->html(),
                 $miTextEntry->getBadgeDateTimeTextEntry('created_at', 3, null,'created_at'),
